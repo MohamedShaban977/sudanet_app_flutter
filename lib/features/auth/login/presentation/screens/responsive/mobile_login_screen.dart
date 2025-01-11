@@ -116,7 +116,7 @@ class MobileLoginScreen extends StatelessWidget {
               const SizedBox(height: AppSize.s37),
               ElevatedButton(
                 onPressed: onPressedTestLogin,
-                child: const Text('Login Text'),
+                child: const Text('Login Test'),
               ),
 
               ///
