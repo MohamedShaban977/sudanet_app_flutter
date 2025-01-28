@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sudanet_app_flutter/features/categories/presentation/screens/categories_screen.dart';
-import 'package:sudanet_app_flutter/features/home/presentation/screens/home_screen.dart';
 
 import '../../app/injection_container.dart';
 import '../../features/auth/forget_password/presentation/cubit/forget_password_cubit.dart';

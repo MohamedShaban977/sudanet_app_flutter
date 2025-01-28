@@ -44,7 +44,7 @@ class _CustomIframeVideoWidgetState extends State<CustomIframeVideoWidget> {
           },
           onPageStarted: (String url) {},
           onPageFinished: (String url) {
-            print('onPageFinished => $url');
+            debugPrint('onPageFinished => $url');
             // if (url.isNotEmpty && url.contains(widget.videoUrl)) {
             setState(() {
               isShowBtnFullScreen = true;

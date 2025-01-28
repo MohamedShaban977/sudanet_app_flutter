@@ -17,14 +17,13 @@ import '../../widgets/login_button_row_text_widget.dart';
 
 class TabletSignupScreen extends StatelessWidget {
   const TabletSignupScreen(
-      {Key? key,
+      {super.key,
       required this.password,
       required this.onTap,
       required this.fullName,
       required this.email,
       required this.phoneNumber,
-      required this.phoneNumberParent})
-      : super(key: key);
+      required this.phoneNumberParent});
 
   final TextEditingController fullName;
   final TextEditingController password;

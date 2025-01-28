@@ -38,8 +38,6 @@ class _MyAppState extends State<MyApp> {
         builder: (context, state) => MaterialApp(
           title: 'Al-Mirghaniyah Online',
           debugShowCheckedModeBanner: false,
-
-          useInheritedMediaQuery: true,
           // locale: DevicePreview.locale(context),
           builder: DevicePreview.appBuilder,
           // theme: ThemeData.light(),

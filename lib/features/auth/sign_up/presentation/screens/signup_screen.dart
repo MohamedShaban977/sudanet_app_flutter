@@ -15,7 +15,7 @@ import '../cubit/signup_cubit.dart';
 import 'responsive/mobile_signup_screen.dart';
 
 class SignupScreen extends StatefulWidget {
-  const SignupScreen({Key? key}) : super(key: key);
+  const SignupScreen({super.key});
 
   @override
   State<SignupScreen> createState() => _SignupScreenState();

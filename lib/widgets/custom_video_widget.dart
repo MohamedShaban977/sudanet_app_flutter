@@ -48,14 +48,12 @@ class _CustomVideoWidgetState extends State<CustomVideoWidget> {
   void deactivate() {
     // Pauses video while navigating to next page.
     _controller.pause();
-    print("Deactivated");
     super.deactivate();
   }
 
   @override
   void dispose() {
     _controller.dispose();
-    print("dispose");
 
     super.dispose();
   }
@@ -367,8 +365,7 @@ class CustomVideoControllerWidget extends StatefulWidget {
   final Widget Function(BuildContext context, Widget player) builder;
 
   const CustomVideoControllerWidget(
-      {Key? key, required this.builder, required this.playerController})
-      : super(key: key);
+      {super.key, required this.builder, required this.playerController});
 
   @override
   State<CustomVideoControllerWidget> createState() =>

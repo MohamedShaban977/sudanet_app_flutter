@@ -3,6 +3,7 @@ import 'dart:isolate';
 import 'dart:ui';
 
 import 'package:external_path/external_path.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
@@ -64,7 +65,9 @@ class _CourseLecturesScreenState extends State<CourseLecturesScreen> {
           },
           onPageStarted: (String url) {},
           onPageFinished: (String url) {
-            print('onPageFinished => $url');
+            if (kDebugMode) {
+              print('onPageFinished => $url');
+            }
             // if (url.isNotEmpty && url.contains(videoUrl)) {
             setState(() {
               isShowBtnFullScreen = true;
@@ -274,7 +277,7 @@ class _CourseLecturesScreenState extends State<CourseLecturesScreen> {
                           // );
                         },
                         style: TextButton.styleFrom(
-                          foregroundColor: ColorManager.secondary.withOpacity(0.9),
+                          foregroundColor: ColorManager.secondary.withValues(alpha: 0.9),
                           // elevation: 0.0,
                         ),
                         child: Row(
@@ -959,7 +962,9 @@ class _CardViewVideosCourseLectureWidgetState extends State<CardViewVideosCourse
   getUrl() async {
     currentUrl = await widget.playerController.currentUrl();
     setState(() {});
-    print('currentUrl ==> $currentUrl');
+    if (kDebugMode) {
+      print('currentUrl ==> $currentUrl');
+    }
   }
 
   @override
@@ -997,7 +1002,7 @@ class _CardViewVideosCourseLectureWidgetState extends State<CardViewVideosCourse
                                     }
                                   : null,
                               style: TextButton.styleFrom(
-                                foregroundColor: ColorManager.secondary.withOpacity(0.9),
+                                foregroundColor: ColorManager.secondary.withValues(alpha: 0.9),
                                 // elevation: 0.0,
                               ),
                               child: Row(

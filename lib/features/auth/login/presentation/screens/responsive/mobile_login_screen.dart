@@ -18,8 +18,7 @@ import '../../cubit/login_cubit.dart';
 
 class MobileLoginScreen extends StatelessWidget {
   const MobileLoginScreen(
-      {Key? key, required this.email, required this.password, required this.onTap, this.onPressedTestLogin})
-      : super(key: key);
+      {super.key, required this.email, required this.password, required this.onTap, this.onPressedTestLogin});
 
   final TextEditingController email;
   final TextEditingController password;
@@ -152,8 +151,8 @@ class HelperButtonWidget extends StatelessWidget {
         fillColor: ColorManager.white,
         elevation: 5.0,
         highlightElevation: 5.0,
-        highlightColor: ColorManager.secondary.withOpacity(0.3),
-        splashColor: ColorManager.secondary.withOpacity(0.3),
+        highlightColor: ColorManager.secondary.withValues(alpha: 0.3),
+        splashColor: ColorManager.secondary.withValues(alpha: 0.3),
         padding: const EdgeInsetsDirectional.symmetric(horizontal: 15.0),
         child: Row(
           mainAxisSize: MainAxisSize.min,

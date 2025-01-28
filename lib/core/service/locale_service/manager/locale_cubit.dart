@@ -7,7 +7,7 @@ import '../../../../app/injection_container.dart';
 import '../../../../core/useCases/use_case.dart';
 import '../../../app_manage/contents_manager.dart';
 import '../../../cache/cache_data_shpref.dart';
-import '../domain/use_cases/locale_useCase.dart';
+import '../domain/use_cases/locale_use_case.dart';
 
 part 'locale_state.dart';
 

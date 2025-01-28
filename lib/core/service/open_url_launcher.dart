@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../widgets/toast_and_snackbar.dart';
@@ -20,7 +21,9 @@ class OpenUrlLauncher {
     try {
       await _launchUrl(url);
     } catch (error) {
-      print(error);
+      if (kDebugMode) {
+        print(error);
+      }
       ToastAndSnackBar.toastError(message: error.toString());
     }
   }

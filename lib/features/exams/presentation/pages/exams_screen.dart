@@ -80,7 +80,7 @@ class _ExamsBySubjectScreenState extends State<ExamsBySubjectScreen> {
 class CellExamBySubject extends StatelessWidget {
   final ExamsBySubjectItemModel exam;
 
-  const CellExamBySubject({Key? key, required this.exam}) : super(key: key);
+  const CellExamBySubject({super.key, required this.exam});
 
   @override
   Widget build(BuildContext context) {

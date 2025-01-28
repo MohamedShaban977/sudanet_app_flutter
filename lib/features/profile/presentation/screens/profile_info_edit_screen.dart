@@ -19,7 +19,7 @@ import '../../domain/entities/personal_info_entity.dart';
 import '../cubit/profile_cubit.dart';
 
 class ProfileInfoEditScreen extends StatefulWidget {
-  const ProfileInfoEditScreen({Key? key}) : super(key: key);
+  const ProfileInfoEditScreen({super.key});
 
   @override
   State<ProfileInfoEditScreen> createState() => _ProfileInfoEditScreenState();
@@ -171,13 +171,13 @@ class _ProfileInfoEditScreenState extends State<ProfileInfoEditScreen> {
                                                 ));
                                           }
                                         },
-                                        child: Text('حفظ التغيرات'),
                                         style: ElevatedButton.styleFrom(
                                           // backgroundColor: ColorManager.grey,
                                           // minimumSize: const Size.fromHeight(56.0),
                                           fixedSize:
                                               const Size.fromHeight(50.0),
                                         ),
+                                        child: Text('حفظ التغيرات'),
                                       ),
                                     ],
                                   )

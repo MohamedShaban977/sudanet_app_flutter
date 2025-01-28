@@ -1,4 +1,4 @@
-library awesome_snackbar_content;
+library;
 
 export 'src/assets_path.dart';
 export 'src/content_type.dart';

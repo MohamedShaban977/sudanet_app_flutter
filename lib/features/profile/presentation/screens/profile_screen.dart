@@ -13,7 +13,7 @@ import '../../../../core/routes/routes_name.dart';
 import '../../../auth/login/presentation/manger/user_secure_storage.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({super.key});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -160,11 +160,11 @@ class CustomButtonProfile extends StatelessWidget {
   final void Function()? onTap;
 
   const CustomButtonProfile({
-    Key? key,
+    super.key,
     required this.iconData,
     required this.text,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -179,7 +179,7 @@ class CustomButtonProfile extends StatelessWidget {
           elevation: 5,
           color: ColorManager.background,
           child: InkWell(
-            hoverColor: ColorManager.primary.withOpacity(0.5),
+            hoverColor: ColorManager.primary.withValues(alpha: 0.5),
             splashColor: ColorManager.primary,
             onTap: onTap,
             child: Padding(

@@ -20,7 +20,6 @@ import '../cubit/course_details_cubit.dart';
 class PurchaseCourses {
   PurchaseCourses.show(BuildContext context,
       {required int courseId, bool isAlert = false}) {
-    print(UserSecureStorage.getToken() != null);
     if (UserSecureStorage.getToken() != null) {
       _showPurchaseCourses(context, courseId: courseId, isAlert: isAlert);
     } else {
@@ -169,7 +168,7 @@ class _ContentPurchaseCoursesWidgetState
                   InkWell(
                     onTap: () => MagicRouter.pop(),
                     borderRadius: BorderRadius.circular(30.0),
-                    splashColor: Colors.red.shade900.withOpacity(0.2),
+                    splashColor: Colors.red.shade900.withValues(alpha: 0.2),
                     child: Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: Icon(

@@ -27,15 +27,11 @@ class BaseResponseEntity<T> extends Equatable {
 
 class BaseResponse<T> extends BaseResponseEntity<T> {
   const BaseResponse({
-    required bool success,
-    required String message,
-    required T? data,
-    required int statusCode,
-  }) : super(
-            success: success,
-            message: message,
-            data: data,
-            statusCode: statusCode);
+    required  super.success,
+    required super. message,
+    required super. data,
+    required super. statusCode,
+  }) ;
 
   factory BaseResponse.fromJson(Map<String, dynamic> json,
       [Function(Map<String, dynamic> data)? build]) {
@@ -72,15 +68,11 @@ class CollectionResponseEntity<T> extends Equatable {
 
 class CollectionResponse<T> extends CollectionResponseEntity<T> {
   const CollectionResponse({
-    required bool success,
-    required String message,
-    required List<T>? data,
-    required int statusCode,
-  }) : super(
-            success: success,
-            message: message,
-            data: data,
-            statusCode: statusCode);
+    required super. success,
+    required super. message,
+    required super. data,
+    required super. statusCode,
+  });
 
   factory CollectionResponse.fromJson(Map<String, dynamic> json,
       [Function(List<dynamic> list)? build]) {

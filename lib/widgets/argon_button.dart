@@ -41,7 +41,7 @@ class ArgonButton extends StatefulWidget {
   final ButtonTextTheme? textTheme;
 
   const ArgonButton(
-      {Key? key,
+      {super.key,
       this.height = 56.0,
       this.width,
       this.minWidth = 0,
@@ -77,12 +77,10 @@ class ArgonButton extends StatefulWidget {
         assert(focusElevation == null || focusElevation >= 0.0),
         assert(hoverElevation == null || hoverElevation >= 0.0),
         assert(highlightElevation == null || highlightElevation >= 0.0),
-        assert(disabledElevation == null || disabledElevation >= 0.0),
-        assert(clipBehavior != null),
-        super(key: key);
+        assert(disabledElevation == null || disabledElevation >= 0.0);
 
   @override
-  _ArgonButtonState createState() => _ArgonButtonState();
+  State createState() => _ArgonButtonState();
 }
 
 class _ArgonButtonState extends State<ArgonButton>
@@ -340,7 +338,7 @@ class ArgonTimerButton extends StatefulWidget {
   final int initialTimer;
 
   const ArgonTimerButton(
-      {Key? key,
+      {super.key,
       required this.height,
       required this.width,
       this.minWidth = 0,
@@ -375,12 +373,10 @@ class ArgonTimerButton extends StatefulWidget {
         assert(focusElevation == null || focusElevation >= 0.0),
         assert(hoverElevation == null || hoverElevation >= 0.0),
         assert(highlightElevation == null || highlightElevation >= 0.0),
-        assert(disabledElevation == null || disabledElevation >= 0.0),
-        assert(clipBehavior != null),
-        super(key: key);
+        assert(disabledElevation == null || disabledElevation >= 0.0);
 
   @override
-  _ArgonTimerButtonState createState() => _ArgonTimerButtonState();
+  State createState() => _ArgonTimerButtonState();
 }
 
 class _ArgonTimerButtonState extends State<ArgonTimerButton>

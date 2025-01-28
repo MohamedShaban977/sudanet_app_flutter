@@ -64,15 +64,9 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
                 return Localizations.override(
                   context: context,
                   locale: state.locale,
-                  child: WillPopScope(
-                    onWillPop: () async {
-                      if (cubit.currentIndex != 0) {
-                        cubit.changeIndex(0);
-                        return false;
-                      } else {
-                        return true;
-                      }
-                    },
+                  child: PopScope(
+                    canPop: cubit.currentIndex == 0,
+                    onPopInvokedWithResult: (canPop,result) async =>cubit.changeIndex(0),
                     child: CustomNavBarWidget(
                       currentIndex: cubit.currentIndex,
                       onItemSelected: (int index) => cubit.changeIndex(index),

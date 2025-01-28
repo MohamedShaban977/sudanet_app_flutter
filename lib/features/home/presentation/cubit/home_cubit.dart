@@ -7,7 +7,7 @@ import '../../../../core/useCases/use_case.dart';
 import '../../../categories/domain/entities/categories_entity.dart';
 import '../../../courses/domain/entities/courses_entity.dart';
 import '../../domain/entities/slider_entity.dart';
-import '../../domain/use_cases/home_useCase.dart';
+import '../../domain/use_cases/home_use_case.dart';
 
 part 'home_state.dart';
 

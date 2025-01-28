@@ -10,8 +10,8 @@ import '../../../../../core/routes/routes_name.dart';
 
 class LoginButtonRowTextWidget extends StatelessWidget {
   const LoginButtonRowTextWidget({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

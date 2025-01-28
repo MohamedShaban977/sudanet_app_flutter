@@ -45,7 +45,7 @@ class DioConsumer implements ApiConsumer {
     try {
       final response = await client.get(path, queryParameters: queryParameters);
       return _handleResponseAsJson(response);
-    } on DioError catch (error) {
+    } on DioException catch (error) {
       _handleDioError(error);
     }
   }
@@ -64,7 +64,7 @@ class DioConsumer implements ApiConsumer {
         queryParameters: queryParameters,
       );
       return _handleResponseAsJson(response);
-    } on DioError catch (error) {
+    } on DioException catch (error) {
       _handleDioError(error);
     }
   }
@@ -83,7 +83,7 @@ class DioConsumer implements ApiConsumer {
         queryParameters: queryParameters,
       );
       return _handleResponseAsJson(response);
-    } on DioError catch (error) {
+    } on DioException catch (error) {
       _handleDioError(error);
     }
   }
@@ -101,7 +101,7 @@ class DioConsumer implements ApiConsumer {
         queryParameters: queryParameters,
       );
       return _handleResponseAsJson(response);
-    } on DioError catch (error) {
+    } on DioException catch (error) {
       _handleDioError(error);
     }
   }
@@ -115,32 +115,32 @@ class DioConsumer implements ApiConsumer {
     }
   }
 
-  dynamic _handleDioError(DioError error) {
+  dynamic _handleDioError(DioException error) {
     switch (error.type) {
-      case DioErrorType.connectionTimeout:
-      case DioErrorType.sendTimeout:
-      case DioErrorType.receiveTimeout:
+      case DioExceptionType.connectionTimeout:
+      case DioExceptionType.sendTimeout:
+      case DioExceptionType.receiveTimeout:
         throw const FetchDataException();
-      case DioErrorType.badResponse:
+      case DioExceptionType.badResponse:
         debugPrint(error.message);
         _handleResponseDioError(error);
         break;
-      case DioErrorType.cancel:
+      case DioExceptionType.cancel:
         break;
-      case DioErrorType.connectionError:
+      case DioExceptionType.connectionError:
         if (error.error is SocketException) {
           throw NoInternetConnectionException(error.message);
         }
         break;
-      case DioErrorType.unknown:
+      case DioExceptionType.unknown:
         throw ErrorOtherException(message: error.message);
 
-      case DioErrorType.badCertificate:
+      case DioExceptionType.badCertificate:
         throw const ConflictException();
     }
   }
 
-  void _handleResponseDioError(DioError error) {
+  void _handleResponseDioError(DioException error) {
     switch (error.response?.statusCode) {
       case StatusCode.badRequest:
         throw const BadRequestException();

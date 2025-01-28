@@ -11,8 +11,8 @@ import '../../../../../core/service/locale_service/manager/locale_cubit.dart';
 
 class CustomButtonChangeLanguageWidget extends StatelessWidget {
   const CustomButtonChangeLanguageWidget({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +26,8 @@ class CustomButtonChangeLanguageWidget extends StatelessWidget {
         fillColor: ColorManager.white,
         elevation: 5.0,
         highlightElevation: 5.0,
-        highlightColor: ColorManager.secondary.withOpacity(0.3),
-        splashColor: ColorManager.secondary.withOpacity(0.3),
+        highlightColor: ColorManager.secondary.withValues(alpha: 0.3),
+        splashColor: ColorManager.secondary.withValues(alpha: 0.3),
         child: Text(
           AppStrings.lang.tr(),
           textAlign: TextAlign.center,
@@ -85,8 +85,8 @@ class CustomButtonChangeLanguageWidget extends StatelessWidget {
         fillColor: ColorManager.white,
         elevation: 5.0,
         highlightElevation: 5.0,
-        highlightColor: ColorManager.secondary.withOpacity(0.3),
-        splashColor: ColorManager.secondary.withOpacity(0.3),
+        highlightColor: ColorManager.secondary.withValues(alpha: 0.3),
+        splashColor: ColorManager.secondary.withValues(alpha: 0.3),
         // padding: EdgeInsetsDirectional.symmetric(horizontal: 15.0),
         child: Text(
           AppStrings.lang.tr(),
@@ -106,8 +106,8 @@ class CustomButtonChangeLanguageWidget extends StatelessWidget {
 
 class CustomButtonBackWidget extends StatelessWidget {
   const CustomButtonBackWidget({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +119,7 @@ class CustomButtonBackWidget extends StatelessWidget {
         color: ColorManager.primary,
         width: AppSize.s1_5,
       )),
-      color: ColorManager.secondary.withOpacity(0.5),
+      color: ColorManager.secondary.withValues(alpha: 0.5),
       child: InkWell(
         borderRadius: BorderRadius.circular(AppSize.s11),
         onTap: () => MagicRouter.pop(),

@@ -85,7 +85,9 @@ class QuickAlert {
   }) {
     if (autoCloseDuration != null) {
       Future.delayed(autoCloseDuration, () {
-        Navigator.of(context, rootNavigator: true).pop();
+        if(context.mounted) {
+          Navigator.of(context, rootNavigator: true).pop();
+        }
       });
     }
 
@@ -125,7 +127,7 @@ class QuickAlert {
     );
 
     return showGeneralDialog(
-      barrierColor: barrierColor ?? Colors.black.withOpacity(0.5),
+      barrierColor: barrierColor ?? Colors.black.withValues(alpha: 0.5),
       transitionBuilder: (context, anim1, __, widget) {
         switch (animType) {
           case QuickAlertAnimType.scale:
@@ -145,10 +147,7 @@ class QuickAlert {
 
           case QuickAlertAnimType.slideInRight:
             return Animate.slideInRight(child: child, animation: anim1);
-
-          default:
-            return child;
-        }
+}
       },
       transitionDuration: const Duration(milliseconds: 200),
       barrierDismissible:

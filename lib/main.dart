@@ -20,7 +20,9 @@ Future<void> main() async {
 
   if (emulator) {
     // Exit the app or display a message
-    print("This app cannot run on an emulator.");
+    if (kDebugMode) {
+      print("This app cannot run on an emulator.");
+    }
     exit(0); // Exit the app
   } else {
     runApp(MyApp());

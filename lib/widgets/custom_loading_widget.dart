@@ -6,11 +6,10 @@ import '../core/app_manage/assets_manager.dart';
 
 class CustomLoadingWidget extends StatelessWidget {
   const CustomLoadingWidget(
-      {Key? key,
+      {super.key,
       required this.inAsyncCall,
       required this.child,
-      this.isCondition = false})
-      : super(key: key);
+      this.isCondition = false});
   final bool inAsyncCall;
   final Widget child;
   final bool isCondition;
@@ -44,7 +43,7 @@ class CustomLoadingWidget extends StatelessWidget {
 }
 
 class CustomLoadingScreen extends StatelessWidget {
-  const CustomLoadingScreen({Key? key}) : super(key: key);
+  const CustomLoadingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

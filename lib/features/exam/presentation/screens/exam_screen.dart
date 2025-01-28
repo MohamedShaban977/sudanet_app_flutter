@@ -32,7 +32,7 @@ class ExamScreen extends StatefulWidget {
 
   final ExamType type;
 
-  const ExamScreen({Key? key, required this.id, required this.type}) : super(key: key);
+  const ExamScreen({super.key, required this.id, required this.type});
 
   @override
   State<ExamScreen> createState() => _ExamScreenState();
@@ -56,7 +56,6 @@ class _ExamScreenState extends State<ExamScreen> with WidgetsBindingObserver {
     }
     switch (state) {
       case AppLifecycleState.resumed:
-        print('=====>resumed');
         sl<ExamCubit>().get(context).getExamQuestionOrPercentage(
               examId: widget.id,
               type: widget.type,
@@ -164,7 +163,6 @@ class _ExamScreenState extends State<ExamScreen> with WidgetsBindingObserver {
                                 onPressed: () {
                                   answerValue.value = _examModel
                                       ?.examQuestions?[_indexQuestion].examQuestionOptions?[index].optionValue;
-                                  print(answerValue.value);
                                 },
                                 child: Text(
                                     _examModel?.examQuestions?[_indexQuestion].examQuestionOptions?[index].option ??
@@ -180,7 +178,6 @@ class _ExamScreenState extends State<ExamScreen> with WidgetsBindingObserver {
                           choices: _examModel?.examQuestions?[_indexQuestion].examQuestionOptions ?? [],
                           onOrderChanged: (value) {
                             answerValue.value = value.map((e) => e.optionValue).toList().join(',');
-                            print(answerValue.value);
                           },
                         );
                       }
@@ -191,7 +188,6 @@ class _ExamScreenState extends State<ExamScreen> with WidgetsBindingObserver {
                           onMatchesChanged: (matches) {
                             String result = matches.entries.map((entry) => '${entry.key}-${entry.value}').join(',');
                             answerValue.value = result;
-                            print(result);
                           },
                         );
                       }
@@ -305,8 +301,6 @@ class _ExamScreenState extends State<ExamScreen> with WidgetsBindingObserver {
       for (int i = 0; i < (_examModel?.examQuestions ?? []).length; i++) {
         if (_examModel?.examQuestions?[i].binHere ?? false) {
           _indexQuestion = i;
-          print('[i] ==> ${_examModel?.examQuestions?[i].binHere}');
-          print('[i].binHere ==> $i');
           return;
         }
       }
@@ -454,7 +448,9 @@ class CustomAppBarExam extends StatelessWidget implements PreferredSizeWidget {
                       durationMilliseconds: 5000,
                     );
                     await Future.delayed(const Duration(milliseconds: 5000), () {
-                      sl<ExamCubit>().get(context).endExam(studentExamId: '${_examModel?.studentExamId}', type: type);
+                      if(context.mounted) {
+                        sl<ExamCubit>().get(context).endExam(studentExamId: '${_examModel?.studentExamId}', type: type);
+                      }
                     });
                   }
                 },
@@ -619,11 +615,11 @@ class ImageQuestionWidget extends StatelessWidget {
 
 class NewLineStep extends StatelessWidget {
   const NewLineStep({
-    Key? key,
+    super.key,
     this.isActive = false,
     this.isFirst = false,
     this.isLast = false,
-  }) : super(key: key);
+  });
 
   final bool isActive;
   final bool isFirst;
@@ -661,8 +657,8 @@ class NewLineStep extends StatelessWidget {
 
 class DividerWidget extends StatelessWidget {
   const DividerWidget({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -683,8 +679,7 @@ class AnswerButtonWidget extends StatelessWidget {
 
   final String text;
 
-  const AnswerButtonWidget({Key? key, required this.onPressed, required this.isSelectedAnswer, required this.text})
-      : super(key: key);
+  const AnswerButtonWidget({super.key, required this.onPressed, required this.isSelectedAnswer, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -747,12 +742,12 @@ class HeroPhotoViewRouteWrapper extends StatelessWidget {
 }
 
 class InteractiveImage extends StatefulWidget {
-  InteractiveImage(this.image, {Key? key}) : super(key: key);
+  const InteractiveImage(this.image, {super.key});
 
   final Image image;
 
   @override
-  _InteractiveImageState createState() => _InteractiveImageState();
+  State createState() => _InteractiveImageState();
 }
 
 class _InteractiveImageState extends State<InteractiveImage> {
@@ -763,21 +758,18 @@ class _InteractiveImageState extends State<InteractiveImage> {
 
   @override
   Widget build(BuildContext context) {
-    setState(() => print("STATE SET\n"));
+    setState(() {});
     return GestureDetector(
       onScaleStart: (ScaleStartDetails details) {
-        print(details);
         // Does this need to go into setState, too?
         // We are only saving the scale from before the zooming started
         // for later - this does not affect the rendering...
         _previousScale = _scale;
       },
       onScaleUpdate: (ScaleUpdateDetails details) {
-        print(details);
         setState(() => _scale = _previousScale * details.scale);
       },
       onScaleEnd: (ScaleEndDetails details) {
-        print(details);
         // See comment above
         _previousScale = 0.0;
       },
@@ -798,10 +790,10 @@ class ReorderableQuestion extends StatefulWidget {
   final Function(List<ExamQuestionOption>) onOrderChanged;
 
   const ReorderableQuestion({
-    Key? key,
+    super.key,
     required this.choices,
     required this.onOrderChanged,
-  }) : super(key: key);
+  });
 
   @override
   State<ReorderableQuestion> createState() => _ReorderableQuestionState();
@@ -863,11 +855,11 @@ class MatchingQuestion extends StatefulWidget {
   final Function(Map<String, String?>) onMatchesChanged;
 
   const MatchingQuestion({
-    Key? key,
+    super.key,
     required this.columnA,
     required this.columnB,
     required this.onMatchesChanged,
-  }) : super(key: key);
+  });
 
   @override
   State<MatchingQuestion> createState() => _MatchingQuestionState();

@@ -10,7 +10,7 @@ import '../../../../core/routes/routes_name.dart';
 import '../../../auth/login/presentation/manger/user_secure_storage.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();

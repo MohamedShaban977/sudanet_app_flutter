@@ -3,16 +3,15 @@ import 'package:sudanet_app_flutter/core/app_manage/extension_manager.dart';
 
 import '../../domain/entities/login_entity.dart';
 
+// ignore: must_be_immutable
 class UserData extends UserEntity {
   UserData({
-    final String? token,
+    super.token,
     final String? name,
-    final String? guid,
+    super.guid,
     final int? expiresIn,
   }) : super(
-          token: token,
           name: name.orEmpty(),
-          guid: guid,
           expiresIn: expiresIn.orZero(),
         );
 
@@ -23,6 +22,7 @@ class UserData extends UserEntity {
         expiresIn: json["expires_in"],
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         "token": token,
         "name": name,

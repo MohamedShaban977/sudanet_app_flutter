@@ -40,7 +40,7 @@ class AwesomeSnackbarContent extends StatelessWidget {
   final double? messageFontSize;
 
   const AwesomeSnackbarContent({
-    Key? key,
+    super.key,
     this.color,
     this.titleFontSize,
     this.messageFontSize,
@@ -48,7 +48,7 @@ class AwesomeSnackbarContent extends StatelessWidget {
     required this.message,
     required this.contentType,
     this.inMaterialBanner = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

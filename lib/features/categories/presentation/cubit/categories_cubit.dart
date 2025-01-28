@@ -6,7 +6,7 @@ import '../../../../core/api/service_response.dart';
 import '../../../../core/error/failures.dart';
 import '../../../../core/useCases/use_case.dart';
 import '../../domain/entities/categories_entity.dart';
-import '../../domain/useCases/Categories_use_case.dart';
+import '../../domain/useCases/categories_use_case.dart';
 
 part 'categories_state.dart';
 

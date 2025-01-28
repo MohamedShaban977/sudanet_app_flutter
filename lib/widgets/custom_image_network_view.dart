@@ -4,12 +4,12 @@ import '../core/app_manage/color_manager.dart';
 
 class CustomViewImageNetwork extends StatelessWidget {
   const CustomViewImageNetwork({
-    Key? key,
+    super.key,
     required this.image,
     this.height,
     this.width,
     this.fit,
-  }) : super(key: key);
+  });
   final String image;
 
   final double? height;

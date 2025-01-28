@@ -10,19 +10,19 @@ abstract class Failure extends Equatable {
 }
 
 class ServerFailure extends Failure {
-  const ServerFailure([String? error]) : super(error);
+  const ServerFailure([super.error]);
 }
 
 class CacheFailure extends Failure {
-  const CacheFailure([String? error]) : super(error);
+  const CacheFailure([super.error]);
 }
 
 class HandleFailure {
   static String mapFailureToMsg(Failure failure) {
     switch (failure.runtimeType) {
-      case ServerFailure:
+      case ServerFailure _:
         return failure.error!;
-      case CacheFailure:
+      case CacheFailure _:
         return 'Cache Failure';
       default:
         return 'UnExpected Error';

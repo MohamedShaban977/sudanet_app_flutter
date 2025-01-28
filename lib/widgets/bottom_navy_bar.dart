@@ -1,4 +1,4 @@
-library bottom_navy_bar;
+library;
 
 import 'package:flutter/material.dart';
 
@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 /// [selectedIndex] is required and must not be null.
 class BottomNavyBar extends StatelessWidget {
   const BottomNavyBar({
-    Key? key,
+    super.key,
     this.selectedIndex = 0,
     this.showElevation = true,
     // this.iconSize = 24,
@@ -33,8 +33,7 @@ class BottomNavyBar extends StatelessWidget {
     this.selectedIconSize = 23.0,
     this.unselectedIconSize = 20.0,
     this.flexIndex = 1,
-  })  : assert(items.length >= 2 && items.length <= 5),
-        super(key: key);
+  })  : assert(items.length >= 2 && items.length <= 5);
 
   /// The selected item is index. Changing this property will change and animate
   /// the item being selected. Defaults to zero.
@@ -171,7 +170,6 @@ class _ItemWidget extends StatelessWidget {
   final double unselectedIconSize;
 
   const _ItemWidget({
-    Key? key,
     required this.iconSize,
     required this.isSelected,
     required this.item,
@@ -184,7 +182,7 @@ class _ItemWidget extends StatelessWidget {
     required this.unselectedFontSize,
     required this.selectedIconSize,
     required this.unselectedIconSize,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -199,7 +197,7 @@ class _ItemWidget extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
         decoration: BoxDecoration(
           color: isSelected
-              ? item.backgroundColorItem ?? item.activeColor.withOpacity(0.2)
+              ? item.backgroundColorItem ?? item.activeColor.withValues(alpha: 0.2)
               : backgroundColor,
           borderRadius: BorderRadius.circular(itemCornerRadius),
         ),
@@ -219,7 +217,7 @@ class _ItemWidget extends StatelessWidget {
                       size: iconSize ??
                           (isSelected ? selectedIconSize : unselectedIconSize),
                       color: isSelected
-                          ? item.activeColor.withOpacity(1)
+                          ? item.activeColor.withValues(alpha: 1)
                           : item.inactiveColor ?? item.activeColor,
                     ),
                     child: item.icon,

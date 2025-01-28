@@ -19,7 +19,7 @@ import '../widgets/courses_widget.dart';
 import '../widgets/slider_widget.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();

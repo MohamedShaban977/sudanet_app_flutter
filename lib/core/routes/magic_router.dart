@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'route_animation.dart';
-
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Route<dynamic> _materialPageRoute(page) =>
     MaterialPageRoute(builder: (_) => page);
 
-Route<dynamic> _materialPageRouteAnimation(page) => RouteAnimation(page: page);
+// Route<dynamic> _materialPageRouteAnimation(page) => RouteAnimation(page: page);
 
 class MagicRouter {
   static final BuildContext? currentContext = navigatorKey.currentContext;

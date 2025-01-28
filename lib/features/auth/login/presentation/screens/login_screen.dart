@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -22,7 +23,7 @@ import 'responsive/mobile_login_screen.dart';
 import 'responsive/tablet_login_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -52,7 +53,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   getMacID() async {
     String? res = await UserSecureStorage.getMacId();
-    print(res);
+    if (kDebugMode) {
+      print(res);
+    }
     if (res != null) {
       guidId = res;
     }

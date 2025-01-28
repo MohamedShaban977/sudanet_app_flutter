@@ -7,9 +7,9 @@ class QuickAlertButtons extends StatelessWidget {
   final QuickAlertOptions? options;
 
   const QuickAlertButtons({
-    Key? key,
+    super.key,
     this.options,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

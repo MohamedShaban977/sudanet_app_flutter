@@ -6,7 +6,7 @@ class CustomNavBarWidget extends StatelessWidget {
   final Function(int index) onItemSelected ;
   final int currentIndex;
   final List<BottomNavyBarItem> items;
-  const CustomNavBarWidget({Key? key, required this.onItemSelected, required this.currentIndex, required this.items}) : super(key: key);
+  const CustomNavBarWidget({super.key, required this.onItemSelected, required this.currentIndex, required this.items});
 
   @override
   Widget build(BuildContext context) {

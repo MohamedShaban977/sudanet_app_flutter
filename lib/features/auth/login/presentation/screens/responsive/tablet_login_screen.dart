@@ -18,11 +18,10 @@ import 'mobile_login_screen.dart';
 
 class TabletLoginScreen extends StatelessWidget {
   const TabletLoginScreen(
-      {Key? key,
+      {super.key,
       required this.email,
       required this.password,
-      required this.onTap})
-      : super(key: key);
+      required this.onTap});
 
   final TextEditingController email;
 

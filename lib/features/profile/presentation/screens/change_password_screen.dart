@@ -17,7 +17,7 @@ import '../../data/models/change_password_request.dart';
 import '../cubit/profile_cubit.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
-  const ChangePasswordScreen({Key? key}) : super(key: key);
+  const ChangePasswordScreen({super.key});
 
   @override
   State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
@@ -154,13 +154,13 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                                               ));
                                             }
                                           },
-                                          child: Text('حفظ التغيرات'),
                                           style: ElevatedButton.styleFrom(
                                             // backgroundColor: ColorManager.grey,
                                             // minimumSize: const Size.fromHeight(56.0),
                                             fixedSize:
                                                 const Size.fromHeight(50.0),
                                           ),
+                                          child: Text('حفظ التغيرات'),
                                         ),
                                       ],
                                     )

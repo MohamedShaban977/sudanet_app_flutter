@@ -1,4 +1,4 @@
-library responsive_grid;
+library;
 
 import 'package:flutter/widgets.dart';
 
@@ -58,8 +58,8 @@ class ResponsiveGridRow extends StatelessWidget {
     required this.children,
     this.crossAxisAlignment = CrossAxisAlignment.start,
     this.rowSegments = 12,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +78,7 @@ class ResponsiveGridRow extends StatelessWidget {
           ));
         }
         rows.add(Row(
-          crossAxisAlignment: this.crossAxisAlignment,
+          crossAxisAlignment: crossAxisAlignment,
           children: cols,
         ));
         // clear
@@ -119,8 +119,8 @@ class ResponsiveGridCol extends StatelessWidget {
     int? lg,
     int? xl,
     required this.child,
-    Key? key,
-  }) : super(key: key) {
+    super.key,
+  }) {
     _config[_GridTier.xs.index] = xs;
     _config[_GridTier.sm.index] = sm ?? _config[_GridTier.xs.index];
     _config[_GridTier.md.index] = md ?? _config[_GridTier.sm.index];
@@ -164,8 +164,8 @@ class ResponsiveGridList extends StatelessWidget {
     this.shrinkWrap = false,
     this.controller,
     this.physics,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -275,8 +275,7 @@ class _ResponsiveGridListItem extends StatelessWidget {
     required this.squareCells,
     required this.children,
     this.mainAxisAlignment = MainAxisAlignment.start,
-    Key? key,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -318,7 +317,7 @@ class ResponsiveWidget extends StatelessWidget {
   final Widget? sm, md, lg, xl;
   final Widget xs;
 
-  const ResponsiveWidget({Key? key, this.lg, this.md, this.sm, this.xl, required this.xs}) : super(key: key);
+  const ResponsiveWidget({super.key, this.lg, this.md, this.sm, this.xl, required this.xs});
 
   @override
   Widget build(BuildContext context) {
@@ -346,14 +345,14 @@ class ResponsiveBuilder extends StatelessWidget {
   final Function(BuildContext context, Widget child) xs;
 
   const ResponsiveBuilder({
-    Key? key,
+    super.key,
     required this.child,
     required this.xs,
     this.sm,
     this.md,
     this.lg,
     this.xl,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -87,7 +87,7 @@ class QuickAlertContainer extends StatelessWidget {
       height: 150,
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.5),
+        color: Colors.white.withValues(alpha: 0.5),
       ),
       child: options!.customWidget ??
           Image.asset(
@@ -169,8 +169,6 @@ class QuickAlertContainer extends StatelessWidget {
         return null;
       case QuickAlertType.loading:
         return null;
-      default:
-        return null;
-    }
+      }
   }
 }

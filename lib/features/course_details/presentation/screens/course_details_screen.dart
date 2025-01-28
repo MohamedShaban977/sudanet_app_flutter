@@ -658,13 +658,12 @@ class CustomExpandedTitle extends StatefulWidget {
   final bool isExpanded;
 
   const CustomExpandedTitle(
-      {Key? key,
+      {super.key,
       required this.textTitle,
       required this.iconLeading,
       required this.children,
       this.isExpanded = false,
-      this.onTap})
-      : super(key: key);
+      this.onTap});
 
   @override
   State<CustomExpandedTitle> createState() => _CustomExpandedTitleState();

@@ -1,4 +1,4 @@
-library quickalert;
+library;
 
 /// export quickalert_dialog.dart
 export 'widgets/quickalert_dialog.dart';

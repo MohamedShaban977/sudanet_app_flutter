@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class UnFocusedKeyboard extends StatelessWidget {
   final Widget child;
 
-  const UnFocusedKeyboard({Key? key, required this.child}) : super(key: key);
+  const UnFocusedKeyboard({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
