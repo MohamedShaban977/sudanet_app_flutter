@@ -71,7 +71,6 @@ class Routes {
 
         return MagicRouter.pageRoute(MultiBlocProvider(
           providers: [
-
             BlocProvider(
               create: (context) => sl<CategoriesCubit>()..getCategories(),
             ),
@@ -79,8 +78,18 @@ class Routes {
               create: (context) => sl<ExamsBySubjectCubit>()..getExamsNotification(),
             ),
           ],
-          child: const   CategoriesScreen(),
+          child: const CategoriesScreen(),
         ));
+
+      case RoutesNames.profileRoute:
+        ServiceLocator.initProfileGetIt();
+
+        return MagicRouter.pageRoute(
+          BlocProvider(
+            create: (context) => sl<ContactInfoCubit>()..getContactInfo(),
+            child: const CategoriesScreen(),
+          ),
+        );
       // loginRoute
       case RoutesNames.mainLayoutApp:
         // ServiceLocator.initHomeGetIt();

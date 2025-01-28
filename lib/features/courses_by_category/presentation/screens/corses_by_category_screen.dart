@@ -19,6 +19,7 @@ const double _desiredItemWidth = 260;
 
 class CoursesByCategoryScreen extends StatelessWidget {
   const CoursesByCategoryScreen({super.key, required this.categoryId, required this.type});
+
   final String categoryId;
   final CategoriesByType type;
 
@@ -35,33 +36,29 @@ class CoursesByCategoryScreen extends StatelessWidget {
 
           return RefreshIndicator(
             onRefresh: () async {
-              await sl<CoursesByCategoryCubit>()
-                  .getCoursesByCategoryId(categoryId);
+              await sl<CoursesByCategoryCubit>().getCoursesByCategoryId(categoryId);
             },
             child: SizedBox(
               height: context.height - kToolbarHeight,
               child: SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(
-                    parent: ClampingScrollPhysics()),
+                physics: const AlwaysScrollableScrollPhysics(parent: ClampingScrollPhysics()),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: AppSize.s20),
                     Padding(
                       padding: const EdgeInsets.all(AppPadding.p12),
                       child: Text(
                         '${AppStrings.viewAllFirstStageSubjects.tr()} ',
-                        style:
-                            Theme.of(context).textTheme.headlineSmall!.copyWith(
-                                  color: ColorManager.primary,
-                                ),
+                        style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                              color: ColorManager.primary,
+                            ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 4.0),
                       child: ResponsiveGridList(
-                        desiredItemWidth: Responsive.isMobileS(context) ||
-                                Responsive.isMobile(context)
+                        desiredItemWidth: Responsive.isMobileS(context) || Responsive.isMobile(context)
                             ? context.width * 0.4
                             : _desiredItemWidth,
                         minSpacing: 2.0,
@@ -80,10 +77,7 @@ class CoursesByCategoryScreen extends StatelessWidget {
                           else
                             Text(
                               'لا يوجد بيانات لعرضها',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headlineSmall!
-                                  .copyWith(
+                              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                                     color: ColorManager.primary,
                                     fontSize: 20,
                                   ),

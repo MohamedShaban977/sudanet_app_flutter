@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sudanet_app_flutter/core/app_manage/extension_manager.dart';
 import 'package:sudanet_app_flutter/core/locale/app_localizations.dart';
+import 'package:sudanet_app_flutter/core/routes/magic_router.dart';
+import 'package:sudanet_app_flutter/core/routes/routes_name.dart';
 
 import '../../../../app/injection_container.dart';
 import '../../../../core/app_manage/color_manager.dart';
@@ -150,13 +152,15 @@ class CategoriesScreen extends StatelessWidget {
           style: context.displayLarge.copyWith(color: ColorManager.textGray, fontWeight: FontWeight.w700)),
       actions: [
         Padding(
-          padding: const EdgeInsetsDirectional.symmetric(horizontal: 8),
+          padding: const EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 8),
           child: RawMaterialButton(
-            onPressed: () {},
+            onPressed: () => MagicRouterName.navigateTo(RoutesNames.profileRoute),
             fillColor: ColorManager.white,
-            elevation: 10,
-            constraints: BoxConstraints.expand(height: 35,width: 35),
-            shape: CircleBorder(),
+            elevation: 50,
+            constraints: BoxConstraints(minHeight: 35, maxWidth: 40, minWidth: 40, maxHeight: 35),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppMargin.m12),
+            ),
             padding: EdgeInsets.zero,
             child: Icon(
               FontAwesomeIcons.user,

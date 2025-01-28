@@ -10,7 +10,8 @@ import '../../domain/entities/categories_entity.dart';
 class ViewInfoDataCardCategoriesWidget extends StatelessWidget {
   const ViewInfoDataCardCategoriesWidget({
     super.key,
-    required this.category,required this.onPressed,
+    required this.category,
+    required this.onPressed,
   });
 
   final void Function()? onPressed;
@@ -35,12 +36,10 @@ class ViewInfoDataCardCategoriesWidget extends StatelessWidget {
               minimumSize: const Size.fromHeight(40.0),
             ),
             child: Text(
-              AppStrings.findAvailableSubjects.tr(),
+              AppStrings.availableSubjects.tr(),
               textAlign: TextAlign.center,
-              style: context.displayMedium.copyWith(
-                  color: ColorManager.white,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 15.0),
+              style: context.displayMedium
+                  .copyWith(color: ColorManager.white, fontWeight: FontWeight.w600, fontSize: 15.0),
             )),
       ],
     );

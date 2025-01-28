@@ -31,7 +31,7 @@ class AppStrings {
   static const subjects = "subjects";
   static const profile = "Profile";
   static const viewAllEducationalLevels = "view_all_educational_levels";
-  static const findAvailableSubjects = "find_available_subjects";
+  static const availableSubjects = "available_subjects";
   static const viewAllFirstStageSubjects = "view_all_first_stage_subjects";
   static const purchase = "purchase";
   static const categoriesAppBar = "Categories";
