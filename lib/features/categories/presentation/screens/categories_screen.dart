@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sudanet_app_flutter/core/app_manage/extension_manager.dart';
 import 'package:sudanet_app_flutter/core/locale/app_localizations.dart';
 
@@ -147,6 +148,24 @@ class CategoriesScreen extends StatelessWidget {
                   ? AppStrings.homeworks.tr()
                   : AppStrings.educationalLevels.tr(),
           style: context.displayLarge.copyWith(color: ColorManager.textGray, fontWeight: FontWeight.w700)),
+      actions: [
+        Padding(
+          padding: const EdgeInsetsDirectional.symmetric(horizontal: 8),
+          child: RawMaterialButton(
+            onPressed: () {},
+            fillColor: ColorManager.white,
+            elevation: 10,
+            constraints: BoxConstraints.expand(height: 35,width: 35),
+            shape: CircleBorder(),
+            padding: EdgeInsets.zero,
+            child: Icon(
+              FontAwesomeIcons.user,
+              color: ColorManager.primary,
+              size: 16,
+            ),
+          ),
+        )
+      ],
     );
   }
 }

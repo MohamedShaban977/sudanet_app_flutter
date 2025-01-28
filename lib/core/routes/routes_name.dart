@@ -4,6 +4,7 @@ class RoutesNames {
   static const String signupRoute = '/signup';
   static const String forgetPasswordRoute = '/forget_password';
   static const String mainLayoutApp = '/mainLayoutApp';
+  static const String homeCategoriesRoute = '/home_route';
   static const String coursesByCategoryScreen = '/CoursesByCategoryScreen';
 
   static const String contactInfo = '/ContactInfoScreen';

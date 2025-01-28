@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
   _goNext() => MagicRouterName.navigateReplacementTo(_handelRoute());
 
   _handelRoute() => UserSecureStorage.getToken() != null
-      ? RoutesNames.mainLayoutApp
+      ? RoutesNames.homeCategoriesRoute
       : RoutesNames.loginRoute;
 
   @override
