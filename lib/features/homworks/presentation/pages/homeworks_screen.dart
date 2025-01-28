@@ -20,24 +20,27 @@ class HomeworksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(context),
-      body: BlocBuilder<HomeworkStudentCubit, HomeworkStudentState>(
-        builder: (context, state) {
-          final homeworksCubit = sl<HomeworkStudentCubit>().get(context);
-          if (state is HomeworkStudentLoadingState) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (state is HomeworkStudentErrorState) {
-            return Center(child: Text(state.error));
-          }
-          return ListView.builder(
-            itemCount: homeworksCubit.homeworks.length,
-            itemBuilder: (context, index) {
-              return CellHomeworksStudent(
-                homework: homeworksCubit.homeworks[index],
-              );
-            },
-          );
-        },
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: BlocBuilder<HomeworkStudentCubit, HomeworkStudentState>(
+          builder: (context, state) {
+            final homeworksCubit = sl<HomeworkStudentCubit>().get(context);
+            if (state is HomeworkStudentLoadingState) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (state is HomeworkStudentErrorState) {
+              return Center(child: Text(state.error));
+            }
+            return ListView.builder(
+              itemCount: homeworksCubit.homeworks.length,
+              itemBuilder: (context, index) {
+                return CellHomeworksStudent(
+                  homework: homeworksCubit.homeworks[index],
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }

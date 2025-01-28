@@ -18,4 +18,5 @@ class RoutesNames {
   static const String examRoute = '/examRoute';
   static const String homeworksRoute = '/homeworks_route';
   static const String examsRoute = '/exams_route';
+  static const String subjectInfoRoute = '/subject_info_route';
 }

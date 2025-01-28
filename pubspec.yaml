@@ -92,7 +92,7 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-#   To add assets to your application, add an assets section, like this:
+  #   To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/gif/glass-hour.gif
     - assets/images/logo.png
@@ -111,6 +111,9 @@ flutter:
     - assets/images/new_logo.png
     - assets/images/svg/no_data.svg
     - assets/images/splash-image.jpeg
+    - assets/images/exam.png
+    - assets/images/homework.png
+    - assets/images/online-learning.png
     - shorebird.yaml
 
   fonts:

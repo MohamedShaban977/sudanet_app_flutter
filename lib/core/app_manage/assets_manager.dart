@@ -10,6 +10,10 @@ class ImageAssets {
   static const String homeBanner3 = "${imagePath}homebanner.jpg";
   static const String avatarStudent = "${imagePath}avatar_student.jpg";
   static const String newLogo = "${imagePath}new_logo.png";
+
+  static const String exams = "${imagePath}exam.png";
+  static const String onlineLearning = "${imagePath}online-learning.png";
+  static const String homeworks = "${imagePath}homework.png";
 }
 
 const String imageJsonPath = "${imagePath}json/";

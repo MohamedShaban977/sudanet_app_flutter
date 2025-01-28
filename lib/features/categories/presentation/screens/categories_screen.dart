@@ -30,13 +30,7 @@ enum CategoriesByType {
 }
 
 class CategoriesScreen extends StatelessWidget {
-  final CategoriesByType type;
-
-  const CategoriesScreen({super.key}) : type = CategoriesByType.normal;
-
-  const CategoriesScreen.homework({super.key}) : type = CategoriesByType.homeworks;
-
-  const CategoriesScreen.exams({super.key}) : type = CategoriesByType.exams;
+  const CategoriesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -57,32 +51,31 @@ class CategoriesScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (type == CategoriesByType.exams || type == CategoriesByType.normal)
-                    BlocConsumer<ExamsBySubjectCubit, ExamsBySubjectState>(
-                      builder: (context, state) {
-                        final examsBySubjectCubit = sl<ExamsBySubjectCubit>().get(context);
+                  BlocConsumer<ExamsBySubjectCubit, ExamsBySubjectState>(
+                    builder: (context, state) {
+                      final examsBySubjectCubit = sl<ExamsBySubjectCubit>().get(context);
 
-                        if (examsBySubjectCubit.examsNotification.isNotEmpty) {
-                          return SizedBox(
-                            height: 200,
-                            width: context.width,
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              itemCount: examsBySubjectCubit.examsNotification.length,
-                              physics: const ClampingScrollPhysics(),
-                              itemBuilder: (context, index) {
-                                return CellExamBySubject(
-                                  exam: examsBySubjectCubit.examsNotification[index],
-                                );
-                              },
-                            ),
-                          );
-                        }
-                        return const SizedBox.shrink();
-                      },
-                      listener: (context, state) {},
-                    ),
+                      if (examsBySubjectCubit.examsNotification.isNotEmpty) {
+                        return SizedBox(
+                          height: 200,
+                          width: context.width,
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: examsBySubjectCubit.examsNotification.length,
+                            physics: const ClampingScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              return CellExamBySubject(
+                                exam: examsBySubjectCubit.examsNotification[index],
+                              );
+                            },
+                          ),
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    },
+                    listener: (context, state) {},
+                  ),
                   const SizedBox(height: AppSize.s20),
                   Padding(
                     padding: const EdgeInsets.all(AppPadding.p12),
@@ -109,17 +102,14 @@ class CategoriesScreen extends StatelessWidget {
                         mobile: CardCategoriesMobileWidget(
                           category: cubit.categoriesItems[index],
                           height: _heightItem,
-                          type: type,
                         ),
                         tablet: CardCategoriesTabletWidget(
                           category: cubit.categoriesItems[index],
                           width: context.width,
-                          type: type,
                         ),
                         desktop: CardCategoriesTabletWidget(
                           category: cubit.categoriesItems[index],
                           width: context.width,
-                          type: type,
                         ),
                       ),
                     ),
@@ -143,12 +133,7 @@ class CategoriesScreen extends StatelessWidget {
         statusBarIconBrightness: Brightness.dark,
         statusBarBrightness: Brightness.dark,
       ),
-      title: Text(
-          CategoriesByType.exams == type
-              ? AppStrings.exams.tr()
-              : CategoriesByType.homeworks == type
-                  ? AppStrings.homeworks.tr()
-                  : AppStrings.educationalLevels.tr(),
+      title: Text(AppStrings.educationalLevels.tr(),
           style: context.displayLarge.copyWith(color: ColorManager.textGray, fontWeight: FontWeight.w700)),
       actions: [
         Padding(

@@ -92,7 +92,8 @@ class _ExamLayoutScreenState extends State<ExamLayoutScreen> {
                     padding: const EdgeInsets.all(16.0),
                     child: Center(
                       child: CustomButtonWithLoading(
-                          text: AppStrings.homeworkStart.tr(),
+                          text:
+                              widget.type == ExamType.exam ? AppStrings.examStart.tr() : AppStrings.homeworkStart.tr(),
                           borderRadius: 5.0,
                           height: 50.0,
                           width: context.width,

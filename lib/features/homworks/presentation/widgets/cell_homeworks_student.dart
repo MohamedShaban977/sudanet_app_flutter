@@ -18,6 +18,9 @@ class CellHomeworksStudent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 0.5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppMargin.m12),
+      ),
       child: InkWell(
         onTap: () {
           MagicRouterName.navigateTo(
@@ -29,7 +32,7 @@ class CellHomeworksStudent extends StatelessWidget {
           );
         },
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

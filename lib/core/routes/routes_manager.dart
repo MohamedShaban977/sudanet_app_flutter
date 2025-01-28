@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sudanet_app_flutter/features/categories/presentation/screens/categories_screen.dart';
+import 'package:sudanet_app_flutter/features/profile/presentation/screens/profile_screen.dart';
+import 'package:sudanet_app_flutter/features/subject_info/screens/subject_info_screen.dart';
 
 import '../../app/injection_container.dart';
 import '../../features/auth/forget_password/presentation/cubit/forget_password_cubit.dart';
@@ -87,7 +89,7 @@ class Routes {
         return MagicRouter.pageRoute(
           BlocProvider(
             create: (context) => sl<ContactInfoCubit>()..getContactInfo(),
-            child: const CategoriesScreen(),
+            child: const ProfileScreen(),
           ),
         );
       // loginRoute
@@ -127,13 +129,11 @@ class Routes {
       case RoutesNames.coursesByCategoryScreen:
         ServiceLocator.initCoursesByCategoryGetIt();
         final RouteRequest res = RouteRequest.fromJson(settings.arguments! as Map<String, dynamic>);
-        final args = settings.arguments as Map<String, dynamic>?;
 
         return MagicRouter.pageRoute(BlocProvider(
           create: (context) => sl<CoursesByCategoryCubit>()..getCoursesByCategoryId(res.id!),
           child: CoursesByCategoryScreen(
             categoryId: res.id!,
-            type: args?['type'],
           ),
         ));
 
@@ -253,6 +253,15 @@ class Routes {
           BlocProvider(
             create: (context) => sl<ExamsBySubjectCubit>()..getExamsBySubject(arg?['subject_id']),
             child: ExamsBySubjectScreen(subjectId: arg?['subject_id']),
+          ),
+        );
+      case RoutesNames.subjectInfoRoute:
+        final arg = settings.arguments as Map<String, dynamic>?;
+
+        return MagicRouter.pageRoute(
+          SubjectInfoScreen(
+            subjectId: arg?['subject_id'],
+            subjectName: arg?['subject_name'],
           ),
         );
 

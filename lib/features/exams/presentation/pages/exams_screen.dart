@@ -30,28 +30,31 @@ class _ExamsBySubjectScreenState extends State<ExamsBySubjectScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(context),
-      body: BlocConsumer<ExamsBySubjectCubit, ExamsBySubjectState>(
-        listener: (context, state) {
-          if (state is ExamsBySubjectSuccessState) {
-            examsBySubject = state.response.data ?? [];
-          }
-        },
-        builder: (context, state) {
-          if (state is ExamsBySubjectLoadingState) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (state is ExamsBySubjectErrorState) {
-            return Center(child: Text(state.error));
-          }
-          return ListView.builder(
-            itemCount: examsBySubject.length,
-            itemBuilder: (context, index) {
-              return CellExamBySubject(
-                exam: examsBySubject[index],
-              );
-            },
-          );
-        },
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: BlocConsumer<ExamsBySubjectCubit, ExamsBySubjectState>(
+          listener: (context, state) {
+            if (state is ExamsBySubjectSuccessState) {
+              examsBySubject = state.response.data ?? [];
+            }
+          },
+          builder: (context, state) {
+            if (state is ExamsBySubjectLoadingState) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (state is ExamsBySubjectErrorState) {
+              return Center(child: Text(state.error));
+            }
+            return ListView.builder(
+              itemCount: examsBySubject.length,
+              itemBuilder: (context, index) {
+                return CellExamBySubject(
+                  exam: examsBySubject[index],
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }
@@ -86,6 +89,9 @@ class CellExamBySubject extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 0.5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
       child: InkWell(
         onTap: () {
           MagicRouterName.navigateTo(
@@ -97,7 +103,7 @@ class CellExamBySubject extends StatelessWidget {
           );
         },
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

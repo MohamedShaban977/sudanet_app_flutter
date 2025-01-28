@@ -11,7 +11,6 @@ import '../../../../core/responsive/responsive.dart';
 import '../../../../core/responsive/responsive_grid.dart';
 import '../../../../widgets/custom_app_bar_widget.dart';
 import '../../../../widgets/custom_loading_widget.dart';
-import '../../../categories/presentation/screens/categories_screen.dart';
 import '../cubit/courses_cubit.dart';
 import 'responsive_widget/card_tablet_widget.dart';
 
@@ -19,8 +18,10 @@ const double _heightItem = 140;
 const double _desiredItemWidth = 260;
 
 class CoursesScreen extends StatelessWidget {
-  const CoursesScreen({super.key, required this.type});
- final CategoriesByType type;
+  const CoursesScreen({
+    super.key,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,8 +39,7 @@ class CoursesScreen extends StatelessWidget {
             child: SizedBox(
               height: context.height - kToolbarHeight,
               child: SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(
-                    parent: ClampingScrollPhysics()),
+                physics: const AlwaysScrollableScrollPhysics(parent: ClampingScrollPhysics()),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -50,18 +50,16 @@ class CoursesScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(AppPadding.p12),
                         child: Text(
                           AppStrings.viewAllFirstStageSubjects.tr(),
-                          style:
-                              Theme.of(context).textTheme.titleMedium!.copyWith(
-                                    color: ColorManager.primary,
-                                  ),
+                          style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                                color: ColorManager.primary,
+                              ),
                         ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 4.0),
                       child: ResponsiveGridList(
-                        desiredItemWidth: Responsive.isMobileS(context) ||
-                                Responsive.isMobile(context)
+                        desiredItemWidth: Responsive.isMobileS(context) || Responsive.isMobile(context)
                             ? context.width * 0.4
                             : _desiredItemWidth,
                         minSpacing: 2.0,
@@ -69,10 +67,7 @@ class CoursesScreen extends StatelessWidget {
                         physics: const ClampingScrollPhysics(),
                         children: List.generate(
                           cubit.coursesAllItems.length,
-                          (index) => CardCoursesTabletWidget(
-                            type: type,
-                              height: _heightItem,
-                              course: cubit.coursesAllItems[index]),
+                          (index) => CardCoursesTabletWidget(height: _heightItem, course: cubit.coursesAllItems[index]),
                         ),
                       ),
                     ),
