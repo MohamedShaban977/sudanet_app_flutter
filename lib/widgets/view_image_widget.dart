@@ -14,24 +14,39 @@ class ImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IntrinsicHeight(
-      child: Image.network(
-        imagePath,
-        fit: BoxFit.fill,
-        height: height,
-        width: width,
-        gaplessPlayback: true,
-        errorBuilder: (context, error, stackTrace) {
+    return Image.network(
+      imagePath,
+      height: height,
+      width: width,
+      gaplessPlayback: true,
+      loadingBuilder: (context, child, loadingProgress) {
+        if (loadingProgress != null) {
           return SizedBox(
-            height: height,
-            width: width,
-            child: const Icon(
-              Icons.image_outlined,
-              size: 30,
-            ),
-          );
-        },
-      ),
+              height: height,
+              width: width,
+              child: Center(
+                child: CircularProgressIndicator(),
+              ));
+        }
+        return child;
+      },
+      frameBuilder: (context, child, _, __) {
+        return SizedBox(
+          height: height,
+          width: width,
+          child: child,
+        );
+      },
+      errorBuilder: (context, error, stackTrace) {
+        return SizedBox(
+          height: height,
+          width: width,
+          child: const Icon(
+            Icons.image_outlined,
+            size: 30,
+          ),
+        );
+      },
     );
   }
 }

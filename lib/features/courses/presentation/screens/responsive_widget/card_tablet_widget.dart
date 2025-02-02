@@ -65,7 +65,7 @@ class CardCoursesTabletWidget extends StatelessWidget {
           children: [
             ImageWidget(
               width: context.width,
-              height: 120,
+              height: 190,
               imagePath: course.imagePath,
             ),
             Padding(

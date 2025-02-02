@@ -28,8 +28,7 @@ class CourseDetailsScreen extends StatefulWidget {
   State<CourseDetailsScreen> createState() => _CourseDetailsScreenState();
 }
 
-class _CourseDetailsScreenState extends State<CourseDetailsScreen>
-    with WidgetsBindingObserver {
+class _CourseDetailsScreenState extends State<CourseDetailsScreen> with WidgetsBindingObserver {
   bool _isInForeground = true;
 
   @override
@@ -54,10 +53,8 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen>
       case AppLifecycleState.paused:
         break;
       case AppLifecycleState.detached:
-        // TODO: Handle this case.
         break;
       case AppLifecycleState.hidden:
-        // TODO: Handle this case.
     }
   }
 
@@ -198,8 +195,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen>
           // ),
           child: Scaffold(
             appBar: CustomAppBarWidget(title: courseDetails.categoryName),
-
-          body:  BodyScreen(
+            body: BodyScreen(
               courseDetails: courseDetails,
             ),
           ),
@@ -230,9 +226,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen>
     }
     if (state is BuyCourseSuccessState) {
       ToastAndSnackBar.toastSuccess(message: state.response.message);
-      sl<CourseDetailsCubit>()
-          .get(context)
-          .getCourseDetails('${courseDetails.id}');
+      sl<CourseDetailsCubit>().get(context).getCourseDetails('${courseDetails.id}');
       MagicRouter.pop();
     }
   }
@@ -278,8 +272,7 @@ class CardDetailsCourseWidget extends StatelessWidget {
             const SizedBox(height: 20.0),
 
             /// Name course
-            Text(courseDetails.name,
-                style: context.bodyLarge.copyWith(color: ColorManager.primary)),
+            Text(courseDetails.name, style: context.bodyLarge.copyWith(color: ColorManager.primary)),
             const SizedBox(height: 20.0),
 
             /// description course
@@ -368,61 +361,18 @@ class CardContentCourseWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(AppStrings.contentCourse.tr(),
-                style:
-                    context.bodyLarge.copyWith(color: ColorManager.textGray)),
+            Text(AppStrings.contentCourse.tr(), style: context.bodyLarge.copyWith(color: ColorManager.textGray)),
             const SizedBox(height: 20.0),
             // Text('(7) حصص * (10) فيديوهات * 10س . 54د',
             //     style: context.bodyMedium),
             const SizedBox(height: 20.0),
             ...List.generate(
               courseDetails.courseLectures.length,
-              (index) => Container(
-                margin: const EdgeInsets.symmetric(horizontal: 10.0),
-                decoration: BoxDecoration(
-                  border: Border.all(color: ColorManager.lightGrey),
-                ),
-                child: CustomExpandedTitle(
-                  iconLeading: Icon(
-                    _checkCoursePurchasedOrIsFree(index)
-                        ? FontAwesomeIcons.lockOpen
-                        : FontAwesomeIcons.lock,
-                    size: 20.0,
-                  ),
-                  textTitle: courseDetails.courseLectures[index].name,
-                  isExpanded: index == 0 ? true : false,
-                  onTap: () => sl<CourseDetailsCubit>()
-                      .get(context)
-                      .getLectureCourseDetails(
-                          '${courseDetails.courseLectures[index].id}'),
-                  children: [
-                    ContentSession(
-                      iconLeading: _checkCoursePurchasedOrIsFree(index)
-                          ? FontAwesomeIcons.lockOpen
-                          : FontAwesomeIcons.lock,
-                      title: AppStrings.videos.tr(),
-                      count:
-                          '${courseDetails.courseLectures[index].videoCount}',
-                      iconTrailing: FontAwesomeIcons.play,
-                    ),
-                    ContentSession(
-                      iconLeading: _checkCoursePurchasedOrIsFree(index)
-                          ? FontAwesomeIcons.lockOpen
-                          : FontAwesomeIcons.lock,
-                      title: AppStrings.files.tr(),
-                      count: '${courseDetails.courseLectures[index].fileCount}',
-                      iconTrailing: FontAwesomeIcons.fileArrowDown,
-                    ),
-                    ContentSession(
-                      iconLeading: _checkCoursePurchasedOrIsFree(index)
-                          ? FontAwesomeIcons.lockOpen
-                          : FontAwesomeIcons.lock,
-                      title: AppStrings.exam.tr(),
-                      count: '${courseDetails.courseLectures[index].examCount}',
-                      iconTrailing: FontAwesomeIcons.solidCircleQuestion,
-                    ),
-                  ],
-                ),
+              (index) => ContentSession(
+                iconLeading: _checkCoursePurchasedOrIsFree(index) ? FontAwesomeIcons.lockOpen : FontAwesomeIcons.lock,
+                title: courseDetails.courseLectures[index].name,
+                count: '${courseDetails.courseLectures[index].videoCount}',
+                iconTrailing: FontAwesomeIcons.play,
               ),
             ),
 
@@ -430,9 +380,7 @@ class CardContentCourseWidget extends StatelessWidget {
               Align(
                 alignment: AlignmentDirectional.center,
                 child: Text(AppStrings.nosDataAvailable.tr(),
-                    textAlign: TextAlign.center,
-                    style: context.bodyLarge
-                        .copyWith(color: ColorManager.textGray)),
+                    textAlign: TextAlign.center, style: context.bodyLarge.copyWith(color: ColorManager.textGray)),
               ),
             const SizedBox(height: 20.0),
           ],
@@ -442,8 +390,7 @@ class CardContentCourseWidget extends StatelessWidget {
   }
 
   bool _checkCoursePurchasedOrIsFree(int index) {
-    return courseDetails.courseLectures[index].isFree ||
-        courseDetails.purchased;
+    return courseDetails.courseLectures[index].isFree || courseDetails.purchased;
   }
 }
 
@@ -464,186 +411,70 @@ class ContentSession extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, con) {
-      return Container(
-        width: con.maxWidth,
+    return Container(
+      width: context.width,
+      margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8),
+      decoration: BoxDecoration(
         color: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Icon(
-                  iconLeading,
-                  // courseDetails.courseLectures[index].isFree
-                  //     ? FontAwesomeIcons.lockOpen
-                  //     : FontAwesomeIcons.lock,
-                  size: 20.0,
-                  color: ColorManager.primary,
-                ),
-                const SizedBox(width: 20.0),
-                Row(
-                  children: [
-                    Text(
-                      count,
-                      style: context.titleMedium.copyWith(
-                        color: ColorManager.primary,
-                        fontSize: 16.0,
-                      ),
-                    ),
-                    const SizedBox(width: 10.0),
-                    Text(
-                      title,
-                      // AppStrings.videos.tr(),
-                      style: context.titleMedium.copyWith(
-                        color: ColorManager.primary,
-                        fontSize: 16.0,
-                      ),
-                    ),
-                  ],
-                ),
-                const Spacer(),
-                Icon(
-                  iconTrailing,
-                  // FontAwesomeIcons.play,
-                  size: 20.0,
-                  color: ColorManager.primary,
-                ),
-              ],
+        border: Border.all(color: ColorManager.lightGrey),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(
+              iconLeading,
+              // courseDetails.courseLectures[index].isFree
+              //     ? FontAwesomeIcons.lockOpen
+              //     : FontAwesomeIcons.lock,
+              size: 20.0,
+              color: ColorManager.primary,
             ),
-          ),
-          // Column(
-          //   crossAxisAlignment: CrossAxisAlignment.start,
-          //   children: [
-          //     Padding(
-          //       padding: const EdgeInsets.all(8.0),
-          //       child: Row(
-          //         crossAxisAlignment: CrossAxisAlignment.end,
-          //         children: [
-          //           Icon(
-          //             courseDetails.courseLectures[index].isFree
-          //                 ? FontAwesomeIcons.lockOpen
-          //                 : FontAwesomeIcons.lock,
-          //             size: 20.0,
-          //             color: ColorManager.primary,
-          //           ),
-          //           const SizedBox(width: 20.0),
-          //           Row(
-          //             children: [
-          //               Text(
-          //                 '4',
-          //                 style: context.titleMedium.copyWith(
-          //                   color: ColorManager.primary,
-          //                   fontSize: 16.0,
-          //                 ),
-          //               ),
-          //               const SizedBox(width: 10.0),
-          //               Text(
-          //                 AppStrings.videos.tr(),
-          //                 style: context.titleMedium.copyWith(
-          //                   color: ColorManager.primary,
-          //                   fontSize: 16.0,
-          //                 ),
-          //               ),
-          //             ],
-          //           ),
-          //           const Spacer(),
-          //           const Icon(
-          //             FontAwesomeIcons.play,
-          //             size: 20.0,
-          //             color: ColorManager.primary,
-          //           ),
-          //         ],
-          //       ),
-          //     ),
-          //     const SizedBox(height: 10.0),
-          //     Padding(
-          //       padding: const EdgeInsets.all(8.0),
-          //       child: Row(
-          //         crossAxisAlignment: CrossAxisAlignment.end,
-          //         children: [
-          //           const Icon(
-          //             FontAwesomeIcons.lockOpen,
-          //             size: 20.0,
-          //             color: ColorManager.primary,
-          //           ),
-          //           const SizedBox(width: 20.0),
-          //           Row(
-          //             children: [
-          //               Text(
-          //                 '4',
-          //                 style: context.titleMedium.copyWith(
-          //                   color: ColorManager.primary,
-          //                   fontSize: 16.0,
-          //                 ),
-          //               ),
-          //               const SizedBox(width: 10.0),
-          //               Text(
-          //                 AppStrings.files.tr(),
-          //                 style: context.titleMedium.copyWith(
-          //                   color: ColorManager.primary,
-          //                   fontSize: 16.0,
-          //                 ),
-          //               ),
-          //             ],
-          //           ),
-          //           const Spacer(),
-          //           const Icon(
-          //             FontAwesomeIcons.fileArrowDown,
-          //             size: 20.0,
-          //             color: ColorManager.primary,
-          //           ),
-          //         ],
-          //       ),
-          //     ),
-          //     const SizedBox(height: 10.0),
-          //     Padding(
-          //       padding: const EdgeInsets.all(8.0),
-          //       child: Row(
-          //         crossAxisAlignment: CrossAxisAlignment.end,
-          //         children: [
-          //           const Icon(
-          //             FontAwesomeIcons.lockOpen,
-          //             size: 20.0,
-          //             color: ColorManager.primary,
-          //           ),
-          //           const SizedBox(width: 20.0),
-          //           Row(
-          //             children: [
-          //               Text(
-          //                 '4',
-          //                 style: context.titleMedium.copyWith(
-          //                   color: ColorManager.primary,
-          //                   fontSize: 16.0,
-          //                 ),
-          //               ),
-          //               const SizedBox(width: 10.0),
-          //               Text(
-          //                 AppStrings.exam.tr(),
-          //                 style: context.titleMedium.copyWith(
-          //                   color: ColorManager.primary,
-          //                   fontSize: 16.0,
-          //                 ),
-          //               ),
-          //             ],
-          //           ),
-          //           const Spacer(),
-          //           const Icon(
-          //             FontAwesomeIcons.solidCircleQuestion,
-          //             size: 20.0,
-          //             color: ColorManager.primary,
-          //           ),
-          //         ],
-          //       ),
-          //     ),
-          //     const SizedBox(height: 10.0),
-          //   ],
-          // ),
+            const SizedBox(width: 20.0),
+            Expanded(
+              child: Text(
+                title,
+                // AppStrings.videos.tr(),
+                style: context.titleMedium.copyWith(
+                  color: ColorManager.primary,
+                  fontSize: 16.0,
+                ),
+              ),
+            ),
+            const SizedBox(width: 20.0),
+
+            // Row(
+            //   children: [
+            //     Text(
+            //       count,
+            //       style: context.titleMedium.copyWith(
+            //         color: ColorManager.primary,
+            //         fontSize: 16.0,
+            //       ),
+            //     ),
+            //     const SizedBox(width: 10.0),
+            //     Text(
+            //       title,
+            //       // AppStrings.videos.tr(),
+            //       style: context.titleMedium.copyWith(
+            //         color: ColorManager.primary,
+            //         fontSize: 16.0,
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            Icon(
+              iconTrailing,
+              // FontAwesomeIcons.play,
+              size: 20.0,
+              color: ColorManager.primary,
+            ),
+          ],
         ),
-      );
-    });
+      ),
+    );
   }
 }
 
@@ -669,8 +500,7 @@ class CustomExpandedTitle extends StatefulWidget {
   State<CustomExpandedTitle> createState() => _CustomExpandedTitleState();
 }
 
-class _CustomExpandedTitleState extends State<CustomExpandedTitle>
-    with SingleTickerProviderStateMixin {
+class _CustomExpandedTitleState extends State<CustomExpandedTitle> with SingleTickerProviderStateMixin {
   bool _isExpanded = false;
 
   _setExpanded([bool? value]) {
@@ -693,9 +523,7 @@ class _CustomExpandedTitleState extends State<CustomExpandedTitle>
         title: Text(widget.textTitle,
             style: context.displayMedium.copyWith(
                 fontWeight: _isExpanded ? FontWeight.w700 : FontWeight.normal,
-                color: _isExpanded
-                    ? ColorManager.primary
-                    : context.displayMedium.color)),
+                color: _isExpanded ? ColorManager.primary : context.displayMedium.color)),
         // collapsedTextColor: ColorManager.primary,
         // textColor: ColorManager.primary,
         backgroundColor: ColorManager.secondary,
