@@ -20,9 +20,9 @@ class CacheFailure extends Failure {
 class HandleFailure {
   static String mapFailureToMsg(Failure failure) {
     switch (failure.runtimeType) {
-      case ServerFailure _:
-        return failure.error!;
-      case CacheFailure _:
+      case ServerFailure:
+        return failure.error ?? '';
+      case CacheFailure:
         return 'Cache Failure';
       default:
         return 'UnExpected Error';

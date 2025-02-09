@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sudanet_app_flutter/core/app_manage/extension_manager.dart';
+import 'package:sudanet_app_flutter/features/homworks/data/models/written_homework_item_model.dart';
+import 'package:sudanet_app_flutter/features/homworks/presentation/pages/written_homework_view_pdf.dart';
 
 import '../../../../core/app_manage/color_manager.dart';
 import '../../../../core/app_manage/font_manager.dart';
@@ -51,6 +53,47 @@ class CellHomeworksStudent extends StatelessWidget {
                   fontSize: FontSize.s14,
                 ),
               ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CellWrittenHomeworksStudent extends StatelessWidget {
+  final WrittenHomeworkItemModel writtenHomework;
+
+  const CellWrittenHomeworksStudent({super.key, required this.writtenHomework});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 0.5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppMargin.m12),
+      ),
+      child: InkWell(
+        onTap: () {
+          MagicRouter.navigateTo(
+            WrittenHomeworkViewPdf(
+              writtenHomework: writtenHomework,
+            ),
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                writtenHomework.name ?? '',
+                style: context.titleLarge.copyWith(
+                  color: ColorManager.primary,
+                  fontSize: FontSize.s18,
+                ),
+              ),
+              const SizedBox(height: AppSize.s8),
             ],
           ),
         ),

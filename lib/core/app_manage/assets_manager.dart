@@ -14,6 +14,7 @@ class ImageAssets {
   static const String exams = "${imagePath}exam.png";
   static const String onlineLearning = "${imagePath}online-learning.png";
   static const String homeworks = "${imagePath}homework.png";
+  static const String digitalHomework = "${imagePath}digital_homework.png";
 }
 
 const String imageJsonPath = "${imagePath}json/";

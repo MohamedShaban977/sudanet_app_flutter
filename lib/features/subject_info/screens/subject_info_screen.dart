@@ -12,7 +12,8 @@ class SubjectInfoScreen extends StatelessWidget {
   final String subjectId;
   final String subjectName;
 
-  const SubjectInfoScreen({super.key, required this.subjectId, required this.subjectName});
+  const SubjectInfoScreen(
+      {super.key, required this.subjectId, required this.subjectName});
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +28,8 @@ class SubjectInfoScreen extends StatelessWidget {
               children: [
                 CardButtonWidget(
                   pathIcon: ImageAssets.onlineLearning,
-                  title: 'متابعه الحصص',
-                  description: 'تعلم واكتسب مهارات جديدة خطوة بخطوة.',
+                  title: AppStrings.classesVideos.tr(),
+                  description: '',
                   onTap: () {
                     MagicRouterName.navigateTo(
                       RoutesNames.courseDetails,
@@ -40,8 +41,21 @@ class SubjectInfoScreen extends StatelessWidget {
                 ),
                 CardButtonWidget(
                   pathIcon: ImageAssets.homeworks,
-                  title: AppStrings.homeworks.tr(),
-                  description: 'حل الواجب لتحسين فهمك.',
+                  title: AppStrings.writtenHomework.tr(),
+                  description: '',
+                  onTap: () {
+                    MagicRouterName.navigateTo(
+                      RoutesNames.writtenHomeworkRoute,
+                      arguments: {
+                        'subject_id': subjectId,
+                      },
+                    );
+                  },
+                ),
+                CardButtonWidget(
+                  pathIcon: ImageAssets.digitalHomework,
+                  title: AppStrings.digitalHomework.tr(),
+                  description: '',
                   onTap: () {
                     MagicRouterName.navigateTo(
                       RoutesNames.homeworksRoute,
@@ -54,7 +68,7 @@ class SubjectInfoScreen extends StatelessWidget {
                 CardButtonWidget(
                   pathIcon: ImageAssets.exams,
                   title: AppStrings.exams.tr(),
-                  description: 'ختبر معلوماتك وأجب على الأسئلة',
+                  description: '',
                   onTap: () {
                     MagicRouterName.navigateTo(
                       RoutesNames.examsRoute,
@@ -129,14 +143,20 @@ class CardButtonWidget extends StatelessWidget {
                       Spacer(),
                       Text(
                         title,
-                        style: TextStyle(color: ColorManager.textGray, fontSize: 18, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            color: ColorManager.textGray,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 8),
                       Expanded(
                         child: Text(
                           description,
                           overflow: TextOverflow.visible,
-                          style: TextStyle(color: ColorManager.darkGrey, fontSize: 14, fontWeight: FontWeight.w400),
+                          style: TextStyle(
+                              color: ColorManager.darkGrey,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400),
                         ),
                       ),
                       Spacer(),

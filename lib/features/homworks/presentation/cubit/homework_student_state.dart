@@ -18,3 +18,17 @@ class HomeworkStudentErrorState extends HomeworkStudentState {
 
   HomeworkStudentErrorState({required this.error});
 }
+
+class WrittenHomeworkStudentLoadingState extends HomeworkStudentState {}
+
+class WrittenHomeworkStudentSuccessState extends HomeworkStudentState {
+  final List<WrittenHomeworkItemModel> homeworks;
+
+  WrittenHomeworkStudentSuccessState({required this.homeworks});
+}
+
+class WrittenHomeworkStudentErrorState extends HomeworkStudentState {
+  final String error;
+
+  WrittenHomeworkStudentErrorState({required this.error});
+}

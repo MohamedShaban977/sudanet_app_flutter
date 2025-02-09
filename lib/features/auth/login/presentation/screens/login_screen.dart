@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sudanet_app_flutter/core/locale/app_localizations.dart';
+import 'package:sudanet_app_flutter/widgets/screenshot_prevention_widget.dart';
 
 import '../../../../../app/injection_container.dart';
 import '../../../../../core/app_manage/color_manager.dart';
@@ -64,44 +65,46 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     statusBarColor(color: Colors.grey[100]);
-    return BlocConsumer<LoginCubit, LoginState>(
-      listener: _listener,
-      builder: (context, state) {
-        return UnFocusedKeyboard(
-          child: Scaffold(
-            // resizeToAvoidBottomInset: false,
-            // appBar: _buildAppBar(),
-            body: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p26),
-              child: Form(
-                key: _formKey,
-                child: Responsive(
-                  mobile: MobileLoginScreen(
-                    email: email,
-                    password: password,
-                    onTap: _submitLoginButton,
-                    onPressedTestLogin: () {
-                      email.text = 'EmanAyman-G8@suda-net.edu';
-                      password.text = "123456789";
-                      guidId = '3a915b00-2a3b-4b42-8f76-74b647391a2d';
-                    },
-                  ),
-                  tablet: TabletLoginScreen(
-                    email: email,
-                    password: password,
-                    onTap: _submitLoginButton,
-                  ),
-                  desktop: TabletLoginScreen(
-                    email: email,
-                    password: password,
-                    onTap: _submitLoginButton,
+    return ScreenshotPreventionWidget(
+      child: BlocConsumer<LoginCubit, LoginState>(
+        listener: _listener,
+        builder: (context, state) {
+          return UnFocusedKeyboard(
+            child: Scaffold(
+              // resizeToAvoidBottomInset: false,
+              // appBar: _buildAppBar(),
+              body: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: AppPadding.p26),
+                child: Form(
+                  key: _formKey,
+                  child: Responsive(
+                    mobile: MobileLoginScreen(
+                      email: email,
+                      password: password,
+                      onTap: _submitLoginButton,
+                      onPressedTestLogin: () {
+                        email.text = 'EmanAyman-G8@suda-net.edu';
+                        password.text = "123456789";
+                        guidId = '3a915b00-2a3b-4b42-8f76-74b647391a2d';
+                      },
+                    ),
+                    tablet: TabletLoginScreen(
+                      email: email,
+                      password: password,
+                      onTap: _submitLoginButton,
+                    ),
+                    desktop: TabletLoginScreen(
+                      email: email,
+                      password: password,
+                      onTap: _submitLoginButton,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 
@@ -144,19 +147,18 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
-      onConfirmBtnTap: () {
-        /// TODO:Go to help screen
-      },
+      onConfirmBtnTap: () {},
     );
   }
 
   Future<dynamic> _submitLoginButton() async {
     if (_formKey.currentState!.validate()) {
-      await Future.sync(() async => sl<LoginCubit>().get(context).login(LoginRequest(
-            email: email.text,
-            password: password.text,
-            macAddress: guidId,
-          )));
+      await Future.sync(
+          () async => sl<LoginCubit>().get(context).login(LoginRequest(
+                email: email.text,
+                password: password.text,
+                macAddress: guidId,
+              )));
     }
   }
 }

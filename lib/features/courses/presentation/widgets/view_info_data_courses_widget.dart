@@ -3,7 +3,6 @@ import 'package:sudanet_app_flutter/core/app_manage/extension_manager.dart';
 
 import '../../../../core/app_manage/color_manager.dart';
 import '../../../../core/app_manage/values_manager.dart';
-import '../../../course_details/presentation/screens/purchase_course_widget.dart';
 import '../../domain/entities/courses_entity.dart';
 
 class ViewInfoDataCoursesWidget extends StatelessWidget {
@@ -81,11 +80,11 @@ class ViewInfoDataCoursesWidget extends StatelessWidget {
     );
   }
 
-  PurchaseCourses _buildPurchaseCourses(BuildContext context) {
-    return PurchaseCourses.show(
-      context,
-      courseId: course.id,
-      isAlert: true,
-    );
-  }
+  // PurchaseCourses _buildPurchaseCourses(BuildContext context) {
+  //   return PurchaseCourses.show(
+  //     context,
+  //     courseId: course.id,
+  //     isAlert: true,
+  //   );
+  // }
 }
