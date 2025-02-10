@@ -91,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Image.asset(
-            ImageAssets.newLogo,
+            ImageAssets.appLogo,
             alignment: Alignment.center,
             // fit: BoxFit.fitWidth,
             height: kToolbarHeight,

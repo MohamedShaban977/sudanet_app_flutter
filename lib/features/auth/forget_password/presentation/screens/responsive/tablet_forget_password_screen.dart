@@ -52,7 +52,7 @@ class TabletForgetPasswordScreen extends StatelessWidget {
                             child: Column(
                               children: [
                                 /// image
-                                Image.asset(ImageAssets.newLogo,
+                                Image.asset(ImageAssets.appLogo,
                                     alignment: Alignment.center),
                                 const SizedBox(height: AppSize.s38),
 

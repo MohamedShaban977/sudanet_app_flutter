@@ -9,7 +9,7 @@ class Assets {
       'assets/images/home_banner1.jpg';
   static const String assetsImagesHomebanner = 'assets/images/homebanner.jpg';
   static const String assetsImagesLogo = 'assets/images/logo.png';
-  static const String assetsImagesNewLogo = 'assets/images/new_logo.png';
+  static const String assetsImagesNewLogo = 'assets/images/old_logo.png';
   static const String assetsImagesSplashScreen =
       'assets/images/splash-screen.png';
   static const String assetsLangAr = 'assets/lang/ar.json';
@@ -31,7 +31,7 @@ class Assets {
   static const String imagesHomebanner = 'assets/images/homebanner.jpg';
   static const String imagesJsonLoader = 'assets/images/json/loader.json';
   static const String imagesLogo = 'assets/images/logo.png';
-  static const String imagesNewLogo = 'assets/images/new_logo.png';
+  static const String imagesNewLogo = 'assets/images/old_logo.png';
   static const String imagesSplashImage = 'assets/images/splash-image.jpeg';
   static const String imagesSplashScreen = 'assets/images/splash-screen.png';
   static const String imagesSvgExam = 'assets/images/svg/exam.svg';

@@ -40,7 +40,7 @@ class MobileLoginScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   // const CustomButtonChangeLanguageWidget(),
-                  HelperButtonWidget(),
+                //  HelperButtonWidget(),
                   // GestureDetector(
                   //   onTap: () => MagicRouterName.navigateReplacementTo(
                   //       RoutesNames.mainLayoutApp),
@@ -56,7 +56,12 @@ class MobileLoginScreen extends StatelessWidget {
               const SizedBox(height: AppSize.s40),
 
               /// image
-              Image.asset(ImageAssets.newLogo, alignment: Alignment.center),
+              Image.asset(
+                ImageAssets.appLogo,
+                alignment: Alignment.center,
+                width: 200,
+                height: 200,
+              ),
               const SizedBox(height: AppSize.s38),
 
               ///

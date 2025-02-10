@@ -17,11 +17,7 @@ import '../../cubit/login_cubit.dart';
 import 'mobile_login_screen.dart';
 
 class TabletLoginScreen extends StatelessWidget {
-  const TabletLoginScreen(
-      {super.key,
-      required this.email,
-      required this.password,
-      required this.onTap});
+  const TabletLoginScreen({super.key, required this.email, required this.password, required this.onTap});
 
   final TextEditingController email;
 
@@ -68,13 +64,14 @@ class TabletLoginScreen extends StatelessWidget {
                             child: Column(
                               children: [
                                 /// image
-                                Image.asset(ImageAssets.newLogo,
-                                    alignment: Alignment.center),
+                                Image.asset(
+                                  ImageAssets.appLogo,
+                                  alignment: Alignment.center,
+                                ),
                                 const SizedBox(height: AppSize.s38),
 
                                 ///
-                                Text(AppStrings.signIn.tr(),
-                                    style: context.displayLarge),
+                                Text(AppStrings.signIn.tr(), style: context.displayLarge),
 
                                 const SizedBox(height: AppSize.s13),
                               ],
@@ -92,8 +89,7 @@ class TabletLoginScreen extends StatelessWidget {
                                   controller: email,
                                   keyboardType: TextInputType.name,
                                   textInputAction: TextInputAction.next,
-                                  validator: (value) =>
-                                      Validator.isValidUserName(email.text),
+                                  validator: (value) => Validator.isValidUserName(email.text),
                                 ),
                                 const SizedBox(height: AppSize.s16),
 
@@ -107,14 +103,10 @@ class TabletLoginScreen extends StatelessWidget {
                                       obscureText: cubit.isPassword,
                                       iconData: cubit.suffix,
                                       prefixIcon: Icons.lock,
-                                      keyboardType:
-                                          TextInputType.visiblePassword,
+                                      keyboardType: TextInputType.visiblePassword,
                                       textInputAction: TextInputAction.done,
-                                      onTapIcon: () =>
-                                          cubit.changePassVisibility(),
-                                      validator: (value) =>
-                                          Validator.isValidPassword(
-                                              password.text),
+                                      onTapIcon: () => cubit.changePassVisibility(),
+                                      validator: (value) => Validator.isValidPassword(password.text),
                                     );
                                   },
                                 ),
@@ -123,12 +115,9 @@ class TabletLoginScreen extends StatelessWidget {
                                 Row(
                                   children: [
                                     GestureDetector(
-                                      onTap: () => MagicRouterName.navigateTo(
-                                          RoutesNames.forgetPasswordRoute),
-                                      child: Text(
-                                          AppStrings.forgetPassword.tr(),
-                                          style: context.displayMedium.copyWith(
-                                              color: ColorManager.textGray)),
+                                      onTap: () => MagicRouterName.navigateTo(RoutesNames.forgetPasswordRoute),
+                                      child: Text(AppStrings.forgetPassword.tr(),
+                                          style: context.displayMedium.copyWith(color: ColorManager.textGray)),
                                     ),
                                   ],
                                 ),
