@@ -1,7 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/app_manage/assets_manager.dart';
-
 part 'slider_state.dart';
 
 class SliderCubit extends Cubit<SliderState> {
@@ -10,14 +8,7 @@ class SliderCubit extends Cubit<SliderState> {
   SliderCubit get(context) => BlocProvider.of(context);
 
   List<String> imageSlider() {
-    return [
-      ImageAssets.homeBanner1,
-      ImageAssets.homeBanner2,
-      ImageAssets.homeBanner3,
-      ImageAssets.homeBanner1,
-      ImageAssets.homeBanner2,
-      ImageAssets.homeBanner3,
-    ];
+    return [];
   }
 
   int yourActiveIndex = 0;

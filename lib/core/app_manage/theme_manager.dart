@@ -9,6 +9,7 @@ import 'values_manager.dart';
 ThemeData getApplicationTheme() {
   return ThemeData(
     useMaterial3: false,
+
     /// main colors
     primaryColor: ColorManager.primary,
     scaffoldBackgroundColor: ColorManager.background,

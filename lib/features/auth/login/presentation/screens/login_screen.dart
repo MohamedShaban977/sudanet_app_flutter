@@ -71,33 +71,31 @@ class _LoginScreenState extends State<LoginScreen> {
         builder: (context, state) {
           return UnFocusedKeyboard(
             child: Scaffold(
-              // resizeToAvoidBottomInset: false,
+              backgroundColor: Color(0xFFDDE8EA),
+              resizeToAvoidBottomInset: false,
               // appBar: _buildAppBar(),
-              body: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppPadding.p26),
-                child: Form(
-                  key: _formKey,
-                  child: Responsive(
-                    mobile: MobileLoginScreen(
-                      email: email,
-                      password: password,
-                      onTap: _submitLoginButton,
-                      onPressedTestLogin: () {
-                        email.text = 'EmanAyman-G8@suda-net.edu';
-                        password.text = "123456789";
-                        guidId = '3a915b00-2a3b-4b42-8f76-74b647391a2d';
-                      },
-                    ),
-                    tablet: TabletLoginScreen(
-                      email: email,
-                      password: password,
-                      onTap: _submitLoginButton,
-                    ),
-                    desktop: TabletLoginScreen(
-                      email: email,
-                      password: password,
-                      onTap: _submitLoginButton,
-                    ),
+              body: Form(
+                key: _formKey,
+                child: Responsive(
+                  mobile: MobileLoginScreen(
+                    email: email,
+                    password: password,
+                    onTap: _submitLoginButton,
+                    onPressedTestLogin: () {
+                      email.text = 'EmanAyman-G8@suda-net.edu';
+                      password.text = "123456789";
+                      guidId = '';
+                    },
+                  ),
+                  tablet: TabletLoginScreen(
+                    email: email,
+                    password: password,
+                    onTap: _submitLoginButton,
+                  ),
+                  desktop: TabletLoginScreen(
+                    email: email,
+                    password: password,
+                    onTap: _submitLoginButton,
                   ),
                 ),
               ),

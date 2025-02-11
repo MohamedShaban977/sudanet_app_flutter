@@ -101,21 +101,18 @@ flutter:
     - assets/lang/ar.json
     - assets/lang/en.json
     - assets/images/gif/quick_alert/
-    - assets/images/home_banner.jpg
-    - assets/images/home_banner1.jpg
+
     - assets/images/homebanner.jpg
     - assets/images/svg/snakbar_content/
     - assets/images/svg/snakbar_content/types/
+    - assets/images/svg/online_learning.svg
+    - assets/images/svg/written_homework.svg
+    - assets/images/svg/digital_homework.svg
+    - assets/images/svg/exam_icon.svg
     - assets/images/avatar_student.jpg
     - assets/images/svg/exam.svg
-    - assets/images/old_logo.png
     - assets/images/svg/no_data.svg
-    - assets/images/splash-image.jpeg
-    - assets/images/exam.png
-    - assets/images/homework.png
-    - assets/images/online-learning.png
-    - assets/images/digital_homework.png
-    - assets/images/splash_img.png
+    - assets/images/background_splash_image.png
     - assets/images/app_logo.png
     - shorebird.yaml
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sudanet_app_flutter/core/app_manage/assets_manager.dart';
 import 'package:sudanet_app_flutter/core/app_manage/color_manager.dart';
 import 'package:sudanet_app_flutter/core/app_manage/extension_manager.dart';
@@ -27,9 +28,9 @@ class SubjectInfoScreen extends StatelessWidget {
             child: Column(
               children: [
                 CardButtonWidget(
-                  pathIcon: ImageAssets.onlineLearning,
+                  pathIcon: SvgAssets.onlineLearning,
                   title: AppStrings.classesVideos.tr(),
-                  description: '',
+                  description: 'شاهد حصصك في أي وقت وأينما كنت',
                   onTap: () {
                     MagicRouterName.navigateTo(
                       RoutesNames.courseDetails,
@@ -40,9 +41,9 @@ class SubjectInfoScreen extends StatelessWidget {
                   },
                 ),
                 CardButtonWidget(
-                  pathIcon: ImageAssets.homeworks,
+                  pathIcon: SvgAssets.writtenHomework,
                   title: AppStrings.writtenHomework.tr(),
-                  description: '',
+                  description: 'أكتب، تعلم وتطور مع كل واجب',
                   onTap: () {
                     MagicRouterName.navigateTo(
                       RoutesNames.writtenHomeworkRoute,
@@ -53,9 +54,9 @@ class SubjectInfoScreen extends StatelessWidget {
                   },
                 ),
                 CardButtonWidget(
-                  pathIcon: ImageAssets.digitalHomework,
+                  pathIcon: SvgAssets.digitalHomework,
                   title: AppStrings.digitalHomework.tr(),
-                  description: '',
+                  description: 'تحديات ممتعة وشيقة تحفز التفكير',
                   onTap: () {
                     MagicRouterName.navigateTo(
                       RoutesNames.homeworksRoute,
@@ -66,9 +67,9 @@ class SubjectInfoScreen extends StatelessWidget {
                   },
                 ),
                 CardButtonWidget(
-                  pathIcon: ImageAssets.exams,
+                  pathIcon: SvgAssets.examsIcon,
                   title: AppStrings.exams.tr(),
-                  description: '',
+                  description: 'ذاكر بتركيز واجتز الامتحانات بثقة',
                   onTap: () {
                     MagicRouterName.navigateTo(
                       RoutesNames.examsRoute,
@@ -123,7 +124,7 @@ class CardButtonWidget extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset(
+                SvgPicture.asset(
                   pathIcon,
                   height: 48,
                   width: 48,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:sudanet_app_flutter/core/app_manage/font_manager.dart';
+import 'package:sudanet_app_flutter/core/app_manage/styles_manager.dart';
 import 'package:sudanet_app_flutter/core/locale/app_localizations.dart';
 
 import '../core/app_manage/color_manager.dart';
@@ -52,7 +54,7 @@ class CustomTextFormField extends StatelessWidget {
         // Text(label, style: context.titleLarge),
         // const SizedBox(height: AppSize.s12),
         TextFormField(
-          cursorColor: ColorManager.secondary,
+          cursorColor: ColorManager.textGray,
           cursorHeight: AppSize.s20,
           textInputAction: textInputAction,
           keyboardType: keyboardType,
@@ -74,29 +76,7 @@ class CustomTextFormField extends StatelessWidget {
     return InputDecoration(
       prefixIcon: prefixIcon == null
           ? null
-          : prefixWidget ??
-              Container(
-                height: 50.0,
-                width: 50.0,
-                margin: EdgeInsets.only(
-                    left: context.isEnLocale ? AppSize.s0 : AppMargin.m14,
-                    right: context.isEnLocale ? AppMargin.m14 : AppSize.s0),
-                decoration: BoxDecoration(
-                    color: ColorManager.primary,
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(
-                          context.isEnLocale ? AppSize.s0 : AppSize.s4),
-                      bottomRight: Radius.circular(
-                          context.isEnLocale ? AppSize.s0 : AppSize.s4),
-
-                      ///
-                      bottomLeft: Radius.circular(
-                          context.isEnLocale ? AppSize.s4 : AppSize.s0),
-                      topLeft: Radius.circular(
-                          context.isEnLocale ? AppSize.s4 : AppSize.s0),
-                    )),
-                child: Icon(prefixIcon, color: Colors.white),
-              ),
+          : prefixWidget ?? Icon(prefixIcon, color: Color(0xFFBBBBBB)),
       suffixIcon: GestureDetector(
         onTap: onTapIcon,
         child: Icon(
@@ -105,27 +85,45 @@ class CustomTextFormField extends StatelessWidget {
           color: ColorManager.grey,
         ),
       ),
+      errorStyle:
+          getBoldStyle(color: ColorManager.textGray, fontSize: FontSize.s18),
       hintText: hint,
       errorText: errorText,
-
-      // enabledBorder: OutlineInputBorder(
-      //     borderRadius: BorderRadius.circular(AppSize.s4),
-      //     borderSide: const BorderSide(
-      //       width: AppSize.s1_5,
-      //       color: ColorManager.primary,
-      //     )),
-      // disabledBorder: OutlineInputBorder(
-      //     borderRadius: BorderRadius.circular(AppSize.s4),
-      //     borderSide: const BorderSide(
-      //       width: AppSize.s1_5,
-      //       color: ColorManager.textGray,
-      //     )),
-      // errorBorder: OutlineInputBorder(
-      //     borderRadius: BorderRadius.circular(AppSize.s4),
-      //     borderSide: const BorderSide(
-      //       width: AppSize.s1_5,
-      //       color: ColorManager.error,
-      //     )),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppSize.s8),
+        borderSide: const BorderSide(
+          width: AppSize.s1_5,
+          color: Color(0xFFD1D3D4),
+        ),
+      ),
+      disabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppSize.s8),
+        borderSide: const BorderSide(
+          width: AppSize.s1_5,
+          color: Color(0xFFD1D3D4),
+        ),
+      ),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppSize.s8),
+        borderSide: const BorderSide(
+          width: AppSize.s1_5,
+          color: Color(0xFFD1D3D4),
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppSize.s8),
+        borderSide: const BorderSide(
+          width: AppSize.s1_5,
+          color: Color(0xFFD1D3D4),
+        ),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppSize.s8),
+        borderSide: const BorderSide(
+          width: AppSize.s1_5,
+          color: ColorManager.error,
+        ),
+      ),
     );
   }
 }

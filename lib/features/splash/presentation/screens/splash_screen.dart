@@ -52,11 +52,22 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  _buildImage() => Image.asset(
-        ImageAssets.splashImg,
-        fit: BoxFit.cover,
-        width: context.width,
-        height: context.height,
+  _buildImage() => Stack(
+        alignment: Alignment.center,
+        children: [
+          Image.asset(
+            ImageAssets.backgroundSplashImage,
+            fit: BoxFit.cover,
+            width: context.width,
+            height: context.height,
+          ),
+          Image.asset(
+            ImageAssets.appLogo,
+            fit: BoxFit.cover,
+            width: 250,
+            height: 250,
+          ),
+        ],
       );
 
 // _buildLottieAsset() => Lottie.asset(

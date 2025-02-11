@@ -18,7 +18,11 @@ import '../../cubit/login_cubit.dart';
 
 class MobileLoginScreen extends StatelessWidget {
   const MobileLoginScreen(
-      {super.key, required this.email, required this.password, required this.onTap, this.onPressedTestLogin});
+      {super.key,
+      required this.email,
+      required this.password,
+      required this.onTap,
+      this.onPressedTestLogin});
 
   final TextEditingController email;
   final TextEditingController password;
@@ -30,112 +34,95 @@ class MobileLoginScreen extends StatelessWidget {
     return SizedBox(
       height: context.height,
       width: context.width,
-      child: IntrinsicHeight(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(height: kToolbarHeight),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // const CustomButtonChangeLanguageWidget(),
-                //  HelperButtonWidget(),
-                  // GestureDetector(
-                  //   onTap: () => MagicRouterName.navigateReplacementTo(
-                  //       RoutesNames.mainLayoutApp),
-                  //   child: Text(
-                  //     AppStrings.registerLater.tr(),
-                  //     style: context.displayMedium.copyWith(
-                  //         color: ColorManager.primary,
-                  //         fontWeight: FontWeight.bold),
-                  //   ),
-                  // )
-                ],
-              ),
-              const SizedBox(height: AppSize.s40),
-
-              /// image
-              Image.asset(
-                ImageAssets.appLogo,
-                alignment: Alignment.center,
-                width: 200,
-                height: 200,
-              ),
-              const SizedBox(height: AppSize.s38),
-
-              ///
-              Text(AppStrings.signIn.tr(), style: context.displayLarge),
-
-              const SizedBox(height: AppSize.s40),
-
-              ///
-              CustomTextFormField(
-                hint: AppStrings.email.tr(),
-                prefixIcon: Icons.person_2_rounded,
-                controller: email,
-                keyboardType: TextInputType.emailAddress,
-                textInputAction: TextInputAction.next,
-                validator: (value) => Validator.isValidUserName(email.text),
-              ),
-
-              const SizedBox(height: AppSize.s16),
-
-              ///
-              BlocBuilder<LoginCubit, LoginState>(
-                builder: (context, state) {
-                  final cubit = sl<LoginCubit>().get(context);
-                  return CustomTextFormField(
-                    hint: AppStrings.password.tr(),
-                    controller: password,
-                    obscureText: cubit.isPassword,
-                    iconData: cubit.suffix,
-                    prefixIcon: Icons.lock,
-                    keyboardType: TextInputType.visiblePassword,
-                    textInputAction: TextInputAction.done,
-                    onTapIcon: () => cubit.changePassVisibility(),
-                    validator: (value) => Validator.isValidPassword(password.text),
-                  );
-                },
-              ),
-
-              const SizedBox(height: AppSize.s30),
-              Row(
-                children: [
-                  GestureDetector(
-                    onTap: () => MagicRouterName.navigateTo(RoutesNames.forgetPasswordRoute),
-                    child: Text(AppStrings.forgetPassword.tr(),
-                        style: context.displayMedium.copyWith(color: ColorManager.textGray)),
-                  ),
-                ],
-              ),
-              const SizedBox(height: AppSize.s30),
-
-              /// login button
-              CustomButtonWithLoading(
-                text: AppStrings.login.tr(),
-                onTap: onTap,
-              ),
-
-              const SizedBox(height: AppSize.s37),
-              ElevatedButton(
-                onPressed: onPressedTestLogin,
-                child: const Text('Login Test'),
-              ),
-
-              ///
-              // const RegisterButtonRowTextWidget(),
-              const SizedBox(height: AppSize.s37),
-
-              /*     Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: HelperButonWidget(),
-              ),*/
-
-              /// image
-            ],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            height: kToolbarHeight,
+            color: Color(0xff528A89),
           ),
-        ),
+          const SizedBox(height: 16),
+
+          /// image
+          Image.asset(
+            ImageAssets.appLogo,
+            alignment: Alignment.center,
+            width: 250,
+            height: 250,
+          ),
+
+          ///
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Card(
+              color: Color(0xFFF0F0F0),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16)),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  children: [
+                    const SizedBox(height: AppSize.s50),
+
+                    CustomTextFormField(
+                      hint: AppStrings.email.tr(),
+                      prefixIcon: Icons.person_2_rounded,
+                      controller: email,
+                      keyboardType: TextInputType.emailAddress,
+                      textInputAction: TextInputAction.next,
+                      validator: (value) =>
+                          Validator.isValidUserName(email.text),
+                    ),
+
+                    const SizedBox(height: AppSize.s16),
+
+                    ///
+                    BlocBuilder<LoginCubit, LoginState>(
+                      builder: (context, state) {
+                        final cubit = sl<LoginCubit>().get(context);
+                        return CustomTextFormField(
+                          hint: AppStrings.password.tr(),
+                          controller: password,
+                          obscureText: cubit.isPassword,
+                          iconData: cubit.suffix,
+                          prefixIcon: Icons.lock,
+                          keyboardType: TextInputType.visiblePassword,
+                          textInputAction: TextInputAction.done,
+                          onTapIcon: () => cubit.changePassVisibility(),
+                          validator: (value) =>
+                              Validator.isValidPassword(password.text),
+                        );
+                      },
+                    ),
+
+                    const SizedBox(height: 16),
+
+                    /// login button
+                    CustomButtonWithLoading(
+                      text: AppStrings.login.tr(),
+                      onTap: onTap,
+                      width: context.width * 0.4,
+                      color: Color(0xff528A89),
+                    ),
+                    const SizedBox(height: 24),
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+          ElevatedButton(
+            onPressed: onPressedTestLogin,
+            child: const Text('Login Test'),
+          ),
+
+          const Spacer(),
+          Container(
+            height: kToolbarHeight,
+            width: context.width,
+            color: Color(0xff528A89),
+          ),
+        ],
       ),
     );
   }
@@ -152,7 +139,8 @@ class HelperButtonWidget extends StatelessWidget {
       height: 50.0,
       child: RawMaterialButton(
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0), side: const BorderSide(color: ColorManager.primary)),
+            borderRadius: BorderRadius.circular(8.0),
+            side: const BorderSide(color: ColorManager.primary)),
         fillColor: ColorManager.white,
         elevation: 5.0,
         highlightElevation: 5.0,
@@ -167,7 +155,8 @@ class HelperButtonWidget extends StatelessWidget {
               style: context.labelLarge.copyWith(color: ColorManager.primary),
             ),
             const SizedBox(width: 10.0),
-            const Icon(FontAwesomeIcons.circleQuestion, color: ColorManager.primary),
+            const Icon(FontAwesomeIcons.circleQuestion,
+                color: ColorManager.primary),
           ],
         ),
         onPressed: () => MagicRouterName.navigateTo(RoutesNames.contactInfo),
