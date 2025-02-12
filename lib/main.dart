@@ -14,9 +14,7 @@ import 'core/cache/hive_helper.dart';
 
 Future<void> main() async {
   await _initMain();
-  final emulator = await isRunningOnEmulator(
-    isReleaseMode: kReleaseMode
-  );
+  final emulator = await isRunningOnEmulator(isReleaseMode: kReleaseMode);
 
   if (emulator) {
     // Exit the app or display a message
@@ -31,6 +29,7 @@ Future<void> main() async {
 
 Future<void> _initMain() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   // SystemChrome.setPreferredOrientations([
   //   DeviceOrientation.portraitUp,
   // ]);
@@ -39,7 +38,7 @@ Future<void> _initMain() async {
 
   await FlutterDownloader.initialize(
     debug:
-    true, // optional: set to false to disable printing logs to console (default: true)
+        true, // optional: set to false to disable printing logs to console (default: true)
 
     // ignoreSsl: true // option: set to false to disable working with http links (default: false)
   );
@@ -49,10 +48,8 @@ Future<void> _initMain() async {
   Bloc.observer = MyBlocObserver();
 }
 
-
-
 Future<bool> isRunningOnEmulator({required bool isReleaseMode}) async {
-if (!isReleaseMode) return false;
+  if (!isReleaseMode) return false;
   final deviceInfo = DeviceInfoPlugin();
 
   if (Platform.isAndroid) {

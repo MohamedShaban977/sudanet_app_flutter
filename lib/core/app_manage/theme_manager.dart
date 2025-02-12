@@ -12,7 +12,7 @@ ThemeData getApplicationTheme() {
 
     /// main colors
     primaryColor: ColorManager.primary,
-    scaffoldBackgroundColor: ColorManager.background,
+    scaffoldBackgroundColor: Color(0xFFDDE8EA),
 
     primaryColorLight: ColorManager.background,
     // primaryColorDark: ColorManager.background,
@@ -40,7 +40,7 @@ ThemeData getApplicationTheme() {
         color: ColorManager.white,
         elevation: AppSize.s4,
         systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: ColorManager.statusBar,
+          statusBarColor: Color(0xff528A89),
         ),
         foregroundColor: ColorManager.textGray,
         titleTextStyle: getRegularStyle(

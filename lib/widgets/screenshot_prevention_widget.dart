@@ -28,6 +28,13 @@ class _ScreenshotPreventionWidgetState
     super.dispose();
   }
 
+  @override
+  void deactivate() {
+    _allowScreenshots();
+
+    super.deactivate();
+  }
+
   Future<void> _preventScreenshots() async {
     // Prevent screenshots on Android
     await SystemChrome.setEnabledSystemUIMode(
@@ -61,6 +68,8 @@ class _ScreenshotPreventionWidgetState
       SystemUiMode.manual,
       overlays: SystemUiOverlay.values,
     );
+    await const MethodChannel('allowScreenshot')
+        .invokeMethod('allowScreenshot');
   }
 
   @override

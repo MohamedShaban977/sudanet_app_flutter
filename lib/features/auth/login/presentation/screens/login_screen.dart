@@ -65,44 +65,42 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     statusBarColor(color: Colors.grey[100]);
-    return ScreenshotPreventionWidget(
-      child: BlocConsumer<LoginCubit, LoginState>(
-        listener: _listener,
-        builder: (context, state) {
-          return UnFocusedKeyboard(
-            child: Scaffold(
-              backgroundColor: Color(0xFFDDE8EA),
-              resizeToAvoidBottomInset: false,
-              // appBar: _buildAppBar(),
-              body: Form(
-                key: _formKey,
-                child: Responsive(
-                  mobile: MobileLoginScreen(
-                    email: email,
-                    password: password,
-                    onTap: _submitLoginButton,
-                    onPressedTestLogin: () {
-                      email.text = 'EmanAyman-G8@suda-net.edu';
-                      password.text = "123456789";
-                      guidId = '';
-                    },
-                  ),
-                  tablet: TabletLoginScreen(
-                    email: email,
-                    password: password,
-                    onTap: _submitLoginButton,
-                  ),
-                  desktop: TabletLoginScreen(
-                    email: email,
-                    password: password,
-                    onTap: _submitLoginButton,
-                  ),
+    return BlocConsumer<LoginCubit, LoginState>(
+      listener: _listener,
+      builder: (context, state) {
+        return UnFocusedKeyboard(
+          child: Scaffold(
+            backgroundColor: Color(0xFFDDE8EA),
+            resizeToAvoidBottomInset: false,
+            // appBar: _buildAppBar(),
+            body: Form(
+              key: _formKey,
+              child: Responsive(
+                mobile: MobileLoginScreen(
+                  email: email,
+                  password: password,
+                  onTap: _submitLoginButton,
+                  onPressedTestLogin: () {
+                    email.text = 'EmanAyman-G8@suda-net.edu';
+                    password.text = "123456789";
+                    guidId = '';
+                  },
+                ),
+                tablet: TabletLoginScreen(
+                  email: email,
+                  password: password,
+                  onTap: _submitLoginButton,
+                ),
+                desktop: TabletLoginScreen(
+                  email: email,
+                  password: password,
+                  onTap: _submitLoginButton,
                 ),
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 

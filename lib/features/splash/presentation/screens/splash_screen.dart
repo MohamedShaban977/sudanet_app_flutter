@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:sudanet_app_flutter/core/app_manage/extension_manager.dart';
+import 'package:sudanet_app_flutter/features/subject_info/screens/subject_info_screen.dart';
 
 import '../../../../core/app_manage/assets_manager.dart';
 import '../../../../core/app_manage/contents_manager.dart';
@@ -64,8 +65,8 @@ class _SplashScreenState extends State<SplashScreen> {
           Image.asset(
             ImageAssets.appLogo,
             fit: BoxFit.cover,
-            width: 250,
-            height: 250,
+            width: 350,
+            height: 350,
           ),
         ],
       );

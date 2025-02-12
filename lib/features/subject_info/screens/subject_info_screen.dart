@@ -28,7 +28,7 @@ class SubjectInfoScreen extends StatelessWidget {
             child: Column(
               children: [
                 CardButtonWidget(
-                  pathIcon: SvgAssets.onlineLearning,
+                  pathIcon: ImageAssets.onlineLearning,
                   title: AppStrings.classesVideos.tr(),
                   description: 'شاهد حصصك في أي وقت وأينما كنت',
                   onTap: () {
@@ -41,7 +41,7 @@ class SubjectInfoScreen extends StatelessWidget {
                   },
                 ),
                 CardButtonWidget(
-                  pathIcon: SvgAssets.writtenHomework,
+                  pathIcon: ImageAssets.writtenHomework,
                   title: AppStrings.writtenHomework.tr(),
                   description: 'أكتب، تعلم وتطور مع كل واجب',
                   onTap: () {
@@ -54,7 +54,7 @@ class SubjectInfoScreen extends StatelessWidget {
                   },
                 ),
                 CardButtonWidget(
-                  pathIcon: SvgAssets.digitalHomework,
+                  pathIcon: ImageAssets.digitalHomework,
                   title: AppStrings.digitalHomework.tr(),
                   description: 'تحديات ممتعة وشيقة تحفز التفكير',
                   onTap: () {
@@ -67,7 +67,7 @@ class SubjectInfoScreen extends StatelessWidget {
                   },
                 ),
                 CardButtonWidget(
-                  pathIcon: SvgAssets.examsIcon,
+                  pathIcon: ImageAssets.examsIcon,
                   title: AppStrings.exams.tr(),
                   description: 'ذاكر بتركيز واجتز الامتحانات بثقة',
                   onTap: () {
@@ -124,7 +124,7 @@ class CardButtonWidget extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SvgPicture.asset(
+                Image.asset(
                   pathIcon,
                   height: 48,
                   width: 48,

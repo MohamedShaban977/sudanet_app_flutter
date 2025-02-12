@@ -28,7 +28,8 @@ class CourseDetailsScreen extends StatefulWidget {
   State<CourseDetailsScreen> createState() => _CourseDetailsScreenState();
 }
 
-class _CourseDetailsScreenState extends State<CourseDetailsScreen> with WidgetsBindingObserver {
+class _CourseDetailsScreenState extends State<CourseDetailsScreen>
+    with WidgetsBindingObserver {
   bool _isInForeground = true;
 
   @override
@@ -226,7 +227,9 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen> with WidgetsB
     }
     if (state is BuyCourseSuccessState) {
       ToastAndSnackBar.toastSuccess(message: state.response.message);
-      sl<CourseDetailsCubit>().get(context).getCourseDetails('${courseDetails.id}');
+      sl<CourseDetailsCubit>()
+          .get(context)
+          .getCourseDetails('${courseDetails.id}');
       MagicRouter.pop();
     }
   }
@@ -272,7 +275,8 @@ class CardDetailsCourseWidget extends StatelessWidget {
             const SizedBox(height: 20.0),
 
             /// Name course
-            Text(courseDetails.name, style: context.bodyLarge.copyWith(color: ColorManager.primary)),
+            Text(courseDetails.name,
+                style: context.bodyLarge.copyWith(color: ColorManager.primary)),
             const SizedBox(height: 20.0),
 
             /// description course
@@ -361,18 +365,28 @@ class CardContentCourseWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(AppStrings.contentCourse.tr(), style: context.bodyLarge.copyWith(color: ColorManager.textGray)),
+            Text(AppStrings.contentCourse.tr(),
+                style:
+                    context.bodyLarge.copyWith(color: ColorManager.textGray)),
             const SizedBox(height: 20.0),
             // Text('(7) حصص * (10) فيديوهات * 10س . 54د',
             //     style: context.bodyMedium),
             const SizedBox(height: 20.0),
             ...List.generate(
               courseDetails.courseLectures.length,
-              (index) => ContentSession(
-                iconLeading: _checkCoursePurchasedOrIsFree(index) ? FontAwesomeIcons.lockOpen : FontAwesomeIcons.lock,
-                title: courseDetails.courseLectures[index].name,
-                count: '${courseDetails.courseLectures[index].videoCount}',
-                iconTrailing: FontAwesomeIcons.play,
+              (index) => InkWell(
+                onTap: () => sl<CourseDetailsCubit>()
+                    .get(context)
+                    .getLectureCourseDetails(
+                        '${courseDetails.courseLectures[index].id}'),
+                child: ContentSession(
+                  iconLeading: _checkCoursePurchasedOrIsFree(index)
+                      ? FontAwesomeIcons.lockOpen
+                      : FontAwesomeIcons.lock,
+                  title: courseDetails.courseLectures[index].name,
+                  count: '${courseDetails.courseLectures[index].videoCount}',
+                  iconTrailing: FontAwesomeIcons.play,
+                ),
               ),
             ),
 
@@ -380,7 +394,9 @@ class CardContentCourseWidget extends StatelessWidget {
               Align(
                 alignment: AlignmentDirectional.center,
                 child: Text(AppStrings.nosDataAvailable.tr(),
-                    textAlign: TextAlign.center, style: context.bodyLarge.copyWith(color: ColorManager.textGray)),
+                    textAlign: TextAlign.center,
+                    style: context.bodyLarge
+                        .copyWith(color: ColorManager.textGray)),
               ),
             const SizedBox(height: 20.0),
           ],
@@ -390,7 +406,8 @@ class CardContentCourseWidget extends StatelessWidget {
   }
 
   bool _checkCoursePurchasedOrIsFree(int index) {
-    return courseDetails.courseLectures[index].isFree || courseDetails.purchased;
+    return courseDetails.courseLectures[index].isFree ||
+        courseDetails.purchased;
   }
 }
 
@@ -500,7 +517,8 @@ class CustomExpandedTitle extends StatefulWidget {
   State<CustomExpandedTitle> createState() => _CustomExpandedTitleState();
 }
 
-class _CustomExpandedTitleState extends State<CustomExpandedTitle> with SingleTickerProviderStateMixin {
+class _CustomExpandedTitleState extends State<CustomExpandedTitle>
+    with SingleTickerProviderStateMixin {
   bool _isExpanded = false;
 
   _setExpanded([bool? value]) {
@@ -523,7 +541,9 @@ class _CustomExpandedTitleState extends State<CustomExpandedTitle> with SingleTi
         title: Text(widget.textTitle,
             style: context.displayMedium.copyWith(
                 fontWeight: _isExpanded ? FontWeight.w700 : FontWeight.normal,
-                color: _isExpanded ? ColorManager.primary : context.displayMedium.color)),
+                color: _isExpanded
+                    ? ColorManager.primary
+                    : context.displayMedium.color)),
         // collapsedTextColor: ColorManager.primary,
         // textColor: ColorManager.primary,
         backgroundColor: ColorManager.secondary,
