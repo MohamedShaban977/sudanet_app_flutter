@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sudanet_app_flutter/core/app_manage/assets_manager.dart';
 import 'package:sudanet_app_flutter/core/app_manage/color_manager.dart';
 import 'package:sudanet_app_flutter/core/app_manage/extension_manager.dart';

@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:sudanet_app_flutter/core/app_manage/extension_manager.dart';
 
+// ignore: constant_identifier_names
 enum ButtonState { Busy, Idle }
 
 class ArgonButton extends StatefulWidget {

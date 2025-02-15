@@ -26,8 +26,6 @@ class CourseLectureDetailsEntity extends Equatable {
   final String lectureName;
   final String courseName;
   final List<VideosEntity> videos;
-
-  /// TODO: add model Exams and Files
   final List<ExamEntity> exams;
   final List<FilesEntity> files;
 

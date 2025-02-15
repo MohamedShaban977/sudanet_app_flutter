@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sudanet_app_flutter/core/app_manage/font_manager.dart';
 import 'package:sudanet_app_flutter/core/app_manage/styles_manager.dart';
-import 'package:sudanet_app_flutter/core/locale/app_localizations.dart';
 
 import '../core/app_manage/color_manager.dart';
 import '../core/app_manage/values_manager.dart';

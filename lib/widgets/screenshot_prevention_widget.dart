@@ -52,6 +52,7 @@ class _ScreenshotPreventionWidgetState
     );
 
     // Add FLAG_SECURE on Android
+    // ignore: use_build_context_synchronously
     if (Theme.of(context).platform == TargetPlatform.android) {
       SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(

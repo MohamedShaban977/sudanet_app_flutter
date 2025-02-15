@@ -21,51 +21,35 @@ class _CustomIframeVideoWidgetState extends State<CustomIframeVideoWidget> {
   bool isFullScreen = false;
   bool isShowBtnFullScreen = false;
 
-  // late WebViewXController webviewController;
-
   late final WebViewController _controller;
   String _url = '';
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
-    // if (widget.videoUrl.startsWith('http://')) {
     _url = widget.videoUrl;
-    // }
+
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(const Color(0x00000000))
       ..setNavigationDelegate(
         NavigationDelegate(
-          onProgress: (int progress) {
-            // Update loading bar.
-          },
+          onProgress: (int progress) {},
           onPageStarted: (String url) {},
           onPageFinished: (String url) {
             debugPrint('onPageFinished => $url');
-            // if (url.isNotEmpty && url.contains(widget.videoUrl)) {
             setState(() {
               isShowBtnFullScreen = true;
             });
             // }
           },
           onWebResourceError: (WebResourceError error) {},
-          // onNavigationRequest: (NavigationRequest request) {
-          //   if (request.url.startsWith('https://www.youtube.com/')) {
-          //     return NavigationDecision.prevent;
-          //   }
-          //   return NavigationDecision.navigate;
-          // },
         ),
       );
 
     if (_url.isNotEmpty) {
       _controller.loadRequest(Uri.parse(_url));
-      // _controller.loadHtmlString('''
-      //     <HTML><BODY>$_url</BODY></HTML>
-      //     ''');
     } else {
       _controller.loadHtmlString('''
           <HTML>
@@ -79,7 +63,6 @@ class _CustomIframeVideoWidgetState extends State<CustomIframeVideoWidget> {
 
   @override
   void dispose() {
-    // webviewController.dispose();
     _controller.clearCache();
     _controller.clearLocalStorage();
 

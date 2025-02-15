@@ -17,6 +17,7 @@ class DioConsumer implements ApiConsumer {
 
   DioConsumer({required this.client}) {
     if (!kIsWeb) {
+      // ignore: deprecated_member_use
       (client.httpClientAdapter as IOHttpClientAdapter).onHttpClientCreate =
           (HttpClient client) {
         client.badCertificateCallback =

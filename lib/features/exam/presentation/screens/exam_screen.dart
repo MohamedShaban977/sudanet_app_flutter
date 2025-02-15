@@ -23,6 +23,7 @@ import '../../data/models/exam_response.dart';
 import '../../data/models/save_answer_request.dart';
 import '../cubit/exam_cubit.dart';
 
+// ignore: constant_identifier_names
 enum ExamQuestionType { MULTI, SORT, TORF, LINK }
 
 enum ExamType { exam, homework }
@@ -66,10 +67,8 @@ class _ExamScreenState extends State<ExamScreen> with WidgetsBindingObserver {
       case AppLifecycleState.paused:
         break;
       case AppLifecycleState.detached:
-        // TODO: Handle this case.
         break;
       case AppLifecycleState.hidden:
-      // TODO: Handle this case.
     }
   }
 

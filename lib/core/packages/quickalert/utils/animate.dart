@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+// ignore: depend_on_referenced_packages
 import 'package:vector_math/vector_math.dart' as math;
 
 /// Define Animation Type

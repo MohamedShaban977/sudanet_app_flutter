@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sudanet_app_flutter/core/locale/app_localizations.dart';
-import 'package:sudanet_app_flutter/widgets/screenshot_prevention_widget.dart';
 
 import '../../../../../app/injection_container.dart';
 import '../../../../../core/app_manage/color_manager.dart';
 import '../../../../../core/app_manage/strings_manager.dart';
 import '../../../../../core/app_manage/theme_manager.dart';
-import '../../../../../core/app_manage/values_manager.dart';
 import '../../../../../core/packages/quickalert/models/quickalert_type.dart';
 import '../../../../../core/packages/quickalert/widgets/quickalert_dialog.dart';
 import '../../../../../core/responsive/responsive.dart';
