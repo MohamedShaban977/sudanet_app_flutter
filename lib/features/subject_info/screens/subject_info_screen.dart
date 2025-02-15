@@ -144,7 +144,7 @@ class CardButtonWidget extends StatelessWidget {
                       Text(
                         title,
                         style: TextStyle(
-                            color: ColorManager.textGray,
+                            color: ColorManager.primary,
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
                       ),
@@ -154,7 +154,7 @@ class CardButtonWidget extends StatelessWidget {
                           description,
                           overflow: TextOverflow.visible,
                           style: TextStyle(
-                              color: ColorManager.darkGrey,
+                              color: ColorManager.textGray2,
                               fontSize: 14,
                               fontWeight: FontWeight.w400),
                         ),

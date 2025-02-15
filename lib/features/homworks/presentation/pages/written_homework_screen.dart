@@ -9,6 +9,7 @@ import 'package:sudanet_app_flutter/core/app_manage/values_manager.dart';
 import 'package:sudanet_app_flutter/core/locale/app_localizations.dart';
 import 'package:sudanet_app_flutter/features/homworks/presentation/cubit/homework_student_cubit.dart';
 import 'package:sudanet_app_flutter/features/homworks/presentation/widgets/cell_homeworks_student.dart';
+import 'package:sudanet_app_flutter/widgets/custom_empty_widget.dart';
 
 class WrittenHomeworkScreen extends StatelessWidget {
   final String subjectId;
@@ -34,15 +35,17 @@ class WrittenHomeworkScreen extends StatelessWidget {
             if (state is WrittenHomeworkStudentErrorState) {
               return Center(child: Text(state.error));
             }
-            return ListView.builder(
-              itemCount: writtenHomeworksCubit.writtenHomeworks.length,
-              itemBuilder: (context, index) {
-                return CellWrittenHomeworksStudent(
-                  writtenHomework:
-                      writtenHomeworksCubit.writtenHomeworks[index],
-                );
-              },
-            );
+            return writtenHomeworksCubit.writtenHomeworks.isNotEmpty
+                ? ListView.builder(
+                    itemCount: writtenHomeworksCubit.writtenHomeworks.length,
+                    itemBuilder: (context, index) {
+                      return CellWrittenHomeworksStudent(
+                        writtenHomework:
+                            writtenHomeworksCubit.writtenHomeworks[index],
+                      );
+                    },
+                  )
+                : CustomEmptyWidget();
           },
         ),
       ),

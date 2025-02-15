@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sudanet_app_flutter/core/app_manage/extension_manager.dart';
 import 'package:sudanet_app_flutter/core/locale/app_localizations.dart';
+import 'package:sudanet_app_flutter/widgets/custom_empty_widget.dart';
 
 import '../../../../app/injection_container.dart';
 import '../../../../core/app_manage/color_manager.dart';
@@ -31,14 +32,16 @@ class HomeworksScreen extends StatelessWidget {
             if (state is HomeworkStudentErrorState) {
               return Center(child: Text(state.error));
             }
-            return ListView.builder(
-              itemCount: homeworksCubit.homeworks.length,
-              itemBuilder: (context, index) {
-                return CellHomeworksStudent(
-                  homework: homeworksCubit.homeworks[index],
-                );
-              },
-            );
+            return homeworksCubit.homeworks.isNotEmpty
+                ? ListView.builder(
+                    itemCount: homeworksCubit.homeworks.length,
+                    itemBuilder: (context, index) {
+                      return CellHomeworksStudent(
+                        homework: homeworksCubit.homeworks[index],
+                      );
+                    },
+                  )
+                : CustomEmptyWidget();
           },
         ),
       ),

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sudanet_app_flutter/core/app_manage/extension_manager.dart';
 import 'package:sudanet_app_flutter/core/locale/app_localizations.dart';
+import 'package:sudanet_app_flutter/widgets/custom_empty_widget.dart';
 
 import '../../../../core/app_manage/color_manager.dart';
 import '../../../../core/app_manage/font_manager.dart';
@@ -45,14 +46,16 @@ class _ExamsBySubjectScreenState extends State<ExamsBySubjectScreen> {
             if (state is ExamsBySubjectErrorState) {
               return Center(child: Text(state.error));
             }
-            return ListView.builder(
-              itemCount: examsBySubject.length,
-              itemBuilder: (context, index) {
-                return CellExamBySubject(
-                  exam: examsBySubject[index],
-                );
-              },
-            );
+            return examsBySubject.isNotEmpty
+                ? ListView.builder(
+                    itemCount: examsBySubject.length,
+                    itemBuilder: (context, index) {
+                      return CellExamBySubject(
+                        exam: examsBySubject[index],
+                      );
+                    },
+                  )
+                : CustomEmptyWidget();
           },
         ),
       ),
