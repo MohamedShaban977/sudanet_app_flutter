@@ -74,20 +74,20 @@ ThemeData getApplicationTheme() {
     /// textTheme
     textTheme: TextTheme(
       displayLarge:
-          getBoldStyle(color: ColorManager.secondary, fontSize: FontSize.s19),
+          getBoldStyle(color: ColorManager.textGray, fontSize: FontSize.s19),
       bodyLarge:
-          getMediumStyle(color: ColorManager.white, fontSize: FontSize.s25),
+          getMediumStyle(color: ColorManager.textGray, fontSize: FontSize.s25),
       displaySmall:
-          getBoldStyle(color: ColorManager.secondary, fontSize: FontSize.s18),
+          getBoldStyle(color: ColorManager.textGray, fontSize: FontSize.s18),
       titleLarge:
           getMediumStyle(color: ColorManager.textGray, fontSize: FontSize.s14),
       // button
       labelLarge:
-          getBoldStyle(color: ColorManager.white, fontSize: FontSize.s16),
+          getBoldStyle(color: ColorManager.textGray, fontSize: FontSize.s16),
       displayMedium:
           getMediumStyle(color: ColorManager.textGray, fontSize: FontSize.s16),
       titleMedium:
-          getMediumStyle(color: ColorManager.primary, fontSize: FontSize.s18),
+          getMediumStyle(color: ColorManager.textGray, fontSize: FontSize.s18),
       bodyMedium:
           getBoldStyle(color: ColorManager.textGray, fontSize: FontSize.s14),
       bodySmall:
@@ -111,7 +111,7 @@ ThemeData getApplicationTheme() {
       // enabled border style
       enabledBorder: const OutlineInputBorder(
         borderSide: BorderSide(
-          color: ColorManager.secondary,
+          color: ColorManager.primary,
           width: AppSize.s1,
         ),
         borderRadius: BorderRadius.all(

@@ -154,7 +154,7 @@ class ToastAndSnackBar {
             style: ElevatedButton.styleFrom(
               elevation: 0.0,
               backgroundColor: ColorManager.white,
-              foregroundColor: ColorManager.secondary,
+              foregroundColor: ColorManager.primary,
             ),
             child: Text(AppStrings.cancel.tr()))
       ]),

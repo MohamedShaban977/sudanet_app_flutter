@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sudanet_app_flutter/core/app_manage/extension_manager.dart';
 import 'package:sudanet_app_flutter/core/locale/app_localizations.dart';
 
 import '../../../../../../app/injection_container.dart';
 import '../../../../../../core/app_manage/assets_manager.dart';
-import '../../../../../../core/app_manage/color_manager.dart';
 import '../../../../../../core/app_manage/strings_manager.dart';
 import '../../../../../../core/app_manage/values_manager.dart';
-import '../../../../../../core/routes/magic_router.dart';
-import '../../../../../../core/routes/routes_name.dart';
 import '../../../../../../core/validation/validation.dart';
 import '../../../../../../widgets/custom_button_with_loading.dart';
 import '../../../../../../widgets/custom_text_form_field.dart';
@@ -123,45 +119,6 @@ class MobileLoginScreen extends StatelessWidget {
             color: Color(0xff528A89),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class HelperButtonWidget extends StatelessWidget {
-  const HelperButtonWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 50.0,
-      child: RawMaterialButton(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
-            side: const BorderSide(color: ColorManager.primary)),
-        fillColor: ColorManager.white,
-        elevation: 5.0,
-        highlightElevation: 5.0,
-        highlightColor: ColorManager.secondary.withValues(alpha: 0.3),
-        splashColor: ColorManager.secondary.withValues(alpha: 0.3),
-        padding: const EdgeInsetsDirectional.symmetric(horizontal: 15.0),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'مساعدة',
-              style: context.labelLarge.copyWith(color: ColorManager.primary),
-            ),
-            const SizedBox(width: 10.0),
-            const Icon(FontAwesomeIcons.circleQuestion,
-                color: ColorManager.primary),
-          ],
-        ),
-        onPressed: () => MagicRouterName.navigateTo(RoutesNames.contactInfo),
-        // splashColor: Colors.transparent,
-        // highlightColor: Colors.transparent,
       ),
     );
   }

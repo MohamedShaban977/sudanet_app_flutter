@@ -299,47 +299,6 @@ class CardDetailsCourseWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 40.0),
-
-            /// price and currency Name
-            // Padding(
-            //   padding: const EdgeInsets.all(8.0),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     crossAxisAlignment: CrossAxisAlignment.end,
-            //     children: [
-            //       Text(
-            //           '${courseDetails.price}    ${courseDetails.currencyName}',
-            //           style: context.displayLarge
-            //               .copyWith(color: ColorManager.textGray)),
-            //       SizedBox(
-            //         width: 150.0,
-            //         height: 46.0,
-            //         child: Visibility(
-            //           visible: courseDetails.purchased,
-            //           replacement: ElevatedButton(
-            //               onPressed: () =>
-            //                   PurchaseCourses.show(
-            //                     context,
-            //                     courseId: courseDetails.id,
-            //                     isAlert: false,
-            //                   ),
-            //               child: Text(AppStrings.purchase.tr())),
-            //           child: ElevatedButton(
-            //               style: ElevatedButton.styleFrom(
-            //                 disabledForegroundColor: ColorManager.primary,
-            //                 disabledBackgroundColor: ColorManager.white,
-            //                 elevation: 0.0,
-            //                 side: const BorderSide(
-            //                   color: ColorManager.secondary,
-            //                 ),
-            //               ),
-            //               onPressed: null,
-            //               child: Text(AppStrings.buyingSucceeded.tr())),
-            //         ),
-            //       )
-            //     ],
-            //   ),
-            // )
           ],
         ),
       ),
@@ -369,8 +328,6 @@ class CardContentCourseWidget extends StatelessWidget {
                 style:
                     context.bodyLarge.copyWith(color: ColorManager.textGray)),
             const SizedBox(height: 20.0),
-            // Text('(7) حصص * (10) فيديوهات * 10س . 54د',
-            //     style: context.bodyMedium),
             const SizedBox(height: 20.0),
             ...List.generate(
               courseDetails.courseLectures.length,
@@ -389,7 +346,6 @@ class CardContentCourseWidget extends StatelessWidget {
                 ),
               ),
             ),
-
             if (courseDetails.courseLectures.isEmpty)
               Align(
                 alignment: AlignmentDirectional.center,
@@ -443,9 +399,6 @@ class ContentSession extends StatelessWidget {
           children: [
             Icon(
               iconLeading,
-              // courseDetails.courseLectures[index].isFree
-              //     ? FontAwesomeIcons.lockOpen
-              //     : FontAwesomeIcons.lock,
               size: 20.0,
               color: ColorManager.primary,
             ),
@@ -453,7 +406,6 @@ class ContentSession extends StatelessWidget {
             Expanded(
               child: Text(
                 title,
-                // AppStrings.videos.tr(),
                 style: context.titleMedium.copyWith(
                   color: ColorManager.primary,
                   fontSize: 16.0,
@@ -461,120 +413,13 @@ class ContentSession extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 20.0),
-
-            // Row(
-            //   children: [
-            //     Text(
-            //       count,
-            //       style: context.titleMedium.copyWith(
-            //         color: ColorManager.primary,
-            //         fontSize: 16.0,
-            //       ),
-            //     ),
-            //     const SizedBox(width: 10.0),
-            //     Text(
-            //       title,
-            //       // AppStrings.videos.tr(),
-            //       style: context.titleMedium.copyWith(
-            //         color: ColorManager.primary,
-            //         fontSize: 16.0,
-            //       ),
-            //     ),
-            //   ],
-            // ),
             Icon(
               iconTrailing,
-              // FontAwesomeIcons.play,
               size: 20.0,
               color: ColorManager.primary,
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-///
-class CustomExpandedTitle extends StatefulWidget {
-  final String textTitle;
-
-  final Icon iconLeading;
-  final List<Widget> children;
-  final void Function()? onTap;
-
-  final bool isExpanded;
-
-  const CustomExpandedTitle(
-      {super.key,
-      required this.textTitle,
-      required this.iconLeading,
-      required this.children,
-      this.isExpanded = false,
-      this.onTap});
-
-  @override
-  State<CustomExpandedTitle> createState() => _CustomExpandedTitleState();
-}
-
-class _CustomExpandedTitleState extends State<CustomExpandedTitle>
-    with SingleTickerProviderStateMixin {
-  bool _isExpanded = false;
-
-  _setExpanded([bool? value]) {
-    setState(() {
-      _isExpanded = value ?? widget.isExpanded;
-    });
-  }
-
-  @override
-  void initState() {
-    _setExpanded();
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: widget.onTap,
-      child: ExpansionTile(
-        title: Text(widget.textTitle,
-            style: context.displayMedium.copyWith(
-                fontWeight: _isExpanded ? FontWeight.w700 : FontWeight.normal,
-                color: _isExpanded
-                    ? ColorManager.primary
-                    : context.displayMedium.color)),
-        // collapsedTextColor: ColorManager.primary,
-        // textColor: ColorManager.primary,
-        backgroundColor: ColorManager.secondary,
-        initiallyExpanded: _isExpanded,
-        collapsedIconColor: ColorManager.textGray,
-        iconColor: ColorManager.primary,
-        leading: widget.iconLeading,
-
-        // const Icon(
-        //   FontAwesomeIcons.lockOpen,
-        //   size: 20.0,
-        // ),
-        onExpansionChanged: (value) => _setExpanded(value),
-        // trailing: AnimatedIcon(
-        //   icon: AnimatedIcons.add_event,
-        //   progress: _controller,
-        //   semanticLabel: 'Show menu',
-        // ),
-        trailing: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 400),
-          transitionBuilder: (child, anim) => RotationTransition(
-            turns: child.key == const ValueKey('icon1')
-                ? Tween<double>(begin: 1, end: 0).animate(anim)
-                : Tween<double>(begin: 0, end: 1).animate(anim),
-            child: ScaleTransition(scale: anim, child: child),
-          ),
-          child: _isExpanded
-              ? const Icon(Icons.remove, key: ValueKey('icon1'))
-              : const Icon(Icons.add, key: ValueKey('icon2')),
-        ),
-        children: widget.children,
       ),
     );
   }

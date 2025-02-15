@@ -11,21 +11,11 @@ import '../core/service/locale_service/data/repositories/locale_repository_impl.
 import '../core/service/locale_service/domain/repositories/locale_repository.dart';
 import '../core/service/locale_service/domain/use_cases/locale_use_case.dart';
 import '../core/service/locale_service/manager/locale_cubit.dart';
-import '../features/auth/forget_password/data/data_sources/forget_password_data_source.dart';
-import '../features/auth/forget_password/data/repositories/forget_password_repositories_impl.dart';
-import '../features/auth/forget_password/domain/repositories/forget_password_repositories.dart';
-import '../features/auth/forget_password/domain/use_cases/forget_password_use_case.dart';
-import '../features/auth/forget_password/presentation/cubit/forget_password_cubit.dart';
 import '../features/auth/login/data/data_sources/login_data_source.dart';
 import '../features/auth/login/data/repositories/login_repositories_impl.dart';
 import '../features/auth/login/domain/repositories/login_repositories.dart';
 import '../features/auth/login/domain/use_cases/login_use_case.dart';
 import '../features/auth/login/presentation/cubit/login_cubit.dart';
-import '../features/auth/sign_up/data/data_sources/signup_data_source.dart';
-import '../features/auth/sign_up/data/repositories/signup_repositories_impl.dart';
-import '../features/auth/sign_up/domain/repositories/signup_repositories.dart';
-import '../features/auth/sign_up/domain/use_cases/signup_use_case.dart';
-import '../features/auth/sign_up/presentation/cubit/signup_cubit.dart';
 import '../features/categories/data/data_sources/categories_data_source.dart';
 import '../features/categories/data/repositories/categories_repository_impl.dart';
 import '../features/categories/domain/repositories/categories_repository.dart';
@@ -58,11 +48,6 @@ import '../features/exam/presentation/cubit/exam_cubit.dart';
 import '../features/exams/data/data_sources/exams_by_subject_data_source.dart';
 import '../features/exams/data/repositories/exams_by_subject_repository.dart';
 import '../features/exams/presentation/cubit/exams_by_subject_cubit.dart';
-import '../features/home/data/data_sources/home_data_source.dart';
-import '../features/home/data/repositories/home_repository_impl.dart';
-import '../features/home/domain/repositories/home_repository.dart';
-import '../features/home/domain/use_cases/home_use_case.dart';
-import '../features/home/presentation/cubit/home_cubit.dart';
 import '../features/homworks/data/data_sources/homework_student_data_source.dart';
 import '../features/homworks/data/repositories/homework_student_repository.dart';
 import '../features/homworks/presentation/cubit/homework_student_cubit.dart';
@@ -81,18 +66,23 @@ class ServiceLocator {
     ///! Features
 
     //Localization data Source
-    sl.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImpl(cacheHelper: sl()));
+    sl.registerLazySingleton<LocalDataSource>(
+        () => LocalDataSourceImpl(cacheHelper: sl()));
 
     //Localization Repository
-    sl.registerLazySingleton<LocaleRepository>(() => LocaleRepositoryImpl(dataSource: sl()));
+    sl.registerLazySingleton<LocaleRepository>(
+        () => LocaleRepositoryImpl(dataSource: sl()));
     //Localization UseCase
-    sl.registerLazySingleton<GetSavedLangUseCase>(() => GetSavedLangUseCase(repository: sl()));
-    sl.registerLazySingleton<ChangeLangUseCase>(() => ChangeLangUseCase(repository: sl()));
+    sl.registerLazySingleton<GetSavedLangUseCase>(
+        () => GetSavedLangUseCase(repository: sl()));
+    sl.registerLazySingleton<ChangeLangUseCase>(
+        () => ChangeLangUseCase(repository: sl()));
 
     ///Bloc==> cubit
     /// Bloc
     // LocaleCubit
-    sl.registerLazySingleton<LocaleCubit>(() => LocaleCubit(savedLangUseCase: sl(), changeLangUseCase: sl()));
+    sl.registerLazySingleton<LocaleCubit>(
+        () => LocaleCubit(savedLangUseCase: sl(), changeLangUseCase: sl()));
     //Connection Cubit
 
     // sl.registerLazySingleton<ConnectionCubit>(() => ConnectionCubit(connectivity: sl(), checker: sl()));
@@ -103,7 +93,8 @@ class ServiceLocator {
     ///! core
     // sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(connectionChecker: sl()));
     sl.registerLazySingleton<ApiConsumer>(() => DioConsumer(client: sl()));
-    sl.registerLazySingleton<CacheHelper>(() => CacheHelper(sharedPreferences: sl<SharedPreferences>()));
+    sl.registerLazySingleton<CacheHelper>(
+        () => CacheHelper(sharedPreferences: sl<SharedPreferences>()));
 
     ///! External
     /// _initDataExternal();
@@ -114,8 +105,7 @@ class ServiceLocator {
     // sl.registerLazySingleton(() => InternetConnectionChecker());
     // sl.registerLazySingleton(() => Connectivity());
     sl.registerLazySingleton(() => AppInterceptors());
-    sl.registerLazySingleton(() =>
-        LogInterceptor(
+    sl.registerLazySingleton(() => LogInterceptor(
           request: true,
           requestHeader: true,
           requestBody: false,
@@ -128,114 +118,46 @@ class ServiceLocator {
   static initLoginGetIt() {
     // Login Data Source
     if (!sl.isRegistered<LoginDataSource>()) {
-      sl.registerFactory<LoginDataSource>(() => LoginDataSourceImpl(apiConsumer: sl<ApiConsumer>()));
+      sl.registerFactory<LoginDataSource>(
+          () => LoginDataSourceImpl(apiConsumer: sl<ApiConsumer>()));
     }
     //Login Repository
     if (!sl.isRegistered<LoginRepository>()) {
-      sl.registerFactory<LoginRepository>(() => LoginRepositoryImpl(dataSource: sl<LoginDataSource>()));
+      sl.registerFactory<LoginRepository>(
+          () => LoginRepositoryImpl(dataSource: sl<LoginDataSource>()));
     }
     // //Login Use Cases
     if (!sl.isRegistered<LoginUseCases>()) {
-      sl.registerFactory<LoginUseCases>(() => LoginUseCases(repository: sl<LoginRepository>()));
+      sl.registerFactory<LoginUseCases>(
+          () => LoginUseCases(repository: sl<LoginRepository>()));
     }
     // // Login Cubit
     if (!GetIt.I.isRegistered<LoginCubit>()) {
-      sl.registerFactory<LoginCubit>(() => LoginCubit(loginUseCases: sl<LoginUseCases>()));
-    }
-  }
-
-  static initSignupGetIt() {
-    // Login Data Source
-    if (!sl.isRegistered<SignUpDataSource>()) {
-      sl.registerFactory<SignUpDataSource>(() => SignUpDataSourceImpl(apiConsumer: sl<ApiConsumer>()));
-    }
-    //Login Repository
-    if (!sl.isRegistered<SignUpRepository>()) {
-      sl.registerFactory<SignUpRepository>(() => SignUpRepositoryImpl(dataSource: sl<SignUpDataSource>()));
-    }
-    // //Login Use Cases
-    if (!sl.isRegistered<SignUpUseCases>()) {
-      sl.registerFactory<SignUpUseCases>(() => SignUpUseCases(repository: sl<SignUpRepository>()));
-    }
-    // // Login Cubit
-    if (!GetIt.I.isRegistered<SignUpCubit>()) {
-      sl.registerFactory<SignUpCubit>(() => SignUpCubit(signupUseCases: sl<SignUpUseCases>()));
-    }
-  }
-
-  static initForgetPasswordGetIt() {
-    // Login Data Source
-    if (!sl.isRegistered<ForgetPasswordDataSource>()) {
-      sl.registerFactory<ForgetPasswordDataSource>(() => ForgetPasswordDataSourceImpl(apiConsumer: sl<ApiConsumer>()));
-    }
-    //Login Repository
-    if (!sl.isRegistered<ForgetPasswordRepository>()) {
-      sl.registerFactory<ForgetPasswordRepository>(
-              () => ForgetPasswordRepositoryImpl(dataSource: sl<ForgetPasswordDataSource>()));
-    }
-    // //Login Use Cases
-    if (!sl.isRegistered<ForgetPasswordUseCases>()) {
-      sl.registerFactory<ForgetPasswordUseCases>(
-              () => ForgetPasswordUseCases(repository: sl<ForgetPasswordRepository>()));
-    }
-    // // Login Cubit
-    if (!GetIt.I.isRegistered<ForgetPasswordCubit>()) {
-      sl.registerFactory<ForgetPasswordCubit>(
-              () => ForgetPasswordCubit(forgetPasswordUseCases: sl<ForgetPasswordUseCases>()));
-    }
-  }
-
-  static initHomeGetIt() {
-    // Home Data Source
-    if (!sl.isRegistered<HomeDataSource>()) {
-      sl.registerLazySingleton<HomeDataSource>(() => HomeDataSourceImpl(apiConsumer: sl<ApiConsumer>()));
-    }
-    //Home Repository
-    if (!sl.isRegistered<HomeRepository>()) {
-      sl.registerLazySingleton<HomeRepository>(() => HomeRepositoryImpl(dataSource: sl<HomeDataSource>()));
-    }
-    // //Home Use Cases
-    if (!sl.isRegistered<HomeCategoriesUseCases>()) {
-      sl.registerLazySingleton<HomeCategoriesUseCases>(() => HomeCategoriesUseCases(repository: sl<HomeRepository>()));
-    }
-    if (!sl.isRegistered<HomeCourseUseCases>()) {
-      sl.registerLazySingleton<HomeCourseUseCases>(() => HomeCourseUseCases(repository: sl<HomeRepository>()));
-    }
-    if (!sl.isRegistered<SliderUseCases>()) {
-      sl.registerLazySingleton<SliderUseCases>(() => SliderUseCases(repository: sl<HomeRepository>()));
-    }
-
-    // // Home Cubit
-    if (!sl.isRegistered<HomeCubit>()) {
-      sl.registerLazySingleton<HomeCubit>(() =>
-          HomeCubit(
-            categoriesUseCases: sl<HomeCategoriesUseCases>(),
-            coursesUseCases: sl<HomeCourseUseCases>(),
-            sliderUseCases: sl<SliderUseCases>(),
-          ));
-    } else {
-      sl.resetLazySingleton<HomeCubit>();
+      sl.registerFactory<LoginCubit>(
+          () => LoginCubit(loginUseCases: sl<LoginUseCases>()));
     }
   }
 
   static initCoursesGetIt() {
     // Course By Category Data Source
     if (!sl.isRegistered<CoursesDataSource>()) {
-      sl.registerLazySingleton<CoursesDataSource>(() => CoursesDataSourceImpl(consumer: sl<ApiConsumer>()));
+      sl.registerLazySingleton<CoursesDataSource>(
+          () => CoursesDataSourceImpl(consumer: sl<ApiConsumer>()));
     }
     //Course By Category Repository
     if (!sl.isRegistered<CourseRepository>()) {
-      sl.registerLazySingleton<CourseRepository>(() => CourseRepositoryImpl(dataSource: sl<CoursesDataSource>()));
+      sl.registerLazySingleton<CourseRepository>(
+          () => CourseRepositoryImpl(dataSource: sl<CoursesDataSource>()));
     }
     // //Home Use Cases
     if (!sl.isRegistered<CoursesUseCases>()) {
-      sl.registerLazySingleton<CoursesUseCases>(() => CoursesUseCases(repository: sl<CourseRepository>()));
+      sl.registerLazySingleton<CoursesUseCases>(
+          () => CoursesUseCases(repository: sl<CourseRepository>()));
     }
 
     // // Home Cubit
     if (!sl.isRegistered<CoursesCubit>()) {
-      sl.registerLazySingleton<CoursesCubit>(() =>
-          CoursesCubit(
+      sl.registerLazySingleton<CoursesCubit>(() => CoursesCubit(
             coursesUseCases: sl<CoursesUseCases>(),
           ));
     } else {
@@ -246,23 +168,23 @@ class ServiceLocator {
   static initCategoriesGetIt() {
     // Course By Category Data Source
     if (!sl.isRegistered<CategoriesDataSource>()) {
-      sl.registerLazySingleton<CategoriesDataSource>(() => CategoriesDataSourceImpl(apiConsumer: sl<ApiConsumer>()));
+      sl.registerLazySingleton<CategoriesDataSource>(
+          () => CategoriesDataSourceImpl(apiConsumer: sl<ApiConsumer>()));
     }
     //Course By Category Repository
     if (!sl.isRegistered<CategoriesRepository>()) {
-      sl.registerLazySingleton<CategoriesRepository>(
-              () => CategoriesRepositoryImpl(dataSource: sl<CategoriesDataSource>()));
+      sl.registerLazySingleton<CategoriesRepository>(() =>
+          CategoriesRepositoryImpl(dataSource: sl<CategoriesDataSource>()));
     }
     // //Home Use Cases
     if (!sl.isRegistered<GetAllCategoriesUseCases>()) {
-      sl.registerLazySingleton<GetAllCategoriesUseCases>(
-              () => GetAllCategoriesUseCases(repository: sl<CategoriesRepository>()));
+      sl.registerLazySingleton<GetAllCategoriesUseCases>(() =>
+          GetAllCategoriesUseCases(repository: sl<CategoriesRepository>()));
     }
 
     // // Home Cubit
     if (!sl.isRegistered<CategoriesCubit>()) {
-      sl.registerLazySingleton<CategoriesCubit>(() =>
-          CategoriesCubit(
+      sl.registerLazySingleton<CategoriesCubit>(() => CategoriesCubit(
             getAllCategoriesUseCases: sl<GetAllCategoriesUseCases>(),
           ));
     } else {
@@ -274,25 +196,26 @@ class ServiceLocator {
     // Course By Category Data Source
     if (!sl.isRegistered<CoursesByCategoryDataSource>()) {
       sl.registerLazySingleton<CoursesByCategoryDataSource>(
-              () => CoursesByCategoryDataSourceImpl(consumer: sl<ApiConsumer>()));
+          () => CoursesByCategoryDataSourceImpl(consumer: sl<ApiConsumer>()));
     }
     //Course By Category Repository
     if (!sl.isRegistered<CourseByCategoryRepo>()) {
-      sl.registerLazySingleton<CourseByCategoryRepo>(
-              () => CoursesByCategoryRepoImpl(dataSource: sl<CoursesByCategoryDataSource>()));
+      sl.registerLazySingleton<CourseByCategoryRepo>(() =>
+          CoursesByCategoryRepoImpl(
+              dataSource: sl<CoursesByCategoryDataSource>()));
     }
     // //Home Use Cases
     if (!sl.isRegistered<CoursesByCategoryUseCases>()) {
-      sl.registerLazySingleton<CoursesByCategoryUseCases>(
-              () => CoursesByCategoryUseCases(repository: sl<CourseByCategoryRepo>()));
+      sl.registerLazySingleton<CoursesByCategoryUseCases>(() =>
+          CoursesByCategoryUseCases(repository: sl<CourseByCategoryRepo>()));
     }
 
     // // Home Cubit
     if (!sl.isRegistered<CoursesByCategoryCubit>()) {
-      sl.registerLazySingleton<CoursesByCategoryCubit>(() =>
-          CoursesByCategoryCubit(
-            coursesByCategoryUseCases: sl<CoursesByCategoryUseCases>(),
-          ));
+      sl.registerLazySingleton<CoursesByCategoryCubit>(
+          () => CoursesByCategoryCubit(
+                coursesByCategoryUseCases: sl<CoursesByCategoryUseCases>(),
+              ));
     } else {
       sl.resetLazySingleton<CoursesByCategoryCubit>();
     }
@@ -302,32 +225,34 @@ class ServiceLocator {
     // Course By Category Data Source
     if (!sl.isRegistered<CourseDetailsDataSource>()) {
       sl.registerLazySingleton<CourseDetailsDataSource>(
-              () => CourseDetailsDataSourceImpl(apiConsumer: sl<ApiConsumer>()));
+          () => CourseDetailsDataSourceImpl(apiConsumer: sl<ApiConsumer>()));
     }
     //Course By Category Repository
     if (!sl.isRegistered<CourseDetailsRepository>()) {
-      sl.registerLazySingleton<CourseDetailsRepository>(
-              () => CourseDetailsRepositoryImpl(dataSource: sl<CourseDetailsDataSource>()));
+      sl.registerLazySingleton<CourseDetailsRepository>(() =>
+          CourseDetailsRepositoryImpl(
+              dataSource: sl<CourseDetailsDataSource>()));
     }
     // //Home Use Cases
     if (!sl.isRegistered<GetCourseDetailsUseCases>()) {
-      sl.registerLazySingleton<GetCourseDetailsUseCases>(
-              () => GetCourseDetailsUseCases(repository: sl<CourseDetailsRepository>()));
+      sl.registerLazySingleton<GetCourseDetailsUseCases>(() =>
+          GetCourseDetailsUseCases(repository: sl<CourseDetailsRepository>()));
     }
 
     // //Home Use Cases
     if (!sl.isRegistered<BuyCourseUseCases>()) {
-      sl.registerLazySingleton<BuyCourseUseCases>(() => BuyCourseUseCases(repository: sl<CourseDetailsRepository>()));
+      sl.registerLazySingleton<BuyCourseUseCases>(
+          () => BuyCourseUseCases(repository: sl<CourseDetailsRepository>()));
     }
     if (!sl.isRegistered<GetCourseLectureDetailsUseCases>()) {
-      sl.registerLazySingleton<GetCourseLectureDetailsUseCases>(
-              () => GetCourseLectureDetailsUseCases(repository: sl<CourseDetailsRepository>()));
+      sl.registerLazySingleton<GetCourseLectureDetailsUseCases>(() =>
+          GetCourseLectureDetailsUseCases(
+              repository: sl<CourseDetailsRepository>()));
     }
 
     // // Home Cubit
     if (!sl.isRegistered<CourseDetailsCubit>()) {
-      sl.registerLazySingleton<CourseDetailsCubit>(() =>
-          CourseDetailsCubit(
+      sl.registerLazySingleton<CourseDetailsCubit>(() => CourseDetailsCubit(
             courseDetailsUseCases: sl<GetCourseDetailsUseCases>(),
             buyCourseUseCases: sl<BuyCourseUseCases>(),
             courseLectureDetailsUseCases: sl<GetCourseLectureDetailsUseCases>(),
@@ -340,22 +265,23 @@ class ServiceLocator {
   static initGetContactInfoGetIt() {
     // Course By Category Data Source
     if (!sl.isRegistered<ContactInfoDataSource>()) {
-      sl.registerLazySingleton<ContactInfoDataSource>(() => ContactInfoDataSourceImpl(apiConsumer: sl<ApiConsumer>()));
+      sl.registerLazySingleton<ContactInfoDataSource>(
+          () => ContactInfoDataSourceImpl(apiConsumer: sl<ApiConsumer>()));
     }
     //Course By Category Repository
     if (!sl.isRegistered<ContactInfoRepository>()) {
-      sl.registerLazySingleton<ContactInfoRepository>(
-              () => ContactInfoRepositoryImpl(dataSource: sl<ContactInfoDataSource>()));
+      sl.registerLazySingleton<ContactInfoRepository>(() =>
+          ContactInfoRepositoryImpl(dataSource: sl<ContactInfoDataSource>()));
     }
     // //Home Use Cases
     if (!sl.isRegistered<ContactInfoUseCase>()) {
-      sl.registerLazySingleton<ContactInfoUseCase>(() => ContactInfoUseCase(repository: sl<ContactInfoRepository>()));
+      sl.registerLazySingleton<ContactInfoUseCase>(
+          () => ContactInfoUseCase(repository: sl<ContactInfoRepository>()));
     }
 
     // // Home Cubit
     if (!sl.isRegistered<ContactInfoCubit>()) {
-      sl.registerLazySingleton<ContactInfoCubit>(() =>
-          ContactInfoCubit(
+      sl.registerLazySingleton<ContactInfoCubit>(() => ContactInfoCubit(
             contactInfoUseCase: sl<ContactInfoUseCase>(),
           ));
     } else {
@@ -366,35 +292,37 @@ class ServiceLocator {
   static initProfileGetIt() {
     // Course By Category Data Source
     if (!sl.isRegistered<ProfileDataSource>()) {
-      sl.registerLazySingleton<ProfileDataSource>(() => ProfileDataSourceImpl(consumer: sl<ApiConsumer>()));
+      sl.registerLazySingleton<ProfileDataSource>(
+          () => ProfileDataSourceImpl(consumer: sl<ApiConsumer>()));
     }
     //Course By Category Repository
     if (!sl.isRegistered<ProfileRepository>()) {
-      sl.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImpl(dataSource: sl<ProfileDataSource>()));
+      sl.registerLazySingleton<ProfileRepository>(
+          () => ProfileRepositoryImpl(dataSource: sl<ProfileDataSource>()));
     }
     // //Home Use Cases
     if (!sl.isRegistered<GetPersonalInfoUseCase>()) {
       sl.registerLazySingleton<GetPersonalInfoUseCase>(
-              () => GetPersonalInfoUseCase(repository: sl<ProfileRepository>()));
+          () => GetPersonalInfoUseCase(repository: sl<ProfileRepository>()));
     }
     if (!sl.isRegistered<SavePersonalInfoUseCase>()) {
       sl.registerLazySingleton<SavePersonalInfoUseCase>(
-              () => SavePersonalInfoUseCase(repository: sl<ProfileRepository>()));
+          () => SavePersonalInfoUseCase(repository: sl<ProfileRepository>()));
     }
 
     if (!sl.isRegistered<ChangePasswordUseCase>()) {
-      sl.registerLazySingleton<ChangePasswordUseCase>(() => ChangePasswordUseCase(repository: sl<ProfileRepository>()));
+      sl.registerLazySingleton<ChangePasswordUseCase>(
+          () => ChangePasswordUseCase(repository: sl<ProfileRepository>()));
     }
 
     if (!sl.isRegistered<GetUserMyCoursesUseCase>()) {
       sl.registerLazySingleton<GetUserMyCoursesUseCase>(
-              () => GetUserMyCoursesUseCase(repository: sl<ProfileRepository>()));
+          () => GetUserMyCoursesUseCase(repository: sl<ProfileRepository>()));
     }
 
     // // Home Cubit
     if (!sl.isRegistered<ProfileCubit>()) {
-      sl.registerLazySingleton<ProfileCubit>(() =>
-          ProfileCubit(
+      sl.registerLazySingleton<ProfileCubit>(() => ProfileCubit(
             getPersonalInfoUseCase: sl<GetPersonalInfoUseCase>(),
             savePersonalInfoUseCase: sl<SavePersonalInfoUseCase>(),
             changePasswordUseCase: sl<ChangePasswordUseCase>(),
@@ -408,18 +336,18 @@ class ServiceLocator {
   static initExamGetIt() {
     // Course By Category Data Source
     if (!sl.isRegistered<ExamDataSource>()) {
-      sl.registerLazySingleton<ExamDataSource>(() => ExamDataSourceImpl(sl<ApiConsumer>()));
+      sl.registerLazySingleton<ExamDataSource>(
+          () => ExamDataSourceImpl(sl<ApiConsumer>()));
     }
     //Course By Category Repository
     if (!sl.isRegistered<ExamRepository>()) {
-      sl.registerLazySingleton<ExamRepository>(() => ExamRepositoryImpl(sl<ExamDataSource>()));
+      sl.registerLazySingleton<ExamRepository>(
+          () => ExamRepositoryImpl(sl<ExamDataSource>()));
     }
-
 
     // // Home Cubit
     if (!sl.isRegistered<ExamCubit>()) {
-      sl.registerLazySingleton<ExamCubit>(() =>
-          ExamCubit(
+      sl.registerLazySingleton<ExamCubit>(() => ExamCubit(
             repository: sl<ExamRepository>(),
           ));
     } else {
@@ -431,18 +359,18 @@ class ServiceLocator {
     // Course By Category Data Source
     if (!sl.isRegistered<ExamsBySubjectDataSource>()) {
       sl.registerLazySingleton<ExamsBySubjectDataSource>(
-              () => ExamsBySubjectDataSourceImpl(consumer: sl<ApiConsumer>()));
+          () => ExamsBySubjectDataSourceImpl(consumer: sl<ApiConsumer>()));
     }
     //Course By Category Repository
     if (!sl.isRegistered<ExamsBySubjectRepository>()) {
-      sl.registerLazySingleton<ExamsBySubjectRepository>(
-              () => ExamsBySubjectRepositoryImpl(dataSource: sl<ExamsBySubjectDataSource>()));
+      sl.registerLazySingleton<ExamsBySubjectRepository>(() =>
+          ExamsBySubjectRepositoryImpl(
+              dataSource: sl<ExamsBySubjectDataSource>()));
     }
 
     // // Home Cubit
     if (!sl.isRegistered<ExamsBySubjectCubit>()) {
-      sl.registerLazySingleton<ExamsBySubjectCubit>(() =>
-          ExamsBySubjectCubit(
+      sl.registerLazySingleton<ExamsBySubjectCubit>(() => ExamsBySubjectCubit(
             repository: sl<ExamsBySubjectRepository>(),
           ));
     } else {
@@ -454,18 +382,18 @@ class ServiceLocator {
     // Course By Category Data Source
     if (!sl.isRegistered<HomeworksStudentDataSource>()) {
       sl.registerLazySingleton<HomeworksStudentDataSource>(
-              () => HomeworksStudentDataSourceImpl(consumer: sl<ApiConsumer>()));
+          () => HomeworksStudentDataSourceImpl(consumer: sl<ApiConsumer>()));
     }
     //Course By Category Repository
     if (!sl.isRegistered<HomeworksStudentRepository>()) {
-      sl.registerLazySingleton<HomeworksStudentRepository>(
-              () => HomeworksStudentRepositoryImpl(dataSource: sl<HomeworksStudentDataSource>()));
+      sl.registerLazySingleton<HomeworksStudentRepository>(() =>
+          HomeworksStudentRepositoryImpl(
+              dataSource: sl<HomeworksStudentDataSource>()));
     }
 
     // // Home Cubit
     if (!sl.isRegistered<HomeworkStudentCubit>()) {
-      sl.registerLazySingleton<HomeworkStudentCubit>(() =>
-          HomeworkStudentCubit(
+      sl.registerLazySingleton<HomeworkStudentCubit>(() => HomeworkStudentCubit(
             sl<HomeworksStudentRepository>(),
           ));
     } else {

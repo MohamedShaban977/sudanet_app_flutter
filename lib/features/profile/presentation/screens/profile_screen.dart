@@ -176,8 +176,9 @@ class CustomButtonProfile extends StatelessWidget {
           clipBehavior: Clip.antiAlias,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-          elevation: 5,
-          color: ColorManager.background,
+          elevation: 2,
+          shadowColor: ColorManager.background,
+          color: ColorManager.white,
           child: InkWell(
             hoverColor: ColorManager.primary.withValues(alpha: 0.5),
             splashColor: ColorManager.primary,
@@ -198,7 +199,7 @@ class CustomButtonProfile extends StatelessWidget {
                   const Icon(
                     Icons.arrow_forward_ios,
                     size: 18,
-                    color: ColorManager.secondary,
+                    color: ColorManager.primary,
                   ),
                   SizedBox(width: context.width * 0.02),
                 ],

@@ -69,7 +69,7 @@ class _ExamScreenState extends State<ExamScreen> with WidgetsBindingObserver {
         // TODO: Handle this case.
         break;
       case AppLifecycleState.hidden:
-        // TODO: Handle this case.
+      // TODO: Handle this case.
     }
   }
 
@@ -96,7 +96,8 @@ class _ExamScreenState extends State<ExamScreen> with WidgetsBindingObserver {
         statusBarBrightness: Brightness.dark,
       ),
       title: Text(AppStrings.homeworks.tr(),
-          style: context.displayLarge.copyWith(color: ColorManager.textGray, fontWeight: FontWeight.w700)),
+          style: context.displayLarge.copyWith(
+              color: ColorManager.textGray, fontWeight: FontWeight.w700)),
     );
   }
 
@@ -124,7 +125,9 @@ class _ExamScreenState extends State<ExamScreen> with WidgetsBindingObserver {
               children: [
                 ///  question image
                 ImageQuestionWidget(
-                  examQuestionImage: _examModel?.examQuestions?[_indexQuestion].examQuestionImage ?? '',
+                  examQuestionImage: _examModel
+                          ?.examQuestions?[_indexQuestion].examQuestionImage ??
+                      '',
                 ),
                 const SizedBox(height: 15.0),
 
@@ -135,26 +138,39 @@ class _ExamScreenState extends State<ExamScreen> with WidgetsBindingObserver {
                   child: ValueListenableBuilder(
                     valueListenable: answerValue,
                     builder: (context, value, child) {
-                      if (ExamQuestionType.MULTI.name == _examModel?.examQuestions?[_indexQuestion].examQuestionType ||
-                          ExamQuestionType.TORF.name == _examModel?.examQuestions?[_indexQuestion].examQuestionType) {
+                      if (ExamQuestionType.MULTI.name ==
+                              _examModel?.examQuestions?[_indexQuestion]
+                                  .examQuestionType ||
+                          ExamQuestionType.TORF.name ==
+                              _examModel?.examQuestions?[_indexQuestion]
+                                  .examQuestionType) {
                         return Column(
                           children: List.generate(
-                            (_examModel?.examQuestions?[_indexQuestion].examQuestionOptions ?? []).length,
+                            (_examModel?.examQuestions?[_indexQuestion]
+                                        .examQuestionOptions ??
+                                    [])
+                                .length,
                             (index) => Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 4.0),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 4.0),
                               child: OutlinedButton(
                                 style: OutlinedButton.styleFrom(
                                   foregroundColor: value ==
                                           _examModel
-                                              ?.examQuestions?[_indexQuestion].examQuestionOptions?[index].optionValue
+                                              ?.examQuestions?[_indexQuestion]
+                                              .examQuestionOptions?[index]
+                                              .optionValue
                                       ? ColorManager.white
                                       : ColorManager.darkGrey,
                                   backgroundColor: value ==
                                           _examModel
-                                              ?.examQuestions?[_indexQuestion].examQuestionOptions?[index].optionValue
+                                              ?.examQuestions?[_indexQuestion]
+                                              .examQuestionOptions?[index]
+                                              .optionValue
                                       ? ColorManager.primary
                                       : null,
-                                  side: const BorderSide(color: ColorManager.primary, width: 1.0),
+                                  side: const BorderSide(
+                                      color: ColorManager.primary, width: 1.0),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12.0),
                                   ),
@@ -162,31 +178,50 @@ class _ExamScreenState extends State<ExamScreen> with WidgetsBindingObserver {
                                 ),
                                 onPressed: () {
                                   answerValue.value = _examModel
-                                      ?.examQuestions?[_indexQuestion].examQuestionOptions?[index].optionValue;
+                                      ?.examQuestions?[_indexQuestion]
+                                      .examQuestionOptions?[index]
+                                      .optionValue;
                                 },
-                                child: Text(
-                                    _examModel?.examQuestions?[_indexQuestion].examQuestionOptions?[index].option ??
-                                        ''),
+                                child: Text(_examModel
+                                        ?.examQuestions?[_indexQuestion]
+                                        .examQuestionOptions?[index]
+                                        .option ??
+                                    ''),
                               ),
                             ),
                           ),
                         );
                       }
 
-                      if (ExamQuestionType.SORT.name == _examModel?.examQuestions?[_indexQuestion].examQuestionType) {
+                      if (ExamQuestionType.SORT.name ==
+                          _examModel?.examQuestions?[_indexQuestion]
+                              .examQuestionType) {
                         return ReorderableQuestion(
-                          choices: _examModel?.examQuestions?[_indexQuestion].examQuestionOptions ?? [],
+                          choices: _examModel?.examQuestions?[_indexQuestion]
+                                  .examQuestionOptions ??
+                              [],
                           onOrderChanged: (value) {
-                            answerValue.value = value.map((e) => e.optionValue).toList().join(',');
+                            answerValue.value = value
+                                .map((e) => e.optionValue)
+                                .toList()
+                                .join(',');
                           },
                         );
                       }
-                      if (ExamQuestionType.LINK.name == _examModel?.examQuestions?[_indexQuestion].examQuestionType) {
+                      if (ExamQuestionType.LINK.name ==
+                          _examModel?.examQuestions?[_indexQuestion]
+                              .examQuestionType) {
                         return MatchingQuestion(
-                          columnA: _examModel?.examQuestions?[_indexQuestion].examLinkQuestionOptions?.optionsA ?? [],
-                          columnB: _examModel?.examQuestions?[_indexQuestion].examLinkQuestionOptions?.optionsB ?? [],
+                          columnA: _examModel?.examQuestions?[_indexQuestion]
+                                  .examLinkQuestionOptions?.optionsA ??
+                              [],
+                          columnB: _examModel?.examQuestions?[_indexQuestion]
+                                  .examLinkQuestionOptions?.optionsB ??
+                              [],
                           onMatchesChanged: (matches) {
-                            String result = matches.entries.map((entry) => '${entry.key}-${entry.value}').join(',');
+                            String result = matches.entries
+                                .map((entry) => '${entry.key}-${entry.value}')
+                                .join(',');
                             answerValue.value = result;
                           },
                         );
@@ -214,7 +249,8 @@ class _ExamScreenState extends State<ExamScreen> with WidgetsBindingObserver {
                           },
                           style: ElevatedButton.styleFrom(
                             fixedSize: Size(context.width * 0.35, 50.0),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0)),
                           ),
                           child: Text(AppStrings.previous.tr()),
                         ),
@@ -222,7 +258,8 @@ class _ExamScreenState extends State<ExamScreen> with WidgetsBindingObserver {
                       SizedBox(
                         width: context.width * 0.35,
                         child: Visibility(
-                          visible: _indexQuestion == (_examModel?.questionsCount ?? 0) - 1,
+                          visible: _indexQuestion ==
+                              (_examModel?.questionsCount ?? 0) - 1,
 
                           /// next Question
                           replacement: Center(
@@ -232,7 +269,9 @@ class _ExamScreenState extends State<ExamScreen> with WidgetsBindingObserver {
                                     request: SaveAnswerRequest(
                                       type: widget.type,
                                       answer: answerValue.value,
-                                      examQuestionId: _examModel?.examQuestions?[_indexQuestion].examQuestionId,
+                                      examQuestionId: _examModel
+                                          ?.examQuestions?[_indexQuestion]
+                                          .examQuestionId,
                                     ),
                                     type: widget.type);
                               },
@@ -249,7 +288,9 @@ class _ExamScreenState extends State<ExamScreen> with WidgetsBindingObserver {
                                   request: SaveAnswerRequest(
                                     type: widget.type,
                                     answer: answerValue.value,
-                                    examQuestionId: _examModel?.examQuestions?[_indexQuestion].examQuestionId,
+                                    examQuestionId: _examModel
+                                        ?.examQuestions?[_indexQuestion]
+                                        .examQuestionId,
                                   ),
                                   type: widget.type);
                             },
@@ -309,7 +350,8 @@ class _ExamScreenState extends State<ExamScreen> with WidgetsBindingObserver {
     if (state is SaveAnswerSuccessState) {
       ToastAndSnackBar.toastSuccess(message: state.response.message);
 
-      _examModel?.examQuestions?[_indexQuestion].examQuestionAnswer = answerValue.value;
+      _examModel?.examQuestions?[_indexQuestion].examQuestionAnswer =
+          answerValue.value;
       if (_indexQuestion < (_examModel?.questionsCount ?? 0) - 1) {
         _indexQuestion += 1;
         answerValue.value = null;
@@ -331,7 +373,8 @@ class _ExamScreenState extends State<ExamScreen> with WidgetsBindingObserver {
         if (state.response.data!.isFail) {
           ToastAndSnackBar.showSnackBarFailure(
             context,
-            title: '${AppStrings.examResult.tr()}\t ${state.response.data!.examName}',
+            title:
+                '${AppStrings.examResult.tr()}\t ${state.response.data!.examName}',
             message:
                 '${AppStrings.appreciation.tr()} : ${AppStrings.fail.tr()} \t , ${AppStrings.successRate.tr()}: ${state.response.data!.percentage}',
             // durationMilliseconds: 800,
@@ -339,7 +382,8 @@ class _ExamScreenState extends State<ExamScreen> with WidgetsBindingObserver {
         } else {
           ToastAndSnackBar.showSnackBarSuccess(
             context,
-            title: '${AppStrings.examResult.tr()}\t ${state.response.data!.examName}',
+            title:
+                '${AppStrings.examResult.tr()}\t ${state.response.data!.examName}',
             message:
                 '${AppStrings.appreciation.tr()}: ${AppStrings.successful.tr()}\t , ${AppStrings.successRate.tr()}: ${state.response.data!.percentage}',
             // durationMilliseconds: 800,
@@ -376,7 +420,9 @@ class _ExamScreenState extends State<ExamScreen> with WidgetsBindingObserver {
         //     child: Text(AppStrings.reviewAnswers.tr())),
         ElevatedButton(
             onPressed: () {
-              sl<ExamCubit>().get(context).endExam(studentExamId: '${_examModel?.studentExamId}', type: widget.type);
+              sl<ExamCubit>().get(context).endExam(
+                  studentExamId: '${_examModel?.studentExamId}',
+                  type: widget.type);
               MagicRouter.pop();
             },
             style: ElevatedButton.styleFrom(
@@ -399,7 +445,7 @@ class CustomAppBarExam extends StatelessWidget implements PreferredSizeWidget {
 
   final ExamModel? _examModel;
   final ExamType type;
-  static const double _toolbarHeight = 100.0;
+  static const double _toolbarHeight = 70.0;
 
   @override
   Widget build(BuildContext context) {
@@ -415,7 +461,8 @@ class CustomAppBarExam extends StatelessWidget implements PreferredSizeWidget {
             children: [
               Text(
                 _examModel?.examName ?? '',
-                style: context.bodyLarge.copyWith(color: ColorManager.primary, fontSize: 22.0),
+                style: context.bodyLarge
+                    .copyWith(color: ColorManager.primary, fontSize: 22.0),
                 textAlign: TextAlign.center,
               ),
               if (type == ExamType.exam) ...[
@@ -431,11 +478,18 @@ class CustomAppBarExam extends StatelessWidget implements PreferredSizeWidget {
           if (type == ExamType.exam)
             TweenAnimationBuilder<Duration>(
                 duration: Duration(
-                  milliseconds: ((_examModel?.remainingExamTimeBySeconds ?? 0) * 1000 - 5000).toInt(),
+                  milliseconds:
+                      ((_examModel?.remainingExamTimeBySeconds ?? 0) * 1000 -
+                              5000)
+                          .toInt(),
                 ),
                 tween: Tween(
                     begin: Duration(
-                      milliseconds: ((_examModel?.remainingExamTimeBySeconds ?? 0) * 1000 - 5000).toInt(),
+                      milliseconds:
+                          ((_examModel?.remainingExamTimeBySeconds ?? 0) *
+                                      1000 -
+                                  5000)
+                              .toInt(),
                     ),
                     end: Duration.zero),
                 onEnd: () async {
@@ -447,9 +501,12 @@ class CustomAppBarExam extends StatelessWidget implements PreferredSizeWidget {
                       message: AppStrings.examTimeIsUp.tr(),
                       durationMilliseconds: 5000,
                     );
-                    await Future.delayed(const Duration(milliseconds: 5000), () {
-                      if(context.mounted) {
-                        sl<ExamCubit>().get(context).endExam(studentExamId: '${_examModel?.studentExamId}', type: type);
+                    await Future.delayed(const Duration(milliseconds: 5000),
+                        () {
+                      if (context.mounted) {
+                        sl<ExamCubit>().get(context).endExam(
+                            studentExamId: '${_examModel?.studentExamId}',
+                            type: type);
                       }
                     });
                   }
@@ -458,18 +515,21 @@ class CustomAppBarExam extends StatelessWidget implements PreferredSizeWidget {
                   final minutes = value.inMinutes;
                   final seconds = value.inSeconds % 60;
                   return SizedBox(
-                    height: 65.0,
+                    height: 45.0,
                     width: 130.0,
                     child: Card(
-                      color: minutes <= 2 ? Colors.redAccent.shade200 : ColorManager.secondary,
+                      color: minutes <= 2
+                          ? Colors.redAccent.shade200
+                          : ColorManager.primary,
                       elevation: 0.0,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0)),
                       child: Center(
                         child: DefaultTextStyle(
                           style: const TextStyle(
                             color: ColorManager.primary,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30.0,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 24,
                           ),
                           child: Text(
                             '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}',
@@ -597,13 +657,14 @@ class ImageQuestionWidget extends StatelessWidget {
                 //   },
                 // );
               },
-              color: ColorManager.secondary,
+              color: ColorManager.primary,
               elevation: 5.0,
               shape: const CircleBorder(),
               child: const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Icon(
                   Icons.fullscreen,
+                  color: ColorManager.white,
                   size: 30.0,
                 ),
               )),
@@ -633,9 +694,11 @@ class NewLineStep extends StatelessWidget {
         height: 8,
         decoration: BoxDecoration(
           borderRadius: isFirst
-              ? const BorderRadiusDirectional.horizontal(start: Radius.circular(100.0))
+              ? const BorderRadiusDirectional.horizontal(
+                  start: Radius.circular(100.0))
               : isLast
-                  ? const BorderRadiusDirectional.horizontal(end: Radius.circular(100.0))
+                  ? const BorderRadiusDirectional.horizontal(
+                      end: Radius.circular(100.0))
                   : BorderRadius.circular(0.0),
           color: isActive ? ColorManager.primary : Colors.grey[300],
         ),
@@ -679,7 +742,11 @@ class AnswerButtonWidget extends StatelessWidget {
 
   final String text;
 
-  const AnswerButtonWidget({super.key, required this.onPressed, required this.isSelectedAnswer, required this.text});
+  const AnswerButtonWidget(
+      {super.key,
+      required this.onPressed,
+      required this.isSelectedAnswer,
+      required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -687,7 +754,8 @@ class AnswerButtonWidget extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         fixedSize: const Size.fromHeight(50.0),
-        backgroundColor: isSelectedAnswer ? ColorManager.secondary_2 : ColorManager.white,
+        backgroundColor:
+            isSelectedAnswer ? ColorManager.primary : ColorManager.white,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
             side: const BorderSide(
@@ -700,7 +768,8 @@ class AnswerButtonWidget extends StatelessWidget {
         children: [
           Text(
             text,
-            style: context.labelLarge.copyWith(color: ColorManager.primary, fontWeight: FontWeight.w700),
+            style: context.labelLarge.copyWith(
+                color: ColorManager.primary, fontWeight: FontWeight.w700),
           ),
           const Spacer(),
           if (isSelectedAnswer)
@@ -722,7 +791,11 @@ class HeroPhotoViewRouteWrapper extends StatelessWidget {
   final dynamic maxScale;
 
   const HeroPhotoViewRouteWrapper(
-      {super.key, required this.imageProvider, this.backgroundDecoration, this.minScale, this.maxScale});
+      {super.key,
+      required this.imageProvider,
+      this.backgroundDecoration,
+      this.minScale,
+      this.maxScale});
 
   @override
   Widget build(BuildContext context) {
@@ -836,7 +909,7 @@ class _ReorderableQuestionState extends State<ReorderableQuestion> {
           margin: const EdgeInsets.symmetric(vertical: 4),
           child: ListTile(
             leading: CircleAvatar(
-              backgroundColor: ColorManager.secondary,
+              backgroundColor: ColorManager.white,
               foregroundColor: ColorManager.primary,
               child: Center(child: Text('${index + 1}')),
             ),
@@ -871,7 +944,6 @@ class _MatchingQuestionState extends State<MatchingQuestion> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     for (var element in widget.columnA) {
       if (element.optionValue != null) {
@@ -907,11 +979,16 @@ class _MatchingQuestionState extends State<MatchingQuestion> {
                       padding: const EdgeInsets.symmetric(vertical: 4.0),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: selectedFromA == widget.columnA[index].optionValue ||
-                                  matches[widget.columnA[index].optionValue] != null
+                          backgroundColor: selectedFromA ==
+                                      widget.columnA[index].optionValue ||
+                                  matches[widget.columnA[index].optionValue] !=
+                                      null
                               ? Colors.green
                               : null,
-                          foregroundColor: matches.containsKey(widget.columnA[index].optionValue) ? Colors.white : null,
+                          foregroundColor: matches.containsKey(
+                                  widget.columnA[index].optionValue)
+                              ? Colors.white
+                              : null,
                         ),
                         onPressed: () {
                           setState(() {
@@ -921,17 +998,23 @@ class _MatchingQuestionState extends State<MatchingQuestion> {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text('${widget.columnA[index].optionValue}- ${widget.columnA[index].option}'),
+                            Text(
+                                '${widget.columnA[index].optionValue}- ${widget.columnA[index].option}'),
                             const SizedBox(width: AppPadding.p4),
                             matches[widget.columnA[index].optionValue] != null
                                 ? Container(
-                                    padding: const EdgeInsets.all(AppPadding.p4),
+                                    padding:
+                                        const EdgeInsets.all(AppPadding.p4),
                                     decoration: BoxDecoration(
                                       shape: BoxShape.rectangle,
-                                      borderRadius: BorderRadius.circular(AppPadding.p4),
+                                      borderRadius:
+                                          BorderRadius.circular(AppPadding.p4),
                                       color: Colors.green,
                                     ),
-                                    child: Center(child: Text(matches[widget.columnA[index].optionValue] ?? '')),
+                                    child: Center(
+                                        child: Text(matches[widget
+                                                .columnA[index].optionValue] ??
+                                            '')),
                                   )
                                 : const SizedBox(),
                           ],
@@ -962,23 +1045,31 @@ class _MatchingQuestionState extends State<MatchingQuestion> {
                       padding: const EdgeInsets.symmetric(vertical: 4.0),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              matches.containsValue(widget.columnB[index].optionValue) ? Colors.green : null,
-                          foregroundColor:
-                              matches.containsValue(widget.columnB[index].optionValue) ? Colors.white : null,
-                          disabledBackgroundColor:
-                              matches.containsValue(widget.columnB[index].optionValue) ? Colors.green : null,
+                          backgroundColor: matches.containsValue(
+                                  widget.columnB[index].optionValue)
+                              ? Colors.green
+                              : null,
+                          foregroundColor: matches.containsValue(
+                                  widget.columnB[index].optionValue)
+                              ? Colors.white
+                              : null,
+                          disabledBackgroundColor: matches.containsValue(
+                                  widget.columnB[index].optionValue)
+                              ? Colors.green
+                              : null,
                         ),
                         onPressed: selectedFromA != null
                             ? () {
                                 setState(() {
-                                  matches[selectedFromA!] = widget.columnB[index].optionValue ?? '';
+                                  matches[selectedFromA!] =
+                                      widget.columnB[index].optionValue ?? '';
                                   selectedFromA = null;
                                   widget.onMatchesChanged(matches);
                                 });
                               }
                             : null,
-                        child: Text('${widget.columnB[index].optionValue}-  ${widget.columnB[index].option} '),
+                        child: Text(
+                            '${widget.columnB[index].optionValue}-  ${widget.columnB[index].option} '),
                       ),
                     ),
                   ),
@@ -987,31 +1078,6 @@ class _MatchingQuestionState extends State<MatchingQuestion> {
             ),
           ],
         ),
-        // Reset Button
-        // Center(
-        //   child: Padding(
-        //     padding: const EdgeInsets.all(16.0),
-        //     child: ElevatedButton.icon(
-        //       onPressed: () {
-        //         setState(() {
-        //           for (var element in widget.columnA) {
-        //             if (element.optionValue != null) {
-        //               matches.addEntries({element.optionValue!: null}.entries);
-        //             }
-        //           }
-        //           selectedFromA = null;
-        //           widget.onMatchesChanged(matches);
-        //         });
-        //       },
-        //       icon: const Icon(Icons.refresh),
-        //       label: const Text('إعادة ضبط'),
-        //       style: ElevatedButton.styleFrom(
-        //         backgroundColor: Colors.red,
-        //         foregroundColor: Colors.white,
-        //       ),
-        //     ),
-        //   ),
-        // ),
       ],
     );
   }

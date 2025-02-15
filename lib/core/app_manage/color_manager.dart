@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ColorManager {
-  static const Color primary = Color(0xff005356);
-  static const Color secondary = Color(0xffEBD5B4);
-  static const Color secondary_2 = Color(0xfff3e6d6);
+  static const Color primary = Color(0xff017449);
   static const Color textGray = Color(0xff4F4F67);
-  static const Color background = Color(0xffF5F5F9);
+  static const Color textGray2 = Color(0xff4a4545);
+  static const Color background = Color(0xFFDDE8EA);
   static const Color white = Color(0xffFFFFFF);
   static const Color error = Color(0xffF84711);
   static const Color selectNavBar = Color(0xffFF87B3);

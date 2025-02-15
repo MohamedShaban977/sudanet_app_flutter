@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:sudanet_app_flutter/core/app_manage/extension_manager.dart';
 import 'package:sudanet_app_flutter/core/locale/app_localizations.dart';
+import 'package:sudanet_app_flutter/widgets/custom_app_bar_widget.dart';
 
 import '../../../../core/app_manage/assets_manager.dart';
 import '../../../../core/app_manage/color_manager.dart';
@@ -49,7 +50,9 @@ class _ExamLayoutScreenState extends State<ExamLayoutScreen> {
       },
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(),
+          appBar: CustomAppBarWidget(
+            title: '',
+          ),
           body: ModalProgressHUD(
             inAsyncCall: state is GetExamReadyLoadingState,
             child: Padding(
@@ -58,7 +61,8 @@ class _ExamLayoutScreenState extends State<ExamLayoutScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Spacer(),
-                  SvgPicture.asset(SvgAssets.exam, height: context.heightBody * 0.35),
+                  SvgPicture.asset(SvgAssets.exam,
+                      height: context.heightBody * 0.35),
                   const SizedBox(height: 20.0),
                   Text(examReadyEntity.examName,
                       style: context.bodyLarge.copyWith(
@@ -75,14 +79,16 @@ class _ExamLayoutScreenState extends State<ExamLayoutScreen> {
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 20.0),
-                    Text('${AppStrings.remainingTime.tr()} \t ${examReadyEntity.remainingExamTime}',
+                    Text(
+                        '${AppStrings.remainingTime.tr()} \t ${examReadyEntity.remainingExamTime}',
                         style: context.displayMedium.copyWith(
                           color: ColorManager.textGray,
                         ),
                         textAlign: TextAlign.center),
                     const SizedBox(height: 20.0),
                   ],
-                  Text('${AppStrings.questionsCount.tr()} \t ${examReadyEntity.questionsCount}',
+                  Text(
+                      '${AppStrings.questionsCount.tr()} \t ${examReadyEntity.questionsCount}',
                       style: context.displayMedium.copyWith(
                         color: ColorManager.textGray,
                       ),
@@ -92,12 +98,13 @@ class _ExamLayoutScreenState extends State<ExamLayoutScreen> {
                     padding: const EdgeInsets.all(16.0),
                     child: Center(
                       child: CustomButtonWithLoading(
-                          text:
-                              widget.type == ExamType.exam ? AppStrings.examStart.tr() : AppStrings.homeworkStart.tr(),
+                          text: widget.type == ExamType.exam
+                              ? AppStrings.examStart.tr()
+                              : AppStrings.homeworkStart.tr(),
                           borderRadius: 5.0,
                           height: 50.0,
                           width: context.width,
-                          color: ColorManager.secondary,
+                          color: ColorManager.white,
                           textColors: ColorManager.primary,
                           onTap: () async {
                             MagicRouterName.navigateTo(

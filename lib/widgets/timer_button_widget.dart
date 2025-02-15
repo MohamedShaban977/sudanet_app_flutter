@@ -48,10 +48,10 @@ class TimerButton extends StatelessWidget {
           ),
         );
       },
-      color: color ?? ColorManager.secondary,
+      color: color ?? ColorManager.textGray2,
       borderRadius: height ?? 50.0,
       animationDuration: const Duration(milliseconds: 500),
-      borderSide: BorderSide(color: ColorManager.secondary, width: 2),
+      borderSide: BorderSide(color: ColorManager.primary, width: 2),
       child: Text(
         text,
         style: context.labelLarge.copyWith(color: textColors ?? Colors.white),
