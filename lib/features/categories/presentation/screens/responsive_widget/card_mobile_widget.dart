@@ -12,14 +12,16 @@ class CardCategoriesMobileWidget extends StatelessWidget {
   final double height;
   final double? width;
 
-  const CardCategoriesMobileWidget({super.key, required this.category, required this.height, this.width});
+  const CardCategoriesMobileWidget(
+      {super.key, required this.category, required this.height, this.width});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.all(AppPadding.p12),
       elevation: AppSize.s8,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSize.s11)),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppSize.s11)),
       clipBehavior: Clip.antiAlias,
       child: IntrinsicHeight(
         child: Row(
@@ -43,6 +45,7 @@ class CardCategoriesMobileWidget extends StatelessWidget {
                         RoutesNames.coursesByCategoryScreen,
                         arguments: {
                           "id": '${category.id}',
+                          'title': category.name,
                         },
                       );
                     },

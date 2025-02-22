@@ -40,7 +40,7 @@ ThemeData getApplicationTheme() {
         color: ColorManager.white,
         elevation: AppSize.s4,
         systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: Color(0xff528A89),
+          statusBarColor: ColorManager.primary,
         ),
         foregroundColor: ColorManager.textGray,
         titleTextStyle: getRegularStyle(

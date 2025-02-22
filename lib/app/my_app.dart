@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sudanet_app_flutter/widgets/screenshot_prevention_widget.dart';
 
 import '../core/app_manage/theme_manager.dart';
 import '../core/locale/app_localizations_setup.dart';
@@ -35,28 +36,31 @@ class _MyAppState extends State<MyApp> {
         buildWhen: (previousState, currentState) {
           return previousState != currentState;
         },
-        builder: (context, state) => MaterialApp(
-          title: 'Al-Mirghaniyah Online',
-          debugShowCheckedModeBanner: false,
-          // locale: DevicePreview.locale(context),
-          builder: DevicePreview.appBuilder,
-          // theme: ThemeData.light(),
-          // darkTheme: ThemeData.dark(),
-          //Themes
-          theme: getApplicationTheme(),
-          // darkTheme: appThemeDark(), // darkTheme
+        builder: (context, state) => ScreenshotPreventionWidget(
+          child: MaterialApp(
+            title: 'Al-Mirghaniyah Online',
+            debugShowCheckedModeBanner: false,
+            // locale: DevicePreview.locale(context),
+            builder: DevicePreview.appBuilder,
+            // theme: ThemeData.light(),
+            // darkTheme: ThemeData.dark(),
+            //Themes
+            theme: getApplicationTheme(),
+            // darkTheme: appThemeDark(), // darkTheme
 
-          ///Routes
-          onGenerateRoute: Routes.onGenerateRoute,
-          initialRoute: RoutesNames.initialRoute,
-          navigatorKey: navigatorKey,
+            ///Routes
+            onGenerateRoute: Routes.onGenerateRoute,
+            initialRoute: RoutesNames.initialRoute,
+            navigatorKey: navigatorKey,
 
-          ///Locales
-          supportedLocales: AppLocalizationsSetup.supportedLocales,
-          localeResolutionCallback:
-              AppLocalizationsSetup.localeResolutionCallback,
-          localizationsDelegates: AppLocalizationsSetup.localizationsDelegates,
-          locale: state.locale,
+            ///Locales
+            supportedLocales: AppLocalizationsSetup.supportedLocales,
+            localeResolutionCallback:
+                AppLocalizationsSetup.localeResolutionCallback,
+            localizationsDelegates:
+                AppLocalizationsSetup.localizationsDelegates,
+            locale: state.locale,
+          ),
         ),
       ),
     );

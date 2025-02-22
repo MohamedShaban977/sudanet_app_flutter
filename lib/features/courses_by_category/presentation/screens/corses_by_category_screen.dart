@@ -17,14 +17,16 @@ import '../cubit/courses_by_category_cubit.dart';
 const double _desiredItemWidth = 260;
 
 class CoursesByCategoryScreen extends StatelessWidget {
-  const CoursesByCategoryScreen({super.key, required this.categoryId});
+  const CoursesByCategoryScreen(
+      {super.key, required this.categoryId, required this.title});
 
   final String categoryId;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBarWidget(title: AppStrings.subjects.tr()),
+      appBar: CustomAppBarWidget(title: title),
       body: BlocBuilder<CoursesByCategoryCubit, CoursesByCategoryState>(
         builder: (context, state) {
           final cubit = sl<CoursesByCategoryCubit>().get(context);
@@ -49,7 +51,7 @@ class CoursesByCategoryScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(AppPadding.p12),
                       child: Text(
-                        '${AppStrings.viewAllFirstStageSubjects.tr()} ',
+                        '${AppStrings.subjects.tr()} ',
                         style:
                             Theme.of(context).textTheme.headlineSmall!.copyWith(
                                   color: ColorManager.primary,

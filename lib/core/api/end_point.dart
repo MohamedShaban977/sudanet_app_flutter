@@ -1,8 +1,7 @@
 class EndPoint {
   /// base Url
-  // 'EmanAyman-G8@suda-net.edu'
-  // static const String baseUrl = 'https://suda-net.com/api/';
-  static const String baseUrl = 'http://testapi.suda-net.com/api/';
+  static const String baseUrl = 'https://suda-net.com/api/';
+  // static const String baseUrl = 'http://testapi.suda-net.com/api/';
 
   /// end Point Authentication
   static const String login = '${baseUrl}Account/Login';

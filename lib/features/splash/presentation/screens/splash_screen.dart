@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:sudanet_app_flutter/core/app_manage/color_manager.dart';
 import 'package:sudanet_app_flutter/core/app_manage/extension_manager.dart';
 
 import '../../../../core/app_manage/assets_manager.dart';
@@ -66,6 +67,29 @@ class _SplashScreenState extends State<SplashScreen> {
             fit: BoxFit.cover,
             width: 350,
             height: 350,
+          ),
+          Positioned(
+            top: context.height * 0.2,
+            child: Container(
+              width: context.width * 0.9,
+              padding: const EdgeInsets.all(14),
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: ColorManager.primary,
+                  width: 2,
+                ),
+                color: ColorManager.white,
+              ),
+              child: Text('تطبيق مدارس الميرغنية وسودانت للتعليم عن بعد',
+                  style: TextStyle(
+                    color: Color(0xfff10605),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  )),
+            ),
           ),
         ],
       );

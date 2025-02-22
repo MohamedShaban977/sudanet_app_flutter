@@ -625,36 +625,6 @@ class ImageQuestionWidget extends StatelessWidget {
                     ),
                   ),
                 );
-                // showDialog(
-                //   context: context,
-                //   builder: (BuildContext context) {
-                //     return Dialog(
-                //       child: Container(
-                //         // margin: const EdgeInsets.symmetric(
-                //         //   vertical: 20.0,
-                //         //   horizontal: 20.0,
-                //         // ),
-                //         height: context.heightBody * 0.6,
-                //         width: context.width,
-                //         child: ClipRect(
-                //           child: PhotoView(
-                //             imageProvider: NetworkImage(
-                //               _examModel
-                //                   .examQuestions[_indexQuestion]
-                //                   .examQuestionImage,
-                //             ),
-                //             maxScale:
-                //                 PhotoViewComputedScale.covered * 2.0,
-                //             minScale:
-                //                 PhotoViewComputedScale.contained,
-                //             initialScale:
-                //                 PhotoViewComputedScale.covered,
-                //           ),
-                //         ),
-                //       ),
-                //     );
-                //   },
-                // );
               },
               color: ColorManager.primary,
               elevation: 5.0,

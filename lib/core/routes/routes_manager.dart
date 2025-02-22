@@ -76,14 +76,14 @@ class Routes {
 
       case RoutesNames.coursesByCategoryScreen:
         ServiceLocator.initCoursesByCategoryGetIt();
-        final RouteRequest res =
-            RouteRequest.fromJson(settings.arguments! as Map<String, dynamic>);
+        final args = settings.arguments as Map<String, dynamic>?;
 
         return MagicRouter.pageRoute(BlocProvider(
           create: (context) =>
-              sl<CoursesByCategoryCubit>()..getCoursesByCategoryId(res.id!),
+              sl<CoursesByCategoryCubit>()..getCoursesByCategoryId(args?['id']),
           child: CoursesByCategoryScreen(
-            categoryId: res.id!,
+            categoryId: args?['id'],
+            title: args?['title'],
           ),
         ));
 

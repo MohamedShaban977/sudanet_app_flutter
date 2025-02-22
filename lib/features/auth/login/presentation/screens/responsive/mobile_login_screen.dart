@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sudanet_app_flutter/core/app_manage/color_manager.dart';
 import 'package:sudanet_app_flutter/core/app_manage/extension_manager.dart';
 import 'package:sudanet_app_flutter/core/locale/app_localizations.dart';
 
@@ -35,7 +36,7 @@ class MobileLoginScreen extends StatelessWidget {
         children: [
           Container(
             height: kToolbarHeight,
-            color: Color(0xff528A89),
+            color: ColorManager.primary,
           ),
           const SizedBox(height: 16),
 
@@ -98,7 +99,7 @@ class MobileLoginScreen extends StatelessWidget {
                       text: AppStrings.login.tr(),
                       onTap: onTap,
                       width: context.width * 0.4,
-                      color: Color(0xff528A89),
+                      color: ColorManager.primary,
                     ),
                     const SizedBox(height: 24),
                   ],
@@ -107,16 +108,16 @@ class MobileLoginScreen extends StatelessWidget {
             ),
           ),
 
-          ElevatedButton(
-            onPressed: onPressedTestLogin,
-            child: const Text('Login Test'),
-          ),
+          // ElevatedButton(
+          //   onPressed: onPressedTestLogin,
+          //   child: const Text('Login Test'),
+          // ),
 
           const Spacer(),
           Container(
             height: kToolbarHeight,
             width: context.width,
-            color: Color(0xff528A89),
+            color: ColorManager.primary,
           ),
         ],
       ),
