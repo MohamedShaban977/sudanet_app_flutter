@@ -69,7 +69,7 @@ class _SplashScreenState extends State<SplashScreen> {
             height: 350,
           ),
           Positioned(
-            top: context.height * 0.2,
+            top: context.height * 0.15,
             child: Container(
               width: context.width * 0.9,
               padding: const EdgeInsets.all(14),
@@ -84,6 +84,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 color: ColorManager.white,
               ),
               child: Text('تطبيق مدارس الميرغنية وسودانت للتعليم عن بعد',
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xfff10605),
                     fontSize: 16,

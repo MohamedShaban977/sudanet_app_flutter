@@ -1,4 +1,4 @@
-package com.example.sudanet_app_flutter
+package com.sudanet.mir.online
 
 import android.view.WindowManager
 import io.flutter.embedding.android.FlutterActivity
