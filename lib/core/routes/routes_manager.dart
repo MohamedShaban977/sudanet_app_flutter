@@ -32,7 +32,6 @@ import '../../features/splash/presentation/screens/splash_screen.dart';
 import '../app_manage/strings_manager.dart';
 import 'magic_router.dart';
 import 'routes_name.dart';
-import 'routes_request.dart';
 
 class Routes {
   static Route? onGenerateRoute(RouteSettings settings) {
