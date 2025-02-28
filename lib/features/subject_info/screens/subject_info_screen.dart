@@ -29,7 +29,7 @@ class SubjectInfoScreen extends StatelessWidget {
                 CardButtonWidget(
                   pathIcon: ImageAssets.onlineLearning,
                   title: AppStrings.classesVideos.tr(),
-                  description: 'شاهد حصصك في أي وقت وأينما كنت',
+                  description: '',
                   onTap: () {
                     MagicRouterName.navigateTo(
                       RoutesNames.courseDetails,
@@ -41,8 +41,8 @@ class SubjectInfoScreen extends StatelessWidget {
                 ),
                 CardButtonWidget(
                   pathIcon: ImageAssets.writtenHomework,
-                  title: AppStrings.writtenHomework.tr(),
-                  description: 'أكتب، تعلم وتطور مع كل واجب',
+                  title: 'الملفات',
+                  description: '',
                   onTap: () {
                     MagicRouterName.navigateTo(
                       RoutesNames.writtenHomeworkRoute,
@@ -55,7 +55,7 @@ class SubjectInfoScreen extends StatelessWidget {
                 CardButtonWidget(
                   pathIcon: ImageAssets.digitalHomework,
                   title: AppStrings.digitalHomework.tr(),
-                  description: 'تحديات ممتعة وشيقة تحفز التفكير',
+                  description: '',
                   onTap: () {
                     MagicRouterName.navigateTo(
                       RoutesNames.homeworksRoute,
@@ -68,7 +68,7 @@ class SubjectInfoScreen extends StatelessWidget {
                 CardButtonWidget(
                   pathIcon: ImageAssets.examsIcon,
                   title: AppStrings.exams.tr(),
-                  description: 'ذاكر بتركيز واجتز الامتحانات بثقة',
+                  description: '',
                   onTap: () {
                     MagicRouterName.navigateTo(
                       RoutesNames.examsRoute,
@@ -148,17 +148,17 @@ class CardButtonWidget extends StatelessWidget {
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(height: 8),
-                      Expanded(
-                        child: Text(
-                          description,
-                          overflow: TextOverflow.visible,
-                          style: TextStyle(
-                              color: ColorManager.textGray2,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ),
+                      // const SizedBox(height: 8),
+                      // Expanded(
+                      //   child: Text(
+                      //     description,
+                      //     overflow: TextOverflow.visible,
+                      //     style: TextStyle(
+                      //         color: ColorManager.textGray2,
+                      //         fontSize: 14,
+                      //         fontWeight: FontWeight.w400),
+                      //   ),
+                      // ),
                       Spacer(),
                     ],
                   ),

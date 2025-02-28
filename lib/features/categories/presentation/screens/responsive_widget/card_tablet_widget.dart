@@ -39,6 +39,7 @@ class CardCategoriesTabletWidget extends StatelessWidget {
                           RoutesNames.coursesByCategoryScreen,
                           arguments: {
                             "id": '${category.id}',
+                            'title': category.name,
                           },
                         );
                       }),

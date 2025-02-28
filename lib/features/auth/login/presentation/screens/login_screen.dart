@@ -84,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     guidId = '';
                   },
                 ),
-                tablet: TabletLoginScreen(
+                tablet: MobileLoginScreen(
                   email: email,
                   password: password,
                   onTap: _submitLoginButton,

@@ -70,81 +70,90 @@ class TabletLoginScreen extends StatelessWidget {
                                   ImageAssets.appLogo,
                                   alignment: Alignment.center,
                                 ),
-                                const SizedBox(height: AppSize.s38),
 
-                                ///
-                                Text(AppStrings.signIn.tr(),
-                                    style: context.displayLarge),
 
-                                const SizedBox(height: AppSize.s13),
                               ],
                             ),
                           ),
                           const Spacer(),
                           Expanded(
                             flex: 7,
-                            child: Column(
-                              children: [
-                                ///
-                                CustomTextFormField(
-                                  hint: AppStrings.email.tr(),
-                                  prefixIcon: Icons.person_2_rounded,
-                                  controller: email,
-                                  keyboardType: TextInputType.name,
-                                  textInputAction: TextInputAction.next,
-                                  validator: (value) =>
-                                      Validator.isValidUserName(email.text),
-                                ),
-                                const SizedBox(height: AppSize.s16),
-
-                                ///
-                                BlocBuilder<LoginCubit, LoginState>(
-                                  builder: (context, state) {
-                                    final cubit = sl<LoginCubit>().get(context);
-                                    return CustomTextFormField(
-                                      hint: AppStrings.password.tr(),
-                                      controller: password,
-                                      obscureText: cubit.isPassword,
-                                      iconData: cubit.suffix,
-                                      prefixIcon: Icons.lock,
-                                      keyboardType:
-                                          TextInputType.visiblePassword,
-                                      textInputAction: TextInputAction.done,
-                                      onTapIcon: () =>
-                                          cubit.changePassVisibility(),
-                                      validator: (value) =>
-                                          Validator.isValidPassword(
-                                              password.text),
-                                    );
-                                  },
-                                ),
-
-                                const SizedBox(height: AppSize.s30),
-                                Row(
+                            child:  Card(
+                              color: Color(0xFFF0F0F0),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16)),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16),
+                                child: Column(
                                   children: [
-                                    GestureDetector(
-                                      onTap: () => MagicRouterName.navigateTo(
-                                          RoutesNames.forgetPasswordRoute),
-                                      child: Text(
-                                          AppStrings.forgetPassword.tr(),
-                                          style: context.displayMedium.copyWith(
-                                              color: ColorManager.textGray)),
+                                    const SizedBox(height: AppSize.s50),
+
+                                    Text(AppStrings.signIn.tr(),
+                                        style: context.displayLarge),
+                                    const SizedBox(height: AppSize.s38),
+
+                                    ///
+                                    CustomTextFormField(
+                                      hint: AppStrings.email.tr(),
+                                      prefixIcon: Icons.person_2_rounded,
+                                      controller: email,
+                                      keyboardType: TextInputType.name,
+                                      textInputAction: TextInputAction.next,
+                                      validator: (value) =>
+                                          Validator.isValidUserName(email.text),
                                     ),
+                                    const SizedBox(height: AppSize.s16),
+
+                                    ///
+                                    BlocBuilder<LoginCubit, LoginState>(
+                                      builder: (context, state) {
+                                        final cubit = sl<LoginCubit>().get(context);
+                                        return CustomTextFormField(
+                                          hint: AppStrings.password.tr(),
+                                          controller: password,
+                                          obscureText: cubit.isPassword,
+                                          iconData: cubit.suffix,
+                                          prefixIcon: Icons.lock,
+                                          keyboardType:
+                                              TextInputType.visiblePassword,
+                                          textInputAction: TextInputAction.done,
+                                          onTapIcon: () =>
+                                              cubit.changePassVisibility(),
+                                          validator: (value) =>
+                                              Validator.isValidPassword(
+                                                  password.text),
+                                        );
+                                      },
+                                    ),
+
+                                    const SizedBox(height: AppSize.s30),
+                                    Row(
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () => MagicRouterName.navigateTo(
+                                              RoutesNames.forgetPasswordRoute),
+                                          child: Text(
+                                              AppStrings.forgetPassword.tr(),
+                                              style: context.displayMedium.copyWith(
+                                                  color: ColorManager.textGray)),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: AppSize.s30),
+
+                                    /// login button
+                                    CustomButtonWithLoading(
+                                      text: AppStrings.login.tr(),
+                                      onTap: onTap,
+                                    ),
+
+                                    const SizedBox(height: AppSize.s37),
+
+                                    ///
+                                    // const RegisterButtonRowTextWidget(),
                                   ],
                                 ),
-                                const SizedBox(height: AppSize.s30),
-
-                                /// login button
-                                CustomButtonWithLoading(
-                                  text: AppStrings.login.tr(),
-                                  onTap: onTap,
-                                ),
-
-                                const SizedBox(height: AppSize.s37),
-
-                                ///
-                                // const RegisterButtonRowTextWidget(),
-                              ],
+                              ),
                             ),
                           ),
                           const Spacer(),

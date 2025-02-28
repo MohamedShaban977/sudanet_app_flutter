@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sudanet_app_flutter/core/app_manage/extension_manager.dart';
-import 'package:sudanet_app_flutter/core/locale/app_localizations.dart';
 
 import '../../../../app/injection_container.dart';
 import '../../../../core/app_manage/color_manager.dart';
-import '../../../../core/app_manage/strings_manager.dart';
 import '../../../../core/app_manage/values_manager.dart';
 import '../../../../core/responsive/responsive.dart';
 import '../../../../core/responsive/responsive_grid.dart';
@@ -14,7 +12,7 @@ import '../../../../widgets/custom_loading_widget.dart';
 import '../../../courses/presentation/screens/responsive_widget/card_tablet_widget.dart';
 import '../cubit/courses_by_category_cubit.dart';
 
-const double _desiredItemWidth = 260;
+const double _desiredItemWidth = 240;
 
 class CoursesByCategoryScreen extends StatelessWidget {
   const CoursesByCategoryScreen(
@@ -51,7 +49,7 @@ class CoursesByCategoryScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(AppPadding.p12),
                       child: Text(
-                        '${AppStrings.subjects.tr()} ',
+                        'المواد الدراسيه',
                         style:
                             Theme.of(context).textTheme.headlineSmall!.copyWith(
                                   color: ColorManager.primary,
@@ -65,10 +63,10 @@ class CoursesByCategoryScreen extends StatelessWidget {
                                 Responsive.isMobile(context)
                             ? context.width * 0.4
                             : _desiredItemWidth,
-                        minSpacing: 2.0,
+                        minSpacing: 8.0,
                         shrinkWrap: true,
                         physics: const ClampingScrollPhysics(),
-                        rowMainAxisAlignment: MainAxisAlignment.center,
+                        rowMainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           if (cubit.coursesByCategoryIdItems.isNotEmpty)
                             ...List.generate(
