@@ -11,9 +11,20 @@ import 'package:sudanet_app_flutter/widgets/custom_app_bar_widget.dart';
 class SubjectInfoScreen extends StatelessWidget {
   final String subjectId;
   final String subjectName;
+  final bool lecturesEnabled;
+  final bool homeWorkEnabled;
+  final bool filesEnabled;
+  final bool examsEnabled;
 
-  const SubjectInfoScreen(
-      {super.key, required this.subjectId, required this.subjectName});
+  const SubjectInfoScreen({
+    super.key,
+    required this.subjectId,
+    required this.subjectName,
+    this.lecturesEnabled = false,
+    this.homeWorkEnabled = false,
+    this.filesEnabled = false,
+    this.examsEnabled = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,58 +37,62 @@ class SubjectInfoScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                CardButtonWidget(
-                  pathIcon: ImageAssets.onlineLearning,
-                  title: AppStrings.classesVideos.tr(),
-                  description: '',
-                  onTap: () {
-                    MagicRouterName.navigateTo(
-                      RoutesNames.courseDetails,
-                      arguments: {
-                        'subject_id': subjectId,
-                      },
-                    );
-                  },
-                ),
-                CardButtonWidget(
-                  pathIcon: ImageAssets.writtenHomework,
-                  title: 'الملفات',
-                  description: '',
-                  onTap: () {
-                    MagicRouterName.navigateTo(
-                      RoutesNames.writtenHomeworkRoute,
-                      arguments: {
-                        'subject_id': subjectId,
-                      },
-                    );
-                  },
-                ),
-                CardButtonWidget(
-                  pathIcon: ImageAssets.digitalHomework,
-                  title: AppStrings.digitalHomework.tr(),
-                  description: '',
-                  onTap: () {
-                    MagicRouterName.navigateTo(
-                      RoutesNames.homeworksRoute,
-                      arguments: {
-                        'subject_id': subjectId,
-                      },
-                    );
-                  },
-                ),
-                CardButtonWidget(
-                  pathIcon: ImageAssets.examsIcon,
-                  title: AppStrings.exams.tr(),
-                  description: '',
-                  onTap: () {
-                    MagicRouterName.navigateTo(
-                      RoutesNames.examsRoute,
-                      arguments: {
-                        'subject_id': subjectId,
-                      },
-                    );
-                  },
-                ),
+                if (lecturesEnabled)
+                  CardButtonWidget(
+                    pathIcon: ImageAssets.onlineLearning,
+                    title: AppStrings.classesVideos.tr(),
+                    description: '',
+                    onTap: () {
+                      MagicRouterName.navigateTo(
+                        RoutesNames.courseDetails,
+                        arguments: {
+                          'subject_id': subjectId,
+                        },
+                      );
+                    },
+                  ),
+                if (filesEnabled)
+                  CardButtonWidget(
+                    pathIcon: ImageAssets.writtenHomework,
+                    title: 'الملفات',
+                    description: '',
+                    onTap: () {
+                      MagicRouterName.navigateTo(
+                        RoutesNames.writtenHomeworkRoute,
+                        arguments: {
+                          'subject_id': subjectId,
+                        },
+                      );
+                    },
+                  ),
+                if (homeWorkEnabled)
+                  CardButtonWidget(
+                    pathIcon: ImageAssets.digitalHomework,
+                    title: AppStrings.digitalHomework.tr(),
+                    description: '',
+                    onTap: () {
+                      MagicRouterName.navigateTo(
+                        RoutesNames.homeworksRoute,
+                        arguments: {
+                          'subject_id': subjectId,
+                        },
+                      );
+                    },
+                  ),
+                if (examsEnabled)
+                  CardButtonWidget(
+                    pathIcon: ImageAssets.examsIcon,
+                    title: AppStrings.exams.tr(),
+                    description: '',
+                    onTap: () {
+                      MagicRouterName.navigateTo(
+                        RoutesNames.examsRoute,
+                        arguments: {
+                          'subject_id': subjectId,
+                        },
+                      );
+                    },
+                  ),
               ],
             ),
           )),
