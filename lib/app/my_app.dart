@@ -45,7 +45,7 @@ class _MyAppState extends State<MyApp> {
             title: 'Al-Mirghaniyah Online',
             debugShowCheckedModeBanner: false,
             // locale: DevicePreview.locale(context),
-            builder: (context, child) => EmulatorCheck(
+            builder: (context, child) => kDebugMode?  child ?? SizedBox.square():EmulatorCheck(
               child: child ?? SizedBox.square(),
             ),
             // theme: ThemeData.light(),
