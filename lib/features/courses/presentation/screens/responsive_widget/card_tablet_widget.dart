@@ -27,6 +27,10 @@ class CardCoursesTabletWidget extends StatelessWidget {
           arguments: {
             'subject_id': '${course.id}',
             'subject_name': course.name,
+            'lectures_enabled': course.lecturesEnabled,
+            'homework_enabled': course.homeWorkEnabled,
+            'files_enabled': course.filesEnabled,
+            'exams_enabled': course.examsEnabled,
           },
         );
       },

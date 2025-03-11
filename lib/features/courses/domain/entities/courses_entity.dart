@@ -21,6 +21,10 @@ class CoursesEntity extends Equatable {
   final String currencyName;
   final String categoryName;
   final int categoryId;
+  final bool lecturesEnabled;
+  final bool homeWorkEnabled;
+  final bool filesEnabled;
+  final bool examsEnabled;
 
   const CoursesEntity({
     required this.id,
@@ -31,6 +35,10 @@ class CoursesEntity extends Equatable {
     required this.currencyName,
     required this.categoryName,
     required this.categoryId,
+    required this.lecturesEnabled,
+    required this.homeWorkEnabled,
+    required this.filesEnabled,
+    required this.examsEnabled,
   });
 
   @override
@@ -43,5 +51,9 @@ class CoursesEntity extends Equatable {
         currencyName,
         categoryName,
         categoryId,
+        lecturesEnabled,
+        homeWorkEnabled,
+        filesEnabled,
+        examsEnabled,
       ];
 }

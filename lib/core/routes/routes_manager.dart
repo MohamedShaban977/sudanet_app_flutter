@@ -208,7 +208,11 @@ class Routes {
         return MagicRouter.pageRoute(
           SubjectInfoScreen(
             subjectId: arg?['subject_id'],
-            subjectName: arg?['subject_name'],
+            subjectName: arg?['subject_name'] as String,
+            lecturesEnabled: arg?['lectures_enabled'] as bool,
+            homeWorkEnabled: arg?['homework_enabled'] as bool,
+            filesEnabled: arg?['files_enabled'] as bool,
+            examsEnabled: arg?['exams_enabled'] as bool,
           ),
         );
 
