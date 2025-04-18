@@ -13,17 +13,10 @@ import 'core/cache/hive_helper.dart';
 
 Future<void> main() async {
   await _initMain();
-  final emulator = await isRunningOnEmulator(isReleaseMode: kReleaseMode);
 
-  if (emulator) {
-    // Exit the app or display a message
-    if (kDebugMode) {
-      print("This app cannot run on an emulator.");
-    }
-    exit(0); // Exit the app
-  } else {
-    runApp(MyApp());
-  }
+// Exit the app
+
+  runApp(MyApp());
 }
 
 Future<void> _initMain() async {
@@ -32,19 +25,4 @@ Future<void> _initMain() async {
   await ServiceLocator.initApp();
   HiveHelper.init();
   Bloc.observer = MyBlocObserver();
-}
-
-Future<bool> isRunningOnEmulator({required bool isReleaseMode}) async {
-  if (!isReleaseMode) return false;
-  final deviceInfo = DeviceInfoPlugin();
-
-  if (Platform.isAndroid) {
-    final androidInfo = await deviceInfo.androidInfo;
-    return androidInfo.isPhysicalDevice == false;
-  } else if (Platform.isIOS) {
-    final iosInfo = await deviceInfo.iosInfo;
-    return iosInfo.isPhysicalDevice == false;
-  }
-
-  return false;
 }
